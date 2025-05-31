@@ -8,7 +8,14 @@ import type { Character } from "@/lib/character-data"
 const soundManager = {
   playSound: (sound: string) => console.log(`Would play sound: ${sound}`),
   stopAllSounds: () => console.log('Would stop all sounds'),
-  setVolume: (volume: number) => console.log(`Would set volume to: ${volume}`)
+  setVolume: (volume: number) => console.log(`Would set volume to: ${volume}`),
+  // Add missing methods to fix type errors
+  playBackgroundMusic: () => console.log('Would play background music'),
+  stopBackgroundMusic: () => console.log('Would stop background music'),
+  toggleMute: () => {
+    console.log('Would toggle mute');
+    return false; // Return false to indicate not muted
+  }
 }
 
 interface TextRPGProps {
@@ -532,7 +539,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
             currentContent.choices.map((choice, index) => (
               <button
                 key={index}
-                onClick={() => handleChoice(choice.destination, choice.collectItem)}
+                onClick={() => handleChoice(choice.destination as GameScreen, choice?.collectItem)}
                 className="bg-green-800 hover:bg-green-700 text-white font-mono py-2 px-4 border-2 border-green-400 rounded text-left"
               >
                 &gt; {choice.text}
