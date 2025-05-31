@@ -48,7 +48,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
 
   const [isMuted, setIsMuted] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
-  const [textVisible, setTextVisible] = useState(true)
+  const [textVisible] = useState(true)
   const [blinkCursor, setBlinkCursor] = useState(true)
 
   // Blink the cursor for that authentic 90s feel
@@ -423,8 +423,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     }
   }
 
-  // Restart game
-  const restartGame = () => {
+  // Restart game (for future implementation)
+  const _restartGame = () => {
     setGameState({
       currentScreen: "intro",
       inventory: [],
@@ -457,7 +457,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
 
           <div className="bg-green-900 border-2 border-green-400 p-4 mb-6 rounded-lg">
             <h3 className="text-2xl font-bold text-green-400 mb-2 font-mono">{selectedCharacter.name}</h3>
-            <p className="text-green-300 text-lg mb-4 italic font-mono">"{selectedCharacter.catchphrase}"</p>
+            <p className="text-green-300 text-lg mb-4 italic font-mono">&quot;{selectedCharacter.catchphrase}&quot;</p>
           </div>
 
           <div className="bg-black border-2 border-green-500 p-4 mb-8 rounded-lg">
@@ -555,7 +555,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         </div>
         <div>
           <p className="text-green-400 font-mono">
-            {selectedCharacter.name}: "{selectedCharacter.catchphrase}"
+            {selectedCharacter.name}: &quot;{selectedCharacter.catchphrase}&quot;
           </p>
         </div>
       </div>

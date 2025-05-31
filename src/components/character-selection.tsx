@@ -56,7 +56,7 @@ export default function CharacterSelection({ onCharacterSelect }: CharacterSelec
               </div>
 
               <h3 className="text-2xl font-bold text-yellow-400 mb-2">{character.name}</h3>
-              <p className="text-orange-300 text-lg mb-4 italic">"{character.catchphrase}"</p>
+              <p className="text-orange-300 text-lg mb-4 italic">&quot;{character.catchphrase}&quot;</p>
               <p className="text-white mb-4">{character.description}</p>
 
               <div className="text-left">
@@ -71,7 +71,7 @@ export default function CharacterSelection({ onCharacterSelect }: CharacterSelec
               {(hoveredCharacter?.id === character.id || selectedCharacter?.id === character.id) && (
                 <div className="mt-4 p-3 bg-black bg-opacity-60 rounded">
                   <p className="text-yellow-300 text-sm font-bold">SAMPLE REACTION:</p>
-                  <p className="text-white text-sm italic">"{character.reactions.questComplete[0]}"</p>
+                  <p className="text-white text-sm italic">&quot;{character.reactions.questComplete[0]}&quot;</p>
                 </div>
               )}
             </div>
