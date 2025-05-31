@@ -423,8 +423,9 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     }
   }
 
-  // Restart game (for future implementation)
-  const _restartGame = () => {
+  // Restart game function preserved for future implementation
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const restartGame = () => {
     setGameState({
       currentScreen: "intro",
       inventory: [],
