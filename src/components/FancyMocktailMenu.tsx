@@ -2,7 +2,6 @@
 
 import React from 'react';
 // Import specific fates instead of the whole array
-import { Fate } from '@/lib/mocktail-data'; // ✅ keep if other parts of your app still use it
 
 /* ------------------------------------------------------------------
    SVG DECORATIONS
@@ -187,16 +186,14 @@ const FancyMocktailMenu = () => {
   const allDrinks = [...matchaMocktails, ...additionalDrinks] // ✅ fate-wheel drinks removed
 
   return (
-    <div className="text-green-400 space-y-6">
-      <h2 className="text-yellow-500 font-mono text-2xl mb-6 text-center font-bold">
-        Y2K MATCHA BAR MENU
-      </h2>
+    <div className="text-green-800 space-y-6">
+      {/* Title is now in the modal header */}
 
       <div className="grid grid-cols-1 gap-4">
         {allDrinks.map((drink, index) => (
           <div
             key={drink.id}
-            className="relative border-2 bg-slate-800 p-4 rounded-md overflow-hidden"
+            className="relative border-2 bg-white p-4 rounded-md overflow-hidden shadow-sm"
             style={{ borderColor: drink.color }}
           >
             {/* floating SVG garnish */}
@@ -204,20 +201,20 @@ const FancyMocktailMenu = () => {
 
             <div className="flex justify-between items-center">
               <h3 className="flex items-center space-x-2 font-mono text-xl font-bold">
-                {/* little colored dot to echo fate-wheel palette */}
+                {/* little colored dot to echo palette */}
                 <span
                   className="inline-block w-3 h-3 rounded-full"
                   style={{ background: drink.color }}
                 />
-                <span className="text-yellow-500">{drink.headline}</span>
+                <span className="text-green-700">{drink.headline}</span>
               </h3>
-              <span className="text-yellow-400 font-mono font-bold">
+              <span className="text-green-600 font-mono font-bold">
                 {drink.price} AED
               </span>
             </div>
 
-            <p className="text-green-400 font-mono italic my-2">
-              “{drink.flavorText}”
+            <p className="text-green-600 font-mono italic my-2 bg-green-50 p-2 rounded-sm">
+              "{drink.flavorText}"
             </p>
 
             {/* main emoji */}
@@ -226,7 +223,7 @@ const FancyMocktailMenu = () => {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default FancyMocktailMenu
