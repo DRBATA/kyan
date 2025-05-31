@@ -9,6 +9,7 @@ interface AudioReactiveTitleProps {
 }
 
 // Character wrapper for individual character animations
+// @ts-ignore: Intentionally avoiding typed parameters as they caused crashes previously
 function AnimatedCharacter({ char, index, isPlaying, bassLevel = 0, midLevel = 0, highLevel = 0 }) {
   const randomOffset = useMemo(() => Math.random() * 0.5, [])
   const delayMs = useMemo(() => index * 30, [index])
