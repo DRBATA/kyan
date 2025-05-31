@@ -1,103 +1,84 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import HalftoneWaves from "@/components/HalftoneWaves";
+import AudioReactiveTitle from "@/components/AudioReactiveTitle";
+import RetroModal from "@/components/RetroModal";
+import MatchaMadnessTextRPG from "@/components/matcha-madness-text-rpg";
+import CharacterSelection from "@/components/character-selection";
+import FancyMocktailMenu from "@/components/FancyMocktailMenu";
+import type { Character } from "@/lib/character-data";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // Use the soundtrack from the audio folder
+  const audioSrc = "/audio/soundtrack.mp3";
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Modal state
+  const [showEventDetails, setShowEventDetails] = useState(false);
+  const [showMocktailMenu, setShowMocktailMenu] = useState(false);
+  const [showMatchaGame, setShowMatchaGame] = useState(false);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+
+  // Click handlers for menu buttons
+  const handleEventDetailsClick = () => setShowEventDetails(true);
+  const handleMocktailMenuClick = () => setShowMocktailMenu(true);
+  const handleMatchaGameClick = () => {
+    setShowMatchaGame(true);
+    setSelectedCharacter(null); // Reset character selection when opening game
+  };
+
+  // Reset character selection
+  const handleCloseMatchaGame = () => {
+    setShowMatchaGame(false);
+    setSelectedCharacter(null);
+  };
+
+  return (
+    <main className="min-h-screen bg-black overflow-x-hidden flex flex-col items-center justify-center relative font-mono">
+      {/* Background animation */}
+      <HalftoneWaves />
+      
+      {/* Audio-reactive title */}
+      <AudioReactiveTitle 
+        title="Matcha Like It's 1999™" 
+        subtitle={
+          <div className="flex items-center justify-center space-x-6 text-xl font-bold font-mono tracking-tight">
+            <button onClick={handleEventDetailsClick} className="text-green-400 hover:text-green-300 transition-colors px-3 py-1 border-2 border-green-500/60 bg-black/60 backdrop-blur-sm hover:bg-black/40 uppercase tracking-wider">> Event @Kyan X TheMorningPartyDXB™</button>
+            <button onClick={handleMocktailMenuClick} className="text-green-400 hover:text-green-300 transition-colors px-3 py-1 border-2 border-green-500/60 bg-black/60 backdrop-blur-sm hover:bg-black/40 uppercase tracking-wider">> Mocktail_Menu by TheWaterBar™</button>
+            <button onClick={handleMatchaGameClick} className="text-green-400 hover:text-green-300 transition-colors px-3 py-1 border-2 border-green-500/60 bg-black/60 backdrop-blur-sm hover:bg-black/40 uppercase tracking-wider">> Matcha_Game: MatchaMadness</button>
+          </div>
+        }
+        audioSrc={audioSrc} 
+      />
+
+      {/* Event Details Modal */}
+      <RetroModal isOpen={showEventDetails} onClose={() => setShowEventDetails(false)} title="Event Details">
+        <div className="text-green-400 space-y-4">
+          <p className="text-2xl mb-4">Matcha Like It's 1999</p>
+          <p>Date: June 15, 2025</p>
+          <p>Time: 7:00 AM - 11:00 AM</p>
+          <p>Location: The Water Bar, Sheikh Zayed Road</p>
+          <p className="mt-8">Join us for a morning of matcha-inspired festivities before the workday begins!</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </RetroModal>
+
+      {/* Mocktail Menu Modal */}
+      <RetroModal isOpen={showMocktailMenu} onClose={() => setShowMocktailMenu(false)} title="Matcha Mocktail Menu">
+        <FancyMocktailMenu />
+      </RetroModal>
+
+      {/* Matcha Madness Game Modal */}
+      <RetroModal 
+        isOpen={showMatchaGame} 
+        onClose={handleCloseMatchaGame} 
+        title={selectedCharacter ? `MATCHA MADNESS: ${selectedCharacter.name}` : "MATCHA MADNESS"}
+      >
+        {!selectedCharacter ? (
+          <CharacterSelection onCharacterSelect={setSelectedCharacter} />
+        ) : (
+          <MatchaMadnessTextRPG selectedCharacter={selectedCharacter} />
+        )}
+      </RetroModal>
+    </main>
   );
 }
