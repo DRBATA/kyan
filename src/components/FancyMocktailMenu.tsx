@@ -1,7 +1,8 @@
 "use client"
 
-import React from "react"
-import { POSSIBLE_FATES } from "@/lib/mocktail-data" // ✅ keep if other parts of your app still use it
+import React from 'react';
+// Import specific fates instead of the whole array
+import { Fate } from '@/lib/mocktail-data'; // ✅ keep if other parts of your app still use it
 
 /* ------------------------------------------------------------------
    SVG DECORATIONS

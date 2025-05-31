@@ -36,7 +36,7 @@ export default function RetroModal({ isOpen, onClose, children, title }: RetroMo
         {/* Header with title and close button */}
         <div className="flex items-center justify-between bg-green-900 p-2 border-b border-green-500 sticky top-0 z-10">
           {title && (
-            <h2 className="text-green-300 text-xl uppercase tracking-wider px-2">> {title}</h2>
+            <h2 className="text-green-300 text-xl uppercase tracking-wider px-2">{">"}  {title}</h2>
           )}
           <button 
             onClick={onClose}
