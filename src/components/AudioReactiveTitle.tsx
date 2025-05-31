@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo, ReactNode } from "react"
+import { useEffect, useRef, useState, useMemo } from "react"
 
 interface AudioReactiveTitleProps {
   title: string
@@ -13,7 +13,7 @@ function AnimatedCharacter({ char, index, isPlaying, bassLevel = 0, midLevel = 0
   const randomOffset = useMemo(() => Math.random() * 0.5, [])
   const delayMs = useMemo(() => index * 30, [index])
   
-  // Base styling
+  // Base styling with always-on green glow effect
   const style = {
     display: 'inline-block',
     position: 'relative' as const,
@@ -25,13 +25,22 @@ function AnimatedCharacter({ char, index, isPlaying, bassLevel = 0, midLevel = 0
       rotate(${(midLevel - 0.5) * 5}deg)
     ` : 'none',
     filter: `hue-rotate(${index * 10 + highLevel * 90}deg)`,
+    color: 'white',
     textShadow: isPlaying ? `
       0 0 5px rgba(255, 255, 255, ${0.5 + highLevel * 0.5}),
       0 0 10px rgba(255, 255, 255, ${0.3 + highLevel * 0.7}),
       ${-bassLevel * 15}px 0 ${2 + bassLevel * 8}px rgba(255, 0, 0, ${0.5 + bassLevel * 0.5}),
       ${bassLevel * 15}px 0 ${2 + bassLevel * 8}px rgba(0, 255, 255, ${0.5 + bassLevel * 0.5}),
       0 0 ${20 + highLevel * 30}px rgba(255, 255, 255, ${0.2 + highLevel * 0.3})
-    ` : 'none',
+    ` : `
+      0 0 5px rgba(255, 255, 255, 0.8),
+      0 0 10px rgba(255, 255, 255, 0.5),
+      0 0 15px rgba(0, 197, 79, 0.7),
+      0 0 25px rgba(0, 255, 106, 0.6),
+      0 0 35px rgba(0, 255, 106, 0.4),
+      -3px 0 5px rgba(122, 170, 93, 0.6),
+      3px 0 5px rgba(0, 255, 106, 0.6)
+    `,
     // Combined animation delay into the animation shorthand above
   }
   
@@ -60,7 +69,8 @@ export default function AudioReactiveTitle({ title, subtitle, audioSrc }: AudioR
     audioRef.current = audio
 
     // Set up audio context and analyzer
-    const AudioContext = window.AudioContext || (window as any).webkitAudioContext
+    // @ts-ignore: Safari support requires webkitAudioContext
+    const AudioContext = window.AudioContext || window.webkitAudioContext
     const audioContext = new AudioContext()
     audioContextRef.current = audioContext
 

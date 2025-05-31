@@ -8,7 +8,7 @@ const EventPanel = () => {
       {/* PUMPED 90s HEADLINE */}
       <header className="border-2 border-yellow-500 bg-slate-800 p-4 rounded-md text-center">
         <h2 className="text-3xl text-yellow-500 font-bold tracking-wider">
-          > THE MORNING PARTY :: JUNE 15 '25
+          {'>'} THE MORNING PARTY :: JUNE 15 '25
         </h2>
         <p className="mt-2 text-lg italic text-green-300">
           "Wake up, plug in, drink green — <br className="sm:hidden" />
@@ -90,7 +90,7 @@ const EventPanel = () => {
       {/* TIMELINE */}
       <div className="border-2 border-green-400 bg-slate-800 p-4 rounded-md">
         <h3 className="text-green-300 text-2xl font-bold">
-          > RUN OF SHOW
+          {'>'} RUN OF SHOW
         </h3>
         <ol className="list-decimal pl-6 mt-2 space-y-1 text-green-400">
           <li>11 : 00 — Check-in & drink tokens</li>

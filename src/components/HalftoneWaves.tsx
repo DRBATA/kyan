@@ -2,20 +2,24 @@
 
 import { useEffect, useRef } from "react"
 
-// Matcha-inspired color palette with softer transitions
+// Boho-Chic Morning Party Color Palette
 const MATCHA_PALETTE = [
-  // Greens for matcha focus
-  { r: 76, g: 175, b: 80, a: 0.9 }, // Green (increased opacity)
-  { r: 0, g: 150, b: 136, a: 0.9 }, // Teal (increased opacity)
-  // Accent colors - limited for less distraction
-  { r: 255, g: 235, b: 59, a: 0.8 }, // Yellow (increased opacity)
-  { r: 255, g: 64, b: 129, a: 0.8 }, // Pink (increased opacity)
-  // Additional vibrant colors for wave variation
-  { r: 129, g: 199, b: 132, a: 0.9 }, // Light green
-  { r: 129, g: 212, b: 250, a: 0.8 }, // Light blue
+  // Earthy neutrals
+  { r: 242, g: 237, b: 227, a: 0.9 },  // MATCHA-FOAM (#F2EDE3)
+  { r: 212, g: 227, b: 197, a: 0.9 },  // PISTACHIO-WHIP (#D4E3C5)
+  { r: 168, g: 161, b: 126, a: 0.9 },  // SAGE-DESERT (#A8A17E)
+  
+  // Warm accents
+  { r: 120, g: 90, b: 66, a: 0.85 },   // BURN-OAK (#785A42)
+  { r: 199, g: 109, b: 56, a: 0.85 },  // CERRA-COTTA (#C76D38)
+  { r: 245, g: 183, b: 92, a: 0.85 },  // BUTTER-AMBER (#F5B75C)
+  
+  // Vibrant pops
+  { r: 242, g: 61, b: 61, a: 0.8 },    // TOMATO-POP (#F23D3D)
+  { r: 46, g: 111, b: 115, a: 0.9 },   // DEEP-TEAL (#2E6F73)
 ]
 
-const BACKGROUND_COLOR = "rgba(5, 15, 25, 0.95)" // Darker background for higher contrast
+const BACKGROUND_COLOR = "rgba(242, 237, 227, 0.95)" // Light matcha-foam background
 
 export default function HalftoneWaves() {
   const canvasRef = useRef<HTMLCanvasElement>(null)

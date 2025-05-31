@@ -1,8 +1,6 @@
 "use client"
 
 import React from 'react';
-// Import specific fates instead of the whole array
-
 /* ------------------------------------------------------------------
    SVG DECORATIONS
 -------------------------------------------------------------------*/
@@ -214,7 +212,7 @@ const FancyMocktailMenu = () => {
             </div>
 
             <p className="text-green-600 font-mono italic my-2 bg-green-50 p-2 rounded-sm">
-              "{drink.flavorText}"
+              &quot;{drink.flavorText}&quot;
             </p>
 
             {/* main emoji */}

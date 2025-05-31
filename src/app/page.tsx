@@ -8,6 +8,8 @@ import MatchaMadnessTextRPG from "@/components/matcha-madness-text-rpg";
 import CharacterSelection from "@/components/character-selection";
 import FancyMocktailMenu from "@/components/FancyMocktailMenu";
 import EventPanel from "@/components/EventPanel";
+import SponsorStrip from "@/components/SponsorStrip";
+import TicketButton from "@/components/TicketButton";
 import type { Character } from "@/lib/character-data";
 
 export default function Home() {
@@ -72,7 +74,11 @@ export default function Home() {
 
       {/* Event Details Modal */}
       <RetroModal isOpen={showEventDetails} onClose={() => setShowEventDetails(false)} title="🎉 The Morning Party">
-        <EventPanel />
+        <div className="space-y-4">
+          <EventPanel />
+          <SponsorStrip />
+          <TicketButton />
+        </div>
       </RetroModal>
 
       {/* Mocktail Menu Modal */}
