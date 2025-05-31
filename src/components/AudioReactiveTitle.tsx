@@ -69,7 +69,7 @@ export default function AudioReactiveTitle({ title, subtitle, audioSrc }: AudioR
     audioRef.current = audio
 
     // Set up audio context and analyzer
-    // @ts-ignore: Safari support requires webkitAudioContext
+    // @ts-expect-error: Safari support requires webkitAudioContext
     const AudioContext = window.AudioContext || window.webkitAudioContext
     const audioContext = new AudioContext()
     audioContextRef.current = audioContext

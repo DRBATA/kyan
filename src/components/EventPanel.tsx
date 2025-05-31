@@ -8,11 +8,11 @@ const EventPanel = () => {
       {/* PUMPED 90s HEADLINE */}
       <header className="border-2 border-yellow-500 bg-slate-800 p-4 rounded-md text-center">
         <h2 className="text-3xl text-yellow-500 font-bold tracking-wider">
-          {'>'} THE MORNING PARTY :: JUNE 15 '25
+          {'>'} THE MORNING PARTY :: JUNE 15 &apos;25
         </h2>
         <p className="mt-2 text-lg italic text-green-300">
-          "Wake up, plug in, drink green — <br className="sm:hidden" />
-          the city reboots @ <span className="text-cyan-400">11:00 AM</span>."
+          &quot;Wake up, plug in, drink green — <br className="sm:hidden" />
+          the city reboots @ <span className="text-cyan-400">11:00 AM</span>.&quot;
         </p>
       </header>
 
@@ -61,7 +61,7 @@ const EventPanel = () => {
             <span role="img" aria-label="tea">
               🍵
             </span>
-            <span>Hadeel's MATCHA BAR</span>
+            <span>Hadeel&apos;s MATCHA BAR</span>
           </h3>
           <p className="mt-1 text-green-400">
             45 AED signature pour &plus; <br />
@@ -94,9 +94,9 @@ const EventPanel = () => {
         </h3>
         <ol className="list-decimal pl-6 mt-2 space-y-1 text-green-400">
           <li>11 : 00 — Check-in & drink tokens</li>
-          <li>11 : 15 — Hadeel's 90s intro + welcome sip</li>
+          <li>11 : 15 — Hadeel&apos;s 90s intro + welcome sip</li>
           <li>11 : 30 — DJ spin-up & activations open</li>
-          <li>12 : 30 — "Mocktail Roulette" live round</li>
+          <li>12 : 30 — &quot;Mocktail Roulette&quot; live round</li>
           <li>13 : 45 — Powder Beauty raffle draw</li>
           <li>14 : 00 — Soft close / mingle</li>
         </ol>
