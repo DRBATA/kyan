@@ -539,7 +539,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
             currentContent.choices.map((choice, index) => (
               <button
                 key={index}
-                onClick={() => handleChoice(choice.destination as GameScreen, choice?.collectItem)}
+                onClick={() => handleChoice(
+                  choice.destination as GameScreen, 
+                  'collectItem' in choice ? choice.collectItem : undefined
+                )}
                 className="bg-green-800 hover:bg-green-700 text-white font-mono py-2 px-4 border-2 border-green-400 rounded text-left"
               >
                 &gt; {choice.text}
