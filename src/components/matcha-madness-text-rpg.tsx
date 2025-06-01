@@ -470,10 +470,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
 
           <div className="bg-black border-2 border-green-500 p-4 mb-8 rounded-lg">
             <p className="text-white mb-2 text-center font-mono">
-              December 31, 1999 - The millennium matcha party is in crisis!
+            December 31, 1999 — Y2K looms; the Matcha Morning Party is in crisis.  
             </p>
             <p className="text-green-300 text-sm text-center font-mono">
-              Race against time to save matcha culture before Y2K destroys everything!
+            Race against time tonight to find the perfect matcha blend and save the new millennium.
             </p>
           </div>
 
@@ -571,7 +571,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         </div>
       </div>
 
-      <p className="text-xs text-white mt-4 font-mono">© 1999 MATCHA SYSTEMS INC. | 640K RAM REQUIRED</p>
+      <p className="text-xs text-white mt-4 font-mono">© 2025 THEWATERBAR.AE | 640K RAM REQUIRED</p>
     </div>
   )
 }

@@ -73,7 +73,7 @@ export default function Home() {
       />
 
       {/* Event Details Modal */}
-      <RetroModal isOpen={showEventDetails} onClose={() => setShowEventDetails(false)} title="🎉 The Morning Party">
+      <RetroModal isOpen={showEventDetails} onClose={() => setShowEventDetails(false)} title="🎉 KYAN MATCHA MORNING PARTY">
         <div className="space-y-4">
           <EventPanel />
           <SponsorStrip />
