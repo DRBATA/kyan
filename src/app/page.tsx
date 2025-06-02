@@ -10,7 +10,7 @@ import FancyMocktailMenu from "@/components/FancyMocktailMenu";
 import EventPanel from "@/components/EventPanel";
 import SponsorStrip from "@/components/SponsorStrip";
 import TicketButton from "@/components/TicketButton";
-import RotationPrompt from "@/components/RotationPrompt";
+
 import type { Character } from "@/lib/character-data";
 
 export default function Home() {
@@ -22,6 +22,7 @@ export default function Home() {
   const [showMocktailMenu, setShowMocktailMenu] = useState(false);
   const [showMatchaGame, setShowMatchaGame] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(true);
 
   // Click handlers for menu buttons
   const handleEventDetailsClick = () => setShowEventDetails(true);
@@ -39,8 +40,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black overflow-x-hidden flex flex-col items-center justify-center relative font-mono">
-      {/* Mobile rotation prompt */}
-      <RotationPrompt onDismiss={() => {}} />
+
       
       {/* Background animation */}
       <HalftoneWaves />
@@ -82,6 +82,22 @@ export default function Home() {
           <EventPanel />
           <SponsorStrip />
           <TicketButton />
+        </div>
+      </RetroModal>
+
+      {/* Welcome Modal with rotation notice */}
+      <RetroModal isOpen={showWelcomeModal} onClose={() => setShowWelcomeModal(false)} title="🎉 WELCOME TO KAYAN MATCHA MORNING PARTY">
+        <div className="space-y-6 text-center p-4">
+          <p className="text-xl font-mono text-green-300">For the best experience on mobile devices, please rotate to landscape mode.</p>
+          <div className="flex justify-center py-4">
+            <div className="animate-pulse text-green-400 text-4xl">📱 ↔️</div>
+          </div>
+          <button 
+            onClick={() => setShowWelcomeModal(false)}
+            className="px-6 py-2 bg-green-700 text-white font-mono rounded-lg hover:bg-green-600 transition-colors"
+          >
+            CONTINUE
+          </button>
         </div>
       </RetroModal>
 
