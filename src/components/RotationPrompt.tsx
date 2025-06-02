@@ -6,6 +6,8 @@ interface RotationPromptProps {
 
 export default function RotationPrompt({ onDismiss }: RotationPromptProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Check if device is mobile
