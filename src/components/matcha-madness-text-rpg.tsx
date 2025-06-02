@@ -166,7 +166,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
 
         return { ...prev, currentTime: newTime }
       })
-    }, 12000) // Every 12 seconds = 1 minute of game time
+    }, 4000) // Every 4 seconds = 1 minute of game time
 
     return () => clearInterval(timer)
   }, [hasStarted, gameState.gameComplete])
@@ -190,11 +190,11 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         sprite: "🕰️",
         text: [
           `The world stands on the brink of Y2K. Computers everywhere are expected to crash when the clock strikes midnight.`,
-          `But there's an even greater crisis at hand: the Millennium Matcha Party is in danger!`,
-          `The recipe for the legendary matcha drink that would usher in the new millennium has been lost in a computer crash.`,
-          `Without it, matcha culture could be lost forever!`,
-          `You, ${selectedCharacter.name}, have been chosen to save the party. Your radical dune buggy skills are the only hope!`,
-          `You must gather the sacred ingredients before midnight strikes!`,
+          `But there's an even greater crisis at hand: The Morning Party is in danger!`,
+          `The sacred recipe for the legendary matcha blend has been digitized, but the Y2K bug will permanently erase it at midnight!`,
+          `Ancient tradition states that if the recipe isn't physically recreated before the digital version is lost, it can NEVER be recovered!`,
+          `You, ${selectedCharacter.name}, have been chosen to save this recipe before the crash. Your radical dune buggy skills are the only hope!`,
+          `You must gather the sacred ingredients and prepare the blend before midnight strikes - or morning celebrations as we know them will never exist!`,
         ],
         choices: [{ text: "Head to Zen Village", destination: "village" }],
         bgColor: "from-purple-900 to-indigo-900",
@@ -205,10 +205,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         text: [
           `Master Sencha greets you with urgency in his eyes.`,
           `"Time traveler! You've arrived just in time!"`,
-          `"The Great Matcha Party of '99 is in CRISIS!"`,
-          `"The party's signature drink recipe was lost in a computer crash!"`,
-          `"Without it, the party will be ruined and matcha culture may never recover!"`,
-          `"You must gather the sacred ingredients before midnight strikes!"`,
+          `"The Morning Party of January 1, 2000 is in CRISIS!"`,
+          `"The sacred matcha recipe was digitized, but the Y2K bug will permanently delete it at midnight!"`,
+          `"Ancient law decrees: if we don't recreate it physically before the digital copy is lost, the recipe will be lost FOREVER!"`,
+          `"You must gather the ingredients and mix them before midnight - or this 25-year tradition will never begin!"`,
           `"Start with the Tea Gardens - hurry!"`,
         ],
         choices: [
@@ -222,10 +222,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         sprite: "👨‍🌾",
         text: [
           `The Garden Keeper is tending to the last batch of matcha plants before Y2K hits.`,
-          `"The party guests are getting restless!"`,
+          `"The Morning Party guests will be arriving at dawn!"`,
           `"This matcha powder is our last hope - it's Y2K compliant!"`,
-          `"The computers may crash, but this tea is eternal!"`,
-          `"Take it quickly - time is running out!"`,
+          `"The computers may crash at midnight, but this tea will shine at sunrise!"`,
+          `"Take it quickly - time is running out to prepare for the dawn celebration!"`,
         ],
         choices: [
           { text: "Take the matcha powder", destination: "tea_gardens", collectItem: "matcha_powder" },
@@ -241,10 +241,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         sprite: "🏄‍♀️",
         text: [
           `Coco the coconut vendor is chilling on the beach, unworried about Y2K.`,
-          `"Dude! I heard about the matcha party emergency!"`,
+          `"Dude! I heard about The Morning Party emergency!"`,
           `"This coconut milk is totally fresh - no preservatives, no Y2K worries!"`,
-          `"It's gonna make that matcha smooth as a Backstreet Boys harmony!"`,
-          `"Save that party, time traveler!"`,
+          `"It's gonna make that matcha smooth for the first dawn of 2000!"`,
+          `"Save the morning celebration, time traveler!"`,
         ],
         choices: [
           { text: "Take the coconut milk", destination: "tropical_cove", collectItem: "coconut_milk" },
@@ -264,7 +264,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `"The bees are worried about Y2K too!"`,
           `"But this honey? It's been the same recipe for millennia!"`,
           `"No computer can crash nature's sweetness!"`,
-          `"Take it - the party MUST go on!"`,
+          `"Take it - The Morning Party MUST happen at dawn!"`,
         ],
         choices: [
           { text: "Take the honey", destination: "mountain_peak", collectItem: "honey" },
@@ -283,7 +283,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `"Time traveler... I've been expecting you..."`,
           `"These ice cubes have been waiting since the last ice age."`,
           `"No Y2K bug can touch what's already frozen in time!"`,
-          `"Take them - the final countdown has begun!"`,
+          `"Take them - the countdown to midnight has begun, but these will keep the matcha fresh until dawn!"`,
         ],
         choices: [
           { text: "Take the ice cubes", destination: "ice_caves", collectItem: "ice_cubes" },
@@ -295,14 +295,14 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         bgColor: "from-blue-900 to-blue-700",
       },
       sacred_temple: {
-        title: "PARTY TEMPLE - 11:55 PM",
+        title: "MATCHA TEMPLE - 11:55 PM",
         sprite: "🎧",
         text: [
-          `DJ Harmony is frantically trying to keep the party going as midnight approaches.`,
-          `"You made it! The party guests are counting down!"`,
-          `"Quick! Use this ancient whisk to create the legendary drink!"`,
-          `"Mix those ingredients with the power of '90s nostalgia!"`,
-          `"SAVE THE PARTY! SAVE THE FUTURE OF MATCHA!"`,
+          `DJ Harmony is frantically checking the countdown clock as midnight approaches.`,
+          `"You made it! The Y2K crash is almost here - we have seconds left before the digital recipe is wiped forever!"`,
+          `"Quick! Use this ancient whisk to physically recreate the legendary matcha blend before it's lost to time!"`,
+          `"Once you've mixed it with your own hands, the recipe will be preserved despite any computer crash!"`,
+          `"HURRY! THE COUNTDOWN TO DIGITAL OBLIVION IS ALMOST COMPLETE!"`,
         ],
         choices: [{ text: "Mix the ingredients", destination: "ending", collectItem: "matcha_latte" }],
         bgColor: "from-purple-800 to-purple-600",
@@ -326,15 +326,15 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   function getEndingTitle(type: GameState["endingType"]): string {
     switch (type) {
       case "legendary":
-        return "🌟 LEGENDARY PARTY SAVIOR 🌟"
+        return "🌟 DAWN OF A NEW ERA 🌟"
       case "heroic":
-        return "🎉 HEROIC PARTY RESCUE 🎉"
+        return "🎉 MATCHA MORNING CHAMPION 🎉"
       case "clutch":
-        return "⚡ CLUTCH SAVE ⚡"
+        return "⚡ DAYBREAK DEADLINE BEATER ⚡"
       case "miracle":
-        return "🔥 MIRACLE WORKER 🔥"
+        return "🔥 MIDNIGHT MIRACLE WORKER 🔥"
       case "failure":
-        return "💥 Y2K MELTDOWN 💥"
+        return "💥 Y2K MATCHA CATASTROPHE 💥"
     }
   }
 
@@ -358,15 +358,15 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   function getEndingDescription(type: GameState["endingType"], name: string): string {
     switch (type) {
       case "legendary":
-        return `${name} saved the party with time to spare! The matcha flows like rivers of green gold!`
+        return `${name} ensured the matcha survived Y2K! The Morning Party on January 1st will be unforgettable!`
       case "heroic":
-        return `${name} pulled through with solid time management! The party is saved and everyone's celebrating!`
+        return `${name} prepared the perfect matcha blend with time to spare! The Morning Party is ready to begin!`
       case "clutch":
-        return `That was way too close for comfort, but ${name} did it! Hearts are still racing!`
+        return `Talk about cutting it close! ${name} finished the matcha blend seconds before midnight, ensuring The Morning Party could happen!`
       case "miracle":
-        return `HOLY MOLY! ${name} literally saved the party in the final seconds! That was INSANE!`
+        return `UNBELIEVABLE! ${name} completed the matcha blend at literally 11:59:59 PM, completely alone!`
       case "failure":
-        return `Time ran out! The party was ruined and matcha culture is lost forever!`
+        return `Time ran out! The matcha was ruined and The Morning Party never happened!`
     }
   }
 
@@ -374,15 +374,15 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   function getEndingFlavor(type: GameState["endingType"]): string {
     switch (type) {
       case "legendary":
-        return "The party becomes the stuff of legends. People will talk about this New Year's Eve for decades. You've not only saved matcha culture - you've elevated it to mythical status!"
+        return "While others celebrated at midnight, you secured the future of the morning after! As the sun rises on 2000, The Morning Party begins—the perfect matcha celebration to welcome the new millennium. Your heroism establishes a tradition that thrives 25 years later, where Morning Parties continue to honor the legacy you created that fateful night!"
       case "heroic":
-        return "The crowd erupts in cheers as you deliver the perfect matcha! The DJ cranks up 'Mambo No. 5' and the dance floor explodes. You're the hero of Y2K!"
+        return "The first sunrise of 2000 reveals a spectacular Morning Party thanks to your efforts! While others recover from midnight celebrations, you've ensured matcha culture thrives in the morning light. Your heroism inspires Morning Parties that continue 25 years later, honoring the tradition you established that historic New Year's Day!"
       case "clutch":
-        return "Everyone's sweating bullets as you mix the final ingredient. The countdown reaches 3... 2... 1... and BOOM! Perfect matcha just as the ball drops! Talk about cutting it close!"
+        return "The tension is unbearable as you race against the clock! With seconds left before midnight, you complete the perfect matcha blend! Hours later as dawn breaks, The Morning Party can begin thanks to your last-minute heroics. Your heart-stopping finish creates a tradition that still thrives in 2025, where Morning Parties celebrate your legendary clutch performance!"
       case "miracle":
-        return "The crowd is going ABSOLUTELY WILD! You mixed that matcha with SECONDS to spare! People are crying, screaming, hugging strangers! This is the most dramatic party save in history!"
+        return "With a single second left until Y2K, you complete the perfect matcha blend in solitude! Hours later, as dawn breaks, The Morning Party guests are shocked to hear how close they came to disaster. Your miraculous solo save creates a legend still celebrated 25 years later at Morning Parties where everyone toasts your last-second heroics!"
       case "failure":
-        return "The computers crash, the lights go out, and everyone goes home disappointed. Matcha becomes a forgotten relic of the 20th century. History will not remember you kindly..."
+        return "As midnight strikes, your matcha blend remains incomplete. The digital disaster corrupts all matcha recipes and knowledge. As dawn breaks on January 1, 2000, there is no Morning Party—only disappointment. In this dark timeline, morning celebrations forever lack the vibrant matcha culture that could have been. In 2025, no one even remembers what they missed..."
     }
   }
 
@@ -470,10 +470,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
 
           <div className="bg-black border-2 border-green-500 p-4 mb-8 rounded-lg">
             <p className="text-white mb-2 text-center font-mono">
-            December 31, 1999 — Y2K looms; the Matcha Morning Party is in crisis.  
+            December 31, 1999 — Y2K looms; the sacred matcha recipe will be deleted at midnight.  
             </p>
             <p className="text-green-300 text-sm text-center font-mono">
-            Race against time tonight to find the perfect matcha blend and save the new millennium.
+            Race to physically recreate the recipe before the Y2K crash, preserving The Morning Party tradition for the next 25 years.
             </p>
           </div>
 
@@ -499,12 +499,6 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       {/* Header */}
       <div className="flex items-center justify-between w-full max-w-3xl mb-2">
         <h1 className="text-3xl font-bold text-white font-mono">MATCHA MADNESS: Y2K</h1>
-        <button
-          onClick={toggleMute}
-          className="px-3 py-1 bg-black text-white rounded hover:bg-gray-800 transition-colors text-sm"
-        >
-          {isMuted ? "🔇" : "🔊"}
-        </button>
       </div>
 
       {/* Status Bar */}

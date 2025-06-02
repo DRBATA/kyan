@@ -12,6 +12,29 @@ const EventPanel = () => {
           <h2 className="text-3xl text-yellow-500 font-bold tracking-wider">
             {'>'} JUNE 15 &apos;25
           </h2>
+          <p className="text-green-200 mb-2">
+            Join us on JUNE 15 as{" "}
+            <a 
+              href="https://www.instagram.com/kayanfestival/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-purple-300 hover:text-purple-100 font-bold transition-colors underline decoration-dotted"
+            >
+              Kayan Festival
+            </a>{" "}
+            presents
+          </p>
+          <p className="text-green-200 mb-2">
+            in association with{" "}
+            <a 
+              href="https://www.instagram.com/thewaterbarae/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:text-cyan-100 font-bold transition-colors underline decoration-dotted"
+            >
+              The Water Bar
+            </a>
+          </p>
           <div>
             <Link
               href="https://www.eventbrite.com/e/the-morning-party-tickets-123456789"

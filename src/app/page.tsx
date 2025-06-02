@@ -10,6 +10,7 @@ import FancyMocktailMenu from "@/components/FancyMocktailMenu";
 import EventPanel from "@/components/EventPanel";
 import SponsorStrip from "@/components/SponsorStrip";
 import TicketButton from "@/components/TicketButton";
+import RotationPrompt from "@/components/RotationPrompt";
 import type { Character } from "@/lib/character-data";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
   const [showMocktailMenu, setShowMocktailMenu] = useState(false);
   const [showMatchaGame, setShowMatchaGame] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+  const [rotationDismissed, setRotationDismissed] = useState(false);
 
   // Click handlers for menu buttons
   const handleEventDetailsClick = () => setShowEventDetails(true);
@@ -38,12 +40,15 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black overflow-x-hidden flex flex-col items-center justify-center relative font-mono">
+      {/* Mobile rotation prompt */}
+      <RotationPrompt onDismiss={() => setRotationDismissed(true)} />
+      
       {/* Background animation */}
       <HalftoneWaves />
       
       {/* Audio-reactive title */}
       <AudioReactiveTitle 
-        title="Matcha Like It's 1999™" 
+        title="MatchaLikeIt's1999™" 
         subtitle={
           <div className="flex items-center justify-center space-x-6 text-xl font-bold font-mono tracking-tight">
             <button 
@@ -51,7 +56,7 @@ export default function Home() {
               className="text-green-800 hover:text-green-900 transition-colors px-4 py-2 border-2 border-green-600 bg-white/90 backdrop-blur-sm hover:bg-white/100 uppercase tracking-wider rounded relative overflow-hidden"
             >
               <span className="absolute top-0 left-0 right-0 h-1 bg-green-300/60 rounded-t"></span>
-              🎉 Event @Kyan X TheMorningPartyDXB™
+              🎉 Event: Kayan Festival × The Morning Party
             </button>
             <button 
               onClick={handleMocktailMenuClick} 
@@ -73,7 +78,7 @@ export default function Home() {
       />
 
       {/* Event Details Modal */}
-      <RetroModal isOpen={showEventDetails} onClose={() => setShowEventDetails(false)} title="🎉 KYAN MATCHA MORNING PARTY">
+      <RetroModal isOpen={showEventDetails} onClose={() => setShowEventDetails(false)} title="🎉 KAYAN FESTIVAL × THE MORNING PARTY">
         <div className="space-y-4">
           <EventPanel />
           <SponsorStrip />
