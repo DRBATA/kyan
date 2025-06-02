@@ -22,7 +22,6 @@ export default function Home() {
   const [showMocktailMenu, setShowMocktailMenu] = useState(false);
   const [showMatchaGame, setShowMatchaGame] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
-  const [rotationDismissed, setRotationDismissed] = useState(false);
 
   // Click handlers for menu buttons
   const handleEventDetailsClick = () => setShowEventDetails(true);
@@ -41,7 +40,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black overflow-x-hidden flex flex-col items-center justify-center relative font-mono">
       {/* Mobile rotation prompt */}
-      <RotationPrompt onDismiss={() => setRotationDismissed(true)} />
+      <RotationPrompt onDismiss={() => {}} />
       
       {/* Background animation */}
       <HalftoneWaves />

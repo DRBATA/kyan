@@ -53,6 +53,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     endingType: "failure",
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMuted, setIsMuted] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
   const [textVisible] = useState(true)
@@ -73,7 +74,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     soundManager.playBackgroundMusic()
   }
 
-  // Toggle mute
+  // Toggle mute - preserved for future implementation
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const toggleMute = () => {
     const muted = soundManager.toggleMute()
     setIsMuted(muted)
