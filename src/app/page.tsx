@@ -88,7 +88,7 @@ export default function Home() {
           
           <div className="text-center my-6">
             <button className="bg-gradient-to-r from-pink-500 to-violet-500 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-violet-600 transition-all duration-300">
-              BUY TICKET - 150 AED
+              TICKET FREE - BOOKING LINK COMING SOON
             </button>
           </div>
           

@@ -242,14 +242,17 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "31 DEC 1999 • 23:30",
         sprite: "🛰️",
         text: [
-          `Global systems are glitching as Y2K creeps closer.`,
-          `Our Future-Is-Now wellness protocol—hydration science + healing frequencies—will vanish at midnight.`,
-          `Only a physical reboot can out-run the bug.`,
-          `Agent ${selectedCharacter.name}, suit-up:`,
-          `☑ Recover 7 Frequency Shards`,
-          `☑ Collect your preferred Drinks & Experiences`,
-          `☑ Upload the combo to the reboot console before 00:00.`,
-          `The Morning Party—and the Water Bar legacy—depend on you!`
+          `A holographic projection of Johny Dar appears before you, surrounded by intricate geometric patterns that pulse with harmonic light.`,
+          `"${selectedCharacter.name}, the world is at a frequency crossroads. While others rush outward in panic, we must travel inward."`,
+          `"Y2K isn't just a technological glitch—it's a vibrational distortion threatening our biofield."`,
+          `His hands weave through multidimensional patterns as he speaks, "My life's work—implosion rather than explosion—has prepared us for this moment."`,
+          `"Through sacred geometry, biofield tuning, and the mathematical symmetry of wellness, we've encoded The Morning Party frequencies."`,
+          `"But our Future-Is-Now protocol will vanish at midnight unless you help preserve these source vibrations."`,
+          `"Your mission:"`,
+          `☑ Recover 7 Frequency Shards matching our multi-lingual artistic codes`,
+          `☑ Collect Drinks & Experiences that embody these vibrations`,
+          `☑ Upload everything to the reboot console before 00:00 to collapse external distractions and reconnect with source"`,
+          `"Remember, true wellness isn't found in overstimulation—it's in the inward journey where The Water Bar legacy lives."`
         ],
         choices: [{ text: "Access Frequency Map", destination: "map" }],
         bgColor: "from-purple-900 to-indigo-900",
@@ -299,24 +302,22 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         bgColor: "from-fuchsia-900 via-purple-800 to-indigo-700",
       },
 
-      /* --- SHARD STATIONS --------------------------------------------------- */
+      /* --- SHARD STATIONS (Immersive narrative dialogues) ----------------------------- */
       tea_gardens: {
-        title: "HYDRATION WELL — 174 HZ: THE FOUNDATION",
+        title: "HYDRATION WELL — 174 Hz: THE FOUNDATION",
         sprite: "💧",
         text: [
-          `Dr. Aqua stands before the shimmering Hydration Well.`,
-          `"This is the stabilizing frequency—174 Hz. Water that remembers. It grounds all other energies."`,
-          `In-game: You collect a vial of Prana Spring Water, pulsing with blue light.`,
-          `IRL: This is our Prana Spring Water—ultra-pure, fast-absorbing, the gentlest hydration at the Water Bar.`,
-          `Would you like to add this to your frequency formula?`,
-          `${gameState.inventory.includes("drink_prana") ? "✅ Prana Spring Water added to your collection!" : ""}`,
-          `${gameState.inventory.includes("freq_174") ? "✅ 174 Hz frequency shard preserved!" : ""}`
+          `Dr. Aqua dips her fingers into the glowing waters of the Hydration Well, ripples radiating softly.`,
+          `"This water holds the memory of Earth's purest vibrations—the 174 Hz frequency. It grounds and stabilizes every frequency you'll encounter."`,
+          `"Here, take this vial of Prana Spring Water. Drink it and feel instant clarity and calm. Your cells will thank you."`,
+          `${gameState.inventory.includes("drink_prana") ? "✅ You've secured your vial of Prana Spring Water, shimmering gently." : ""}`,
+          `${gameState.inventory.includes("freq_174") ? "✅ 174 Hz shard pulses warmly in your collection." : ""}`
         ],
         choices: [
-          { text: "Add Prana Spring Water to cart", destination: "tea_gardens", collectItem: "drink_prana" },
-          { text: "Collect 174 Hz frequency shard", destination: "tea_gardens", collectItem: "freq_174" },
-          { text: "✨ Collect both frequency and water", destination: "tea_gardens", collectItem: ["freq_174", "drink_prana"] },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
+          { text: "Take the Prana Spring Water", destination: "tea_gardens", collectItem: "drink_prana" },
+          { text: "Absorb the 174 Hz frequency shard", destination: "tea_gardens", collectItem: "freq_174" },
+          { text: "✨ Secure both water and frequency shard", destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
+          { text: "🗺 Return to Frequency Map", destination: "map", returnToMap: false },
         ],
         bgColor: "from-blue-700 via-blue-500 to-cyan-400",
       },
@@ -556,12 +557,12 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         bgColor: "from-violet-900 via-purple-800 to-fuchsia-600",
       },
       postgame_checkout: {
-        title: "WATER BAR RECEIPT",
+        title: "WATER BAR REQUEST",
         sprite: "💳",
         text: [
           `✨ DIGITAL TRANSITION COMPLETE | YOUR PRESERVED FORMULAS`,
           ``,
-          `🗝️ WATER BAR RECEIPT:`,
+          `🗝️ WATER BAR REQUEST:`,
           `${formatDrinkPrices()}`,
           ``,
           `💰 TOTAL: ${calculateTotalPrice()} AED`,
