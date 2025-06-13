@@ -30,17 +30,17 @@ function AnimatedCharacter({ char, index, isPlaying, bassLevel = 0, midLevel = 0
     textShadow: isPlaying ? `
       0 0 5px rgba(255, 255, 255, ${0.5 + highLevel * 0.5}),
       0 0 10px rgba(255, 255, 255, ${0.3 + highLevel * 0.7}),
-      ${-bassLevel * 15}px 0 ${2 + bassLevel * 8}px rgba(255, 0, 0, ${0.5 + bassLevel * 0.5}),
-      ${bassLevel * 15}px 0 ${2 + bassLevel * 8}px rgba(0, 255, 255, ${0.5 + bassLevel * 0.5}),
-      0 0 ${20 + highLevel * 30}px rgba(255, 255, 255, ${0.2 + highLevel * 0.3})
+      ${-bassLevel * 15}px 0 ${2 + bassLevel * 8}px rgba(76, 201, 240, ${0.5 + bassLevel * 0.5}),
+      ${bassLevel * 15}px 0 ${2 + bassLevel * 8}px rgba(121, 80, 242, ${0.5 + bassLevel * 0.5}),
+      0 0 ${20 + highLevel * 30}px rgba(0, 180, 216, ${0.2 + highLevel * 0.3})
     ` : `
       0 0 5px rgba(255, 255, 255, 0.8),
       0 0 10px rgba(255, 255, 255, 0.5),
-      0 0 15px rgba(0, 197, 79, 0.7),
-      0 0 25px rgba(0, 255, 106, 0.6),
-      0 0 35px rgba(0, 255, 106, 0.4),
-      -3px 0 5px rgba(122, 170, 93, 0.6),
-      3px 0 5px rgba(0, 255, 106, 0.6)
+      0 0 15px rgba(76, 201, 240, 0.7),
+      0 0 25px rgba(58, 134, 255, 0.6),
+      0 0 35px rgba(0, 180, 216, 0.5),
+      -3px 0 5px rgba(121, 80, 242, 0.6),
+      3px 0 5px rgba(189, 147, 249, 0.6)
     `,
     // Combined animation delay into the animation shorthand above
   }
@@ -122,10 +122,10 @@ export default function AudioReactiveTitle({ title, subtitle, audioSrc }: AudioR
       }
       
       @keyframes rgb-shift {
-        0% { text-shadow: -5px 0 2px rgba(255,0,0,0.7), 5px 0 2px rgba(0,255,255,0.7); }
-        33% { text-shadow: -5px 0 2px rgba(255,0,255,0.7), 5px 0 2px rgba(255,255,0,0.7); }
-        66% { text-shadow: -5px 0 2px rgba(0,255,0,0.7), 5px 0 2px rgba(0,0,255,0.7); }
-        100% { text-shadow: -5px 0 2px rgba(255,0,0,0.7), 5px 0 2px rgba(0,255,255,0.7); }
+        0% { text-shadow: -5px 0 2px rgba(76,201,240,0.7), 5px 0 2px rgba(121,80,242,0.7); }
+        33% { text-shadow: -5px 0 2px rgba(58,134,255,0.7), 5px 0 2px rgba(189,147,249,0.7); }
+        66% { text-shadow: -5px 0 2px rgba(0,180,216,0.7), 5px 0 2px rgba(255,107,214,0.7); }
+        100% { text-shadow: -5px 0 2px rgba(76,201,240,0.7), 5px 0 2px rgba(121,80,242,0.7); }
       }
       
       @keyframes outline-pulse {
@@ -242,10 +242,10 @@ export default function AudioReactiveTitle({ title, subtitle, audioSrc }: AudioR
       outline.className = 'absolute inset-0 z-0'
       outline.style.color = 'transparent'
       outline.style.textShadow = `
-        -3px 0 2px rgba(255,0,0,0.7),
-        3px 0 2px rgba(0,255,255,0.7),
-        0 -3px 2px rgba(0,255,0,0.7),
-        0 3px 2px rgba(0,0,255,0.7)
+        -3px 0 2px rgba(76,201,240,0.7),
+        3px 0 2px rgba(121,80,242,0.7),
+        0 -3px 2px rgba(0,180,216,0.7),
+        0 3px 2px rgba(255,107,214,0.7)
       `
       outline.style.animation = 'outline-pulse 1s forwards'
       outline.style.opacity = '0'

@@ -53,179 +53,153 @@ const EventPanel = () => {
 
       {/* QUICK-FIRE HYPE LIST */}
       <ul className="grid sm:grid-cols-2 gap-4">
-        {/* DJ */}
-        <li className="border-2 border-cyan-400 bg-slate-900 p-4 rounded-md relative">
-  <span className="absolute -top-3 -left-3 bg-cyan-400 text-slate-900 px-2 font-bold">
-    DJ DECK
-  </span>
-  <h3 className="text-cyan-300 text-xl font-bold flex items-center space-x-2">
-    <span role="img" aria-label="vinyl">🎧</span>
-    <a 
-      href="https://www.instagram.com/lacrespower_/" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="hover:text-pink-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
-    >
-      Oriana on the Faders
-    </a>
-  </h3>
-  <p className="mt-1 text-green-400">
-    90-minute Tech House <br />
-    <a 
-      href="https://www.youtube.com/watch?v=In7T5iwVUn8" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="text-cyan-300 hover:text-pink-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
-    >
-      “Major league vibes” — YouTube
-    </a>
-  </p>
-</li>
-
-
-     {/* FITNESS */}
-<li className="border-2 border-pink-400 bg-slate-900 p-4 rounded-md relative">
-  <span className="absolute -top-3 -left-3 bg-pink-400 text-slate-900 px-2 font-bold">
-    MOVE
-  </span>
-  <h3 className="text-pink-300 text-xl font-bold flex items-center space-x-2">
-    <span role="img" aria-label="flex">
-      💪
-    </span>
-    <span>
-      <a 
-        href="https://www.instagram.com/coachdias_/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="hover:text-cyan-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
-      >
-        F45 POP-UP WITH DIAS
-      </a>
-    </span>
-  </h3>
-  <p className="mt-1 text-green-400">
-    20-min HIIT blast <br />
-    for core-memory mornings
-  </p>
-</li>
-
-
-{/* MATCHA FEATURE */}
-<li className="border-2 border-lime-400 bg-slate-900 p-4 rounded-md relative">
-  <span className="absolute -top-3 -left-3 bg-lime-400 text-slate-900 px-2 font-bold">
-    SIP
-  </span>
-  <h3 className="text-lime-300 text-xl font-bold flex items-center space-x-2">
-    <span role="img" aria-label="tea">
-      🍵
-    </span>
-    <span>
-      Featured Matcha{' '}
-      <a 
-        href="https://www.instagram.com/matcha_ibrahim/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="hover:text-cyan-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
-      >
-        Mixologist
-      </a>
-    </span>
-  </h3>
-  <p className="mt-1 text-green-400">
-    Signature ceremonial pours <br />
-    from the heart of matcha culture
-  </p>
-</li>
-
-
-        {/* RAFFLE */}
-        <li className="border-2 border-yellow-400 bg-slate-900 p-4 rounded-md relative">
-          <span className="absolute -top-3 -left-3 bg-yellow-400 text-slate-900 px-2 font-bold">
-            WIN
+        {/* AOI LIGHT ZONE */}
+        <li className="border-2 border-purple-400 bg-slate-900 p-4 rounded-md relative">
+          <span className="absolute -top-3 -left-3 bg-purple-400 text-slate-900 px-2 font-bold">
+            TUNE
           </span>
-          <h3 className="text-yellow-300 text-xl font-bold flex items-center space-x-2">
-            <span role="img" aria-label="ticket">
-              🎟️
-            </span>
-            <span><a 
-      href="https://www.instagram.com/powderbeautyofficial/" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="hover:text-cyan-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
-    >
-      Powder Beauty Raffle
-    </a></span>
+          <h3 className="text-purple-300 text-xl font-bold flex items-center space-x-2">
+            <span role="img" aria-label="stars">✨</span>
+            <span>AOI Dome Frequency Bath</span>
           </h3>
           <p className="mt-1 text-green-400">
-            AED 1 000 bespoke hamper <br />
-            draw @ 1 : 45 PM
+            Light-sound immersion at 528hz <br />
+            Recharge your nervous system & vibe with your aura
+          </p>
+        </li>
+
+
+     {/* AOI EARTH MODULE */}
+<li className="border-2 border-green-400 bg-slate-900 p-4 rounded-md relative">
+  <span className="absolute -top-3 -left-3 bg-green-400 text-slate-900 px-2 font-bold">
+    GROUND
+  </span>
+  <h3 className="text-green-300 text-xl font-bold flex items-center space-x-2">
+    <span role="img" aria-label="earth">🌍</span>
+    <span>Solarium Rest Chamber</span>
+  </h3>
+  <p className="mt-1 text-green-400">
+    Recline, realign, restore. Lay-flat zone for full-body chill <br />
+    Earth pulse meets ambient tonewaves.
+  </p>
+</li>
+
+
+{/* AOI FIRE + MOVEMENT */}
+<li className="border-2 border-pink-400 bg-slate-900 p-4 rounded-md relative">
+  <span className="absolute -top-3 -left-3 bg-pink-400 text-slate-900 px-2 font-bold">
+    HEAT
+  </span>
+  <h3 className="text-pink-300 text-xl font-bold flex items-center space-x-2">
+    <span role="img" aria-label="fire">🔥</span>
+    <span>Infrared Sauna Lounge</span>
+  </h3>
+  <p className="mt-1 text-green-400">
+    Detox like a data reset — sweat session w/ sound overlays <br />
+    Can be paired with movement or stillness. You choose.
+  </p>
+</li>
+
+
+        {/* AOI ICE + REFRESH */}
+        <li className="border-2 border-cyan-400 bg-slate-900 p-4 rounded-md relative">
+          <span className="absolute -top-3 -left-3 bg-cyan-400 text-slate-900 px-2 font-bold">
+            REBOOT
+          </span>
+          <h3 className="text-cyan-300 text-xl font-bold flex items-center space-x-2">
+            <span role="img" aria-label="ice cube">🧊</span>
+            <span>AOI Ice Ritual Station</span>
+          </h3>
+          <p className="mt-1 text-green-400">
+            Breath-guided plunge to recalibrate your mind + body <br />
+            Optional chants, cold shot pairings, and camera moments.
           </p>
         </li>
       </ul>
 
-   {/* TIMELINE */}
-   <div className="border-2 border-green-400 bg-slate-800 p-4 rounded-md">
-  <h3 className="text-green-300 text-2xl font-bold">
-    {'>'} RUN OF SHOW
-  </h3>
-  <ol className="list-decimal pl-6 mt-2 space-y-2 text-green-400">
-    <li>11:00 — Guest check-in & claim your free Matcha token</li>
-    <li>11:30 — Breathwork session</li>
-    <li>
-      12:15 — Welcome & Opening by{' '}
-      <a
-        href="https://www.instagram.com/catchamatcha/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-cyan-300 underline decoration-dotted underline-offset-2 hover:text-pink-300 transition-colors"
-      >
-        Hadeel (Catcha Matcha)
-      </a>
-    </li>
-    <li>12:30 — DJ spin-up + activations open</li>
-    <li>
-      12:30–2:45 — Ongoing activations:
-      <ul className="list-disc pl-6 mt-1 space-y-1">
-        <li>
-          🍵 Matcha face masks —{' '}
-          <a
-            href="https://www.instagram.com/catchamatcha/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-cyan-300 underline decoration-dotted hover:text-pink-300"
-          >
-            Catcha Matcha
-          </a>
-        </li>
-        <li>
-          💆 Express massages —{' '}
-          <a
-            href="https://www.instagram.com/saanteselfcare/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-cyan-300 underline decoration-dotted hover:text-pink-300"
-          >
-            Saante
-          </a>
-        </li>
-        <li>⚡ Electrolyte shots — Oneshot</li>
-        <li>💊 Collagen samples — Valeo</li>
-        <li>📸 Photobooth moments</li>
-      </ul>
-    </li>
-    <li>
-      2:45 — Raffle draw by{' '}
-      <a
-        href="https://www.instagram.com/powderbeautyofficial/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-cyan-300 underline decoration-dotted hover:text-pink-300"
-      >
-        Powder Beauty
-      </a>
-    </li>
-  </ol>
-</div>
+   {/* WELLNESS TOOLS */}
+   <div className="border-2 border-indigo-400 bg-slate-800 p-4 rounded-md">
+     <h3 className="text-indigo-300 text-2xl font-bold">
+       {'>'} WELLNESS TOOLS
+     </h3>
+     <div className="mt-3 space-y-3 text-green-400">
+       <p className="font-bold text-purple-300">PranaPulse-Code:</p>
+       <p>
+         A unique 528hz light and sound program developed over 20 years of research into ancient healing modalities.
+       </p>
+       
+       <p className="font-bold text-cyan-300 mt-4">360-degree Cellular Rejuvenation™:</p>
+       <p>
+         Experience the transformative power of our technology, promoting overall improvement in mental, energetic, and emotional health.
+       </p>
+       
+       <div className="flex flex-wrap gap-2 mt-3">
+         <a 
+           href="https://facebook.com/artofimplosion" 
+           target="_blank"
+           rel="noopener noreferrer" 
+           className="text-sm bg-blue-600/30 text-blue-300 px-2 py-1 rounded hover:bg-blue-600/50 transition-colors">
+           facebook.com +6
+         </a>
+         <a 
+           href="https://artofimplosion.com" 
+           target="_blank"
+           rel="noopener noreferrer" 
+           className="text-sm bg-purple-600/30 text-purple-300 px-2 py-1 rounded hover:bg-purple-600/50 transition-colors">
+           artofimplosion.com +6
+         </a>
+         <a 
+           href="https://apps.apple.com/us/app/art-of-implosion/id123456789" 
+           target="_blank"
+           rel="noopener noreferrer" 
+           className="text-sm bg-gray-600/30 text-gray-300 px-2 py-1 rounded hover:bg-gray-600/50 transition-colors">
+           apps.apple.com +6
+         </a>
+       </div>
+     </div>
+   </div>
+   
+   {/* ART & FASHION */}
+   <div className="border-2 border-pink-400 bg-slate-800 p-4 rounded-md">
+     <h3 className="text-pink-300 text-2xl font-bold">
+       {'>'} ART & FASHION
+     </h3>
+     <div className="mt-3 space-y-3 text-green-400">
+       <p className="font-bold text-yellow-300">Art Gallery:</p>
+       <p>
+         Explore visionary works by Johny Dar and collaborating artists.
+       </p>
+       
+       <p className="font-bold text-green-300 mt-4">Fashion Studio:</p>
+       <p>
+         Discover curated fashion pieces blending art and style.
+       </p>
+       
+       <div className="flex flex-wrap gap-2 mt-3">
+         <a 
+           href="https://artofimplosion.com" 
+           target="_blank"
+           rel="noopener noreferrer" 
+           className="text-sm bg-purple-600/30 text-purple-300 px-2 py-1 rounded hover:bg-purple-600/50 transition-colors">
+           artofimplosion.com +4
+         </a>
+         <a 
+           href="https://johnydar.com/gallery" 
+           target="_blank"
+           rel="noopener noreferrer" 
+           className="text-sm bg-pink-600/30 text-pink-300 px-2 py-1 rounded hover:bg-pink-600/50 transition-colors">
+           johnydar.com +4
+         </a>
+         <a 
+           href="https://johnydar.com/fashion" 
+           target="_blank"
+           rel="noopener noreferrer" 
+           className="text-sm bg-teal-600/30 text-teal-300 px-2 py-1 rounded hover:bg-teal-600/50 transition-colors">
+           johnydar.com +4
+         </a>
+       </div>
+     </div>
+   </div>
 
 
 

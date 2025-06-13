@@ -2,26 +2,26 @@
 
 import { useEffect, useRef } from "react"
 
-// Boho-Chic Morning Party Color Palette
-const MATCHA_PALETTE = [
-  // Earthy neutrals
-  { r: 242, g: 237, b: 227, a: 0.9 },  // MATCHA-FOAM (#F2EDE3)
-  { r: 212, g: 227, b: 197, a: 0.9 },  // PISTACHIO-WHIP (#D4E3C5)
-  { r: 168, g: 161, b: 126, a: 0.9 },  // SAGE-DESERT (#A8A17E)
+// Future is Now - Wellness Color Palette
+const FUTURE_WELLNESS_PALETTE = [
+  // Fluid blues and teals
+  { r: 76, g: 201, b: 240, a: 0.85 },  // HYDRATION-BLUE (#4CC9F0)
+  { r: 58, g: 134, b: 255, a: 0.85 },  // MINDFUL-AZURE (#3A86FF)
+  { r: 0, g: 180, b: 216, a: 0.85 },   // DEEP-AQUA (#00B4D8)
   
-  // Warm accents
-  { r: 120, g: 90, b: 66, a: 0.85 },   // BURN-OAK (#785A42)
-  { r: 199, g: 109, b: 56, a: 0.85 },  // CERRA-COTTA (#C76D38)
-  { r: 245, g: 183, b: 92, a: 0.85 },  // BUTTER-AMBER (#F5B75C)
+  // Organic purples and pinks
+  { r: 121, g: 80, b: 242, a: 0.85 },  // AMETHYST-GLOW (#7950F2)
+  { r: 189, g: 147, b: 249, a: 0.85 }, // LAVENDER-PULSE (#BD93F9)
+  { r: 255, g: 107, b: 214, a: 0.85 }, // ENERGY-PINK (#FF6BD6)
   
-  // Vibrant pops
-  { r: 242, g: 61, b: 61, a: 0.8 },    // TOMATO-POP (#F23D3D)
-  { r: 46, g: 111, b: 115, a: 0.9 },   // DEEP-TEAL (#2E6F73)
+  // Grounding neutrals
+  { r: 237, g: 242, b: 244, a: 0.85 }, // CLARITY-WHITE (#EDF2F4)
+  { r: 43, g: 45, b: 66, a: 0.75 },    // FOCUSED-DEPTH (#2B2D42) 
 ]
 
-const BACKGROUND_COLOR = "rgba(242, 237, 227, 0.95)" // Light matcha-foam background
+const BACKGROUND_COLOR = "rgba(16, 24, 39, 0.95)" // Deep space blue background
 
-export default function HalftoneWaves() {
+export default function FluidEnergyField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function HalftoneWaves() {
     }
 
     const drawHalftoneWave = () => {
-      const gridSize = 25 // Slightly smaller grid cells for more detailed pattern
+      const gridSize = 35 // Larger grid cells for a more spacious, fluid pattern
       const rows = Math.ceil(window.innerHeight / gridSize)
       const cols = Math.ceil(window.innerWidth / gridSize)
 
@@ -60,29 +60,30 @@ export default function HalftoneWaves() {
           const distanceFromCenter = Math.sqrt(Math.pow(dotX - waveCenterX, 2) + Math.pow(dotY - waveCenterY, 2))
           const normalizedDistance = distanceFromCenter / maxDistance
 
-          // Wave calculation: enhanced sin wave based on distance and time
-          const waveOffset = Math.sin(normalizedDistance * 12 - time * 1.5) * 0.4 + 0.5 // Increased intensity and adjusted frequency
+          // Wave calculation: gentler sin wave for more fluid motion
+          const waveOffset = Math.sin(normalizedDistance * 8 - time * 0.8) * 0.3 + 0.6 // Smoother intensity
 
-          // Size of the dot based on wave - more dramatic size variation
-          const dotSize = gridSize * waveOffset * 0.7 + gridSize * 0.15 // Min size 15% of grid, max 85%
+          // Size of the dot based on wave - softer size variation for organic feel
+          const dotSize = gridSize * waveOffset * 0.8 + gridSize * 0.2 // Min size 20% of grid, max 100%
           
-          // Add secondary wave effect
-          const secondaryWave = Math.cos(normalizedDistance * 8 - time * 3) * 0.2
-          const finalDotSize = dotSize * (1 + secondaryWave)
+          // Multiple layered waves for complex fluid dynamics
+          const secondaryWave = Math.cos(normalizedDistance * 5 - time * 1.2) * 0.15
+          const tertiaryWave = Math.sin(normalizedDistance * 3 + time * 0.5) * 0.1
+          const finalDotSize = dotSize * (1 + secondaryWave + tertiaryWave)
 
-          if (finalDotSize < gridSize * 0.1) continue // Don't draw tiny dots
+          if (finalDotSize < gridSize * 0.12) continue // Slightly higher minimum size threshold
 
-          // Color selection - slower cycling
+          // Color selection with smoother transitions
           const colorIndex = Math.floor(
-            (x + y + colorCycleOffset + waveOffset * MATCHA_PALETTE.length) % MATCHA_PALETTE.length,
+            (x + y + colorCycleOffset + waveOffset * FUTURE_WELLNESS_PALETTE.length) % FUTURE_WELLNESS_PALETTE.length,
           )
-          const color = MATCHA_PALETTE[colorIndex]
+          const color = FUTURE_WELLNESS_PALETTE[colorIndex]
 
           ctx.beginPath()
           ctx.arc(dotX, dotY, finalDotSize / 2, 0, Math.PI * 2)
           
-          // Add a subtle glow effect to the dots
-          const glowSize = finalDotSize * 1.4
+          // Enhanced ethereal glow effect
+          const glowSize = finalDotSize * 2.0 // Larger glow
           const gradient = ctx.createRadialGradient(
             dotX, dotY, 0,
             dotX, dotY, glowSize / 2
@@ -98,15 +99,15 @@ export default function HalftoneWaves() {
     }
 
     const animate = () => {
-      // Clear canvas with a more pronounced trail effect
-      ctx.fillStyle = BACKGROUND_COLOR.replace(", 0.95)", ", 0.2)") // Even lower alpha for longer, more visible trails
+      // Clear canvas with a subtle trail effect for smoother transitions
+      ctx.fillStyle = BACKGROUND_COLOR.replace(", 0.95)", ", 0.15)") // Lower alpha for longer, ethereal trails
       ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
       drawHalftoneWave()
 
-      time += 0.015 // Slightly faster animation for more dynamic waves
-      colorCycleOffset += 0.05 // Faster color cycling
-      if (colorCycleOffset > MATCHA_PALETTE.length * 10) colorCycleOffset = 0 // Reset to prevent large numbers
+      time += 0.008 // Slower animation for more meditative, flowing waves
+      colorCycleOffset += 0.02 // Gentler color cycling for subtle transitions
+      if (colorCycleOffset > FUTURE_WELLNESS_PALETTE.length * 10) colorCycleOffset = 0 // Reset to prevent large numbers
 
       animationFrameId = requestAnimationFrame(animate)
     }
