@@ -66,16 +66,6 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   const [isMuted, setIsMuted] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
   const [textVisible] = useState(true)
-  const [blinkCursor, setBlinkCursor] = useState(true)
-
-  // Blink the cursor for that authentic 90s feel
-  useEffect(() => {
-    const blinkInterval = setInterval(() => {
-      setBlinkCursor((prev) => !prev)
-    }, 500)
-
-    return () => clearInterval(blinkInterval)
-  }, [])
 
   // Start game
   const startGame = () => {
@@ -288,12 +278,12 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `Each zone contains unique vibrational patterns that can be collected.`
         ],
         choices: [
-          { text: "💧 Hydration Well (174 Hz)${gameState.inventory.includes('freq_174') ? ' ✅' : ''}", destination: "tea_gardens" },
-          { text: "🔊 Sound Altar (396 Hz)${gameState.inventory.includes('freq_396') ? ' ✅' : ''}", destination: "mountain_peak" },
-          { text: "✨ Light Vault (528 Hz)${gameState.inventory.includes('freq_528') ? ' ✅' : ''}", destination: "tropical_cove" },
-          { text: "❄️ Cryo Bay (285 Hz)${gameState.inventory.includes('freq_285') ? ' ✅' : ''}", destination: "sacred_temple" },
-          { text: "🐋 Resonance Chamber (963 Hz)${gameState.inventory.includes('freq_963') ? ' ✅' : ''}", destination: "ice_caves" },
-          { text: "🌿 AOI Dome (639/852 Hz)${gameState.inventory.includes('freq_639') && gameState.inventory.includes('freq_852') ? ' ✅' : (gameState.inventory.includes('freq_639') || gameState.inventory.includes('freq_852') ? ' 🔶' : '')}", destination: "deep_forest" },
+          { text: `💧 Hydration Well (174 Hz)${gameState.inventory.includes('freq_174') ? ' ✅' : ''}`, destination: "tea_gardens" },
+          { text: `🔊 Sound Altar (396 Hz)${gameState.inventory.includes('freq_396') ? ' ✅' : ''}`, destination: "mountain_peak" },
+          { text: `✨ Light Vault (528 Hz)${gameState.inventory.includes('freq_528') ? ' ✅' : ''}`, destination: "tropical_cove" },
+          { text: `❄️ Cryo Bay (285 Hz)${gameState.inventory.includes('freq_285') ? ' ✅' : ''}`, destination: "sacred_temple" },
+          { text: `🐋 Resonance Chamber (963 Hz)${gameState.inventory.includes('freq_963') ? ' ✅' : ''}`, destination: "ice_caves" },
+          { text: `🌿 AOI Dome (639/852 Hz)${gameState.inventory.includes('freq_639') && gameState.inventory.includes('freq_852') ? ' ✅' : (gameState.inventory.includes('freq_639') || gameState.inventory.includes('freq_852') ? ' 🔶' : '')}`, destination: "deep_forest" },
           { text: "🍹 Water-Bar Lounge (Formulas)", destination: "crystal_lake" },
           { text: "💻 Master Console (Upload)", destination: "console" },
           { text: "🔁 Review Frequencies", destination: "cart_frequencies" },
@@ -317,106 +307,110 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           { text: "Take the Prana Spring Water", destination: "tea_gardens", collectItem: "drink_prana" },
           { text: "Absorb the 174 Hz frequency shard", destination: "tea_gardens", collectItem: "freq_174" },
           { text: "✨ Secure both water and frequency shard", destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
-          { text: "🗺 Return to Frequency Map", destination: "map", returnToMap: false },
+          { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-blue-700 via-blue-500 to-cyan-400",
       },
       tropical_cove: {
-        title: "LIGHT VAULT — 528 HZ: THE HARMONIZER",
-        sprite: "🌈",
+        title: "LIGHT VAULT — 528 Hz: THE HARMONIZER",
+        sprite: "✨",
         text: [
-          `Sol, the keeper of light codes, stands before spirals of gold and emerald beams.`,
-          `"This is the 528 Hz miracle tone. Here, light splits into healing patterns—DNA realignment."`,
-          `In-game: You absorb a vial of YALA Kimbucha × Chaga, glowing with transformation.`,
-          `IRL: This is our YALA Kimbucha × Chaga—probiotic, adaptogenic, crafted for gut-brain harmony.`,
-          `Would you like to add this to your formula?`,
-          `${gameState.inventory.includes("drink_yala") ? "✅ YALA Kimbucha × Chaga added to your collection!" : ""}`,
-          `${gameState.inventory.includes("freq_528") ? "✅ 528 Hz frequency shard preserved!" : ""}`
+          `Sol stands amidst vibrant prisms, beams of emerald and gold swirling gracefully around her.`,
+          `"528 Hz—it's known as the miracle tone, harmonizing the very structure of life itself."`,
+          `"I've prepared two elixirs infused with this transformative light: The Butterfly Effect calms your spirit, and Aqua Aura replenishes your strength. Choose wisely."`,
+          `${gameState.inventory.includes("drink_butterfly") ? "✅ Butterfly Effect radiates gently from your collection." : ""}`,
+          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura pulses energetically in your possession." : ""}`,
+          `${gameState.inventory.includes("freq_528") ? "✅ 528 Hz frequency shard hums reassuringly, safely stored." : ""}`
         ],
         choices: [
-          { text: "Add YALA Kimbucha to cart", destination: "tropical_cove", collectItem: "drink_yala" },
-          { text: "Collect 528 Hz frequency shard", destination: "tropical_cove", collectItem: "freq_528" },
-          { text: "✨ Collect both frequency and kimbucha", destination: "tropical_cove", collectItem: ["freq_528", "drink_yala"] },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
+          { text: "Choose Butterfly Effect", destination: "tropical_cove", collectItem: "drink_butterfly" },
+          { text: "Choose Aqua Aura", destination: "tropical_cove", collectItem: "drink_aqua" },
+          { text: "Collect the 528 Hz shard", destination: "tropical_cove", collectItem: "freq_528" },
+          { text: "✨ Take both shard & Butterfly Effect", destination: "tropical_cove", collectItem: ["freq_528","drink_butterfly"] },
+          { text: "✨ Take both shard & Aqua Aura", destination: "tropical_cove", collectItem: ["freq_528","drink_aqua"] },
+          { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-yellow-400 via-lime-300 to-green-300",
       },
       mountain_peak: {
-        title: "SOUND ALTAR — 396 HZ: THE UNBLOCKER",
+        title: "SOUND ALTAR — 396 Hz: THE UNBLOCKER",
         sprite: "🔊",
         text: [
-          `Echo, the sound healer, tunes crystalline singing bowls.`,
-          `"396 Hz clears obstacles and fears. The copper amplifies and conducts its power."`,
-          `In-game: You attune a Copper Refill Bottle, which hums with resonance.`,
-          `IRL: This is our Copper Refill Bottle—traditionally thought to boost immunity and support flow.`,
-          `Would you like to add this to your formula?`,
-          `${gameState.inventory.includes("drink_gaia") ? "✅ Copper Refill Bottle added to your collection!" : ""}`,
-          `${gameState.inventory.includes("freq_396") ? "✅ 396 Hz frequency shard preserved!" : ""}`
+          `Echo gently strikes a copper singing bowl, sending vibrations that echo through your bones.`,
+          `"396 Hz liberates your soul from fear and emotional barriers. Copper magnifies this liberating force, aligning your energy effortlessly."`,
+          `"Take this Copper Refill Bottle—imbued with resonance, it supports vitality and clears pathways within."`,
+          `${gameState.inventory.includes("drink_copper") ? "✅ The Copper Bottle vibrates subtly, now yours." : ""}`,
+          `${gameState.inventory.includes("freq_396") ? "✅ The 396 Hz shard reverberates clearly in your collection." : ""}`
         ],
         choices: [
-          { text: "Add Copper Refill Bottle to cart", destination: "mountain_peak", collectItem: "drink_gaia" },
-          { text: "Collect 396 Hz frequency shard", destination: "mountain_peak", collectItem: "freq_396" },
-          { text: "✨ Collect both frequency and bottle", destination: "mountain_peak", collectItem: ["freq_396", "drink_gaia"] },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
+          { text: "Claim Copper Refill Bottle", destination: "mountain_peak", collectItem: "drink_copper" },
+          { text: "Absorb 396 Hz frequency shard", destination: "mountain_peak", collectItem: "freq_396" },
+          { text: "✨ Collect both copper bottle & shard", destination: "mountain_peak", collectItem: ["freq_396","drink_copper"] },
+          { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-amber-700 via-amber-500 to-yellow-300",
       },
       ice_caves: {
-        title: "RESONANCE CHAMBER — 963 HZ: THE PINNACLE",
-        sprite: "☀️",
+        title: "RESONANCE CHAMBER — 963 Hz: THE PINNACLE",
+        sprite: "🐋",
         text: [
-          `Astra, the frequency keeper, stands within a chamber of pure crystalline resonance.`,
-          `"This is 963 Hz—the divine frequency. The peak of all vibrations."`,
-          `"This frequency opens the door to pure awareness and unified consciousness."`,
-          `In-game: You discover a hidden doorway that was invisible until now.`,
-          `IRL: This represents the highest form of frequency healing—pure connection and awareness.`,
-          `${gameState.inventory.includes("freq_963") ? "✅ 963 Hz frequency shard preserved! The divine frequency is part of your collection." : ""}`
+          `Astra's voice reverberates through the crystalline chamber, washing over you in waves of pure sound.`,
+          `"963 Hz is the divine frequency—the pinnacle of vibrational awareness. It connects directly to the universal field."`,
+          `"Here, I've prepared the Transcendence elixir. Its molecular structure holds the memory of pure consciousness. Take it mindfully."`,
+          `${gameState.inventory.includes("drink_transcend") ? "✅ Transcendence elixir glows with inner light in your collection." : ""}`,
+          `${gameState.inventory.includes("exp_sound_bath") ? "✅ Sound Bath session reserved; prepare for total harmonic immersion." : ""}`,
+          `${gameState.inventory.includes("freq_963") ? "✅ 963 Hz shard radiates with golden luminescence, the apex frequency secured." : ""}`
         ],
         choices: [
-          { text: "Collect 963 Hz frequency shard", destination: "ice_caves", collectItem: "freq_963" },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
+          { text: "Receive Transcendence elixir", destination: "ice_caves", collectItem: "drink_transcend" },
+          { text: "Book Sound Bath experience", destination: "ice_caves", collectItem: "exp_sound_bath" },
+          { text: "Secure 963 Hz frequency shard", destination: "ice_caves", collectItem: "freq_963" },
+          { text: "✨ Complete resonance trinity (all three)", destination: "ice_caves", collectItem: ["freq_963", "drink_transcend", "exp_sound_bath"] },
+          { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-yellow-300 via-yellow-200 to-amber-500",
       },
       sacred_temple: {
-        title: "CRYO BAY — 285 HZ: THE REGENERATOR",
+        title: "CRYO BAY — 285 Hz: THE REGENERATOR",
         sprite: "❄️",
         text: [
-          `Kelvin, the thermal physicist, monitors a chamber of pulsing blue energy waves.`,
-          `"This is 285 Hz—the cellular repair frequency. My cryo-technology preserves it in this quantum state."`,
-          `In-game: You extract a vial of Cryo Elixir, chilled to precisely -285°.`,
-          `IRL: This is our Cryo Elixir—a cellular rejuvenation formula with super-cooled molecular structure.`,
-          `Would you like to add this to your formula?`,
-          `${gameState.inventory.includes("drink_cryo") ? "✅ Cryo Elixir added to your collection!" : ""}`,
-          `${gameState.inventory.includes("freq_285") ? "✅ 285 Hz frequency shard preserved!" : ""}`
+          `Kelvin adjusts the cryo-chamber, icy mist drifting softly around you.`,
+          `"285 Hz heals at the cellular level, regenerating and restoring tissues."`,
+          `"Combine the Cryo Elixir—charged at precisely -285°—with a guided cold plunge. Together, they fortify your resilience."`,
+          `${gameState.inventory.includes("drink_cryo") ? "✅ Cryo Elixir chills comfortingly in your inventory." : ""}`,
+          `${gameState.inventory.includes("exp_ice_plunge") ? "✅ Cold Plunge booked; you'll breathe deep in icy clarity." : ""}`,
+          `${gameState.inventory.includes("freq_285") ? "✅ 285 Hz frequency shard radiates restorative chill." : ""}`
         ],
         choices: [
-          { text: "Add Cryo Elixir to cart", destination: "sacred_temple", collectItem: "drink_cryo" },
-          { text: "Collect 285 Hz frequency shard", destination: "sacred_temple", collectItem: "freq_285" },
-          { text: "✨ Collect both frequency and elixir", destination: "sacred_temple", collectItem: ["freq_285", "drink_cryo"] },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
+          { text: "Take the Cryo Elixir", destination: "sacred_temple", collectItem: "drink_cryo" },
+          { text: "Book Cold Plunge (breath-guided)", destination: "sacred_temple", collectItem: "exp_ice_plunge" },
+          { text: "Secure 285 Hz frequency shard", destination: "sacred_temple", collectItem: "freq_285" },
+          { text: "✨ Receive shard, elixir, & book plunge", destination: "sacred_temple", collectItem: ["freq_285","drink_cryo","exp_ice_plunge"] },
+          { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-blue-900 via-blue-700 to-cyan-300",
       },
       deep_forest: {
-        title: "AOI DOME — 639 & 852 HZ: THE CONNECTOR",
+        title: "AOI DOME — 639 & 852 Hz: THE CONNECTOR",
         sprite: "🌿",
         text: [
-          `Aria, the frequency architect, stands within a geodesic dome of interweaving light patterns.`,
-          `"This dual-frequency chamber vibrates at 639 Hz and 852 Hz simultaneously—connection and awakening."`,
-          `In-game: You receive Neural Awakening, a nootropic formula that enhances brain hemispheric connection.`,
-          `IRL: This represents the AOI (Art of Implosion) experience—consciousness expansion through sensory integration.`,
-          `Would you like to add this to your formula?`,
-          `${gameState.inventory.includes("drink_awaken") ? "✅ Neural Awakening added to your collection!" : ""}`,
-          `${gameState.inventory.includes("freq_639") ? "✅ 639 Hz frequency shard preserved!" : ""}`,
-          `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz frequency shard preserved!" : ""}`
+          `Aria gestures within the glowing AOI Dome, the air pulsing with energy.`,
+          `"Here, 639 Hz (connection) and 852 Hz (awakening) intertwine, elevating consciousness."`,
+          `"Choose your path: book the immersive AIR Dome, revitalizing HEAT Sauna, soothing EARTH Solarium, or the invigorating ICE Plunge. Complement your journey with Butterfly Effect or Aqua Aura."`,
+          `${gameState.inventory.includes("freq_639") ? "✅ 639 Hz shard harmonizes warmly." : ""}`,
+          `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz shard sings with clarity." : ""}`
         ],
         choices: [
-          { text: "Add Neural Awakening to cart", destination: "deep_forest", collectItem: "drink_awaken" },
-          { text: "Book AOI Experience", destination: "deep_forest", collectItem: "freq_639" },
-          { text: "Collect 852 Hz frequency shard", destination: "deep_forest", collectItem: "freq_852" },
-          { text: "✨ Collect all experiences", destination: "deep_forest", collectItem: ["drink_awaken", "freq_639", "freq_852"] },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
+          { text: "639 Hz shard", destination: "deep_forest", collectItem: "freq_639" },
+          { text: "852 Hz shard", destination: "deep_forest", collectItem: "freq_852" },
+          { text: "Butterfly Effect drink", destination: "deep_forest", collectItem: "drink_butterfly" },
+          { text: "Aqua Aura drink", destination: "deep_forest", collectItem: "drink_aqua" },
+          { text: "Book AIR Dome experience", destination: "deep_forest", collectItem: "exp_air_dome" },
+          { text: "Book HEAT Sauna experience", destination: "deep_forest", collectItem: "exp_heat_sauna" },
+          { text: "Book EARTH Solarium experience", destination: "deep_forest", collectItem: "exp_earth_bed" },
+          { text: "Book ICE Plunge experience", destination: "deep_forest", collectItem: "exp_ice_plunge" },
+          { text: "✨ All frequencies, drinks, and experiences", destination: "deep_forest", collectItem: ["freq_639","freq_852","drink_butterfly","drink_aqua","exp_air_dome","exp_heat_sauna","exp_earth_bed","exp_ice_plunge"] },
+          { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-purple-900 via-violet-700 to-indigo-400",
       },
@@ -424,17 +418,18 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "WATER-BAR LOUNGE — FREQUENCY FORMULAS",
         sprite: "🍹",
         text: [
-          `Nova, the Water Bar mixologist, stands behind a counter of glowing bottles and vessels.`,
-          `"Beyond individual frequencies, true magic lies in the combinations we create."`,
-          `"Our signature drinks integrate multiple vibrational patterns for holistic wellness."`,
-          `In-game: The Inner Glow Elixir combines multiple frequencies for radiance from within.`,
-          `IRL: This is our bestselling beauty tonic, designed to support skin, hair and cellular hydration.`,
-          `${gameState.inventory.includes("drink_glow") ? "✅ Inner Glow Elixir added to your collection!" : ""}`
+          `Nova gestures elegantly across the luminous counter, where vessels pulse with vibrant elixirs.`,
+          `"Welcome to the Water-Bar, where frequencies are alchemized into transformative experiences."`,
+          `"Our signature Inner Glow Elixir harmonizes multiple frequencies for radiance that emerges from deep within."`,
+          `"All experiences are 350 AED each, with 10% discount when booked in advance of your visit."`,
+          `"Would you like to review your frequency collection and experiences selected so far?"`,
+          `${gameState.inventory.includes("drink_glow") ? "✅ Inner Glow Elixir shimmers enticingly in your collection." : ""}`
         ],
         choices: [
-          { text: "Add Inner Glow Elixir to cart", destination: "crystal_lake", collectItem: "drink_glow" },
-          { text: "View all Water Bar formulas", destination: "cart_drinks" },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
+          { text: "Add Inner Glow Elixir to collection", destination: "crystal_lake", collectItem: "drink_glow" },
+          { text: "🔍 Review Water Bar formulas", destination: "cart_drinks" },
+          { text: "🔍 Review Booked Experiences", destination: "cart_experiences" },
+          { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-pink-500 via-rose-400 to-rose-300",
       },
@@ -729,10 +724,24 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     return prices[drinkItem as keyof typeof prices] || 0
   }
   
+  // Function to handle experience items
+  function getExperiencePrice(expItem: string): number {
+    // All experiences cost 350 AED
+    return 350
+  }
+  
   // Calculate total price of drinks in cart
   function calculateTotalPrice(): number {
     const drinkItems = gameState.inventory.filter(item => item.startsWith('drink_'))
-    return drinkItems.reduce((total, item) => total + getDrinkPrice(item), 0)
+    const expItems = gameState.inventory.filter(item => item.startsWith('exp_'))
+    
+    const drinksTotal = drinkItems.reduce((total, item) => total + getDrinkPrice(item), 0)
+    const expTotal = expItems.reduce((total, item) => total + getExperiencePrice(item), 0)
+    
+    // Apply 10% discount to experiences when booked in advance
+    const expDiscount = expItems.length > 0 ? expTotal * 0.1 : 0
+    
+    return drinksTotal + expTotal - expDiscount
   }
   
   // Format drink prices for display in checkout
@@ -746,12 +755,41 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       drink_yala: "YALA Kimbucha × Chaga",
       drink_cryo: "Aqua Aura", 
       drink_glow: "The Butterfly Effect",
-      drink_awaken: "The Gaia Experience"
+      drink_awaken: "The Gaia Experience",
+      drink_butterfly: "Butterfly Effect Elixir",
+      drink_aqua: "Aqua Aura Elixir",
+      drink_transcend: "Transcendence Elixir"
     }
     
     return drinkItems.map(item => 
       `${drinkNames[item as keyof typeof drinkNames] || item} - ${getDrinkPrice(item)} AED`
     ).join('\n')
+  }
+  
+  // Format experience prices for display in checkout
+  function formatExperiencePrices(): string {
+    const expItems = gameState.inventory.filter(item => item.startsWith('exp_'))
+    if (expItems.length === 0) return "No experiences booked yet."
+    
+    const expNames = {
+      exp_air_dome: "AOI AIR Dome Experience",
+      exp_heat_sauna: "AOI HEAT Sauna Session",
+      exp_earth_bed: "AOI EARTH Solarium Rest",
+      exp_ice_plunge: "AOI ICE Cold Plunge",
+      exp_sound_bath: "Resonance Sound Bath Session"
+    }
+    
+    const basePrice = 350 // AED
+    const discount = 0.1 // 10% discount
+    const discountedPrice = basePrice * (1 - discount)
+    
+    const result = expItems.map(item => 
+      `${expNames[item as keyof typeof expNames] || item} - ${discountedPrice} AED (10% pre-booking discount applied)`
+    ).join('\n')
+    
+    // Add note about savings
+    const totalSavings = expItems.length * basePrice * discount
+    return result + `\n\n💰 Total savings: ${totalSavings} AED`
   }
   
   // Get frequency shard benefits for display
@@ -932,7 +970,6 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         <div className="bg-black/40 backdrop-blur-sm p-5 mb-5 flex-grow rounded-lg border border-blue-500/20">
           <p className="text-blue-100 font-light text-lg leading-relaxed">
             {textVisible && currentContent.text[gameState.textIndex]}
-            {blinkCursor && <span className="animate-pulse ml-1 text-cyan-400">▮</span>}
           </p>
         </div>
 
