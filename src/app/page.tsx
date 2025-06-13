@@ -7,9 +7,6 @@ import HolisticModal from "@/components/HolisticModal";
 import WellnessBeverageMenu from "@/components/WellnessBeverageMenu";
 import MatchaMadnessTextRPG from "@/components/matcha-madness-text-rpg";
 import WellnessProfileSelection from "@/components/wellness-profile-selection";
-import EventPanel from "@/components/EventPanel";
-import SponsorStrip from "@/components/SponsorStrip";
-import TicketButton from "@/components/TicketButton";
 
 import type { Character } from "@/lib/character-data";
 
@@ -82,7 +79,7 @@ export default function Home() {
       {/* Event Details Modal */}
       <HolisticModal isOpen={showEventDetails} onCloseAction={() => setShowEventDetails(false)} title="💧 MORNING PARTY x THE ART OF IMPLOSION">
         <div className="text-slate-200 space-y-6 font-sans">
-          <div className="text-center text-amber-300 text-2xl font-light tracking-wide">SUNDAY, JUNE 29 '25</div>
+          <div className="text-center text-amber-300 text-2xl font-light tracking-wide">SUNDAY, JUNE 29 &apos;25</div>
           <div className="flex flex-col items-center space-y-3">
             <p>Join us for a transformative morning of</p>
             <p className="text-xl font-medium bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">SONIC HEALING & WELLNESS</p>
@@ -121,7 +118,7 @@ export default function Home() {
               <div className="text-orange-200 text-lg">🔥 Infrared Sauna Lounge</div>
               <div className="text-slate-300 mt-3">
                 Cellular renewal through infrared heat - guided session with binaural sound<br/>
-                Personalized intensity levels based on your body's response.
+                Personalized intensity levels based on your body&apos;s response.
               </div>
             </div>
             <div className="bg-gradient-to-br from-slate-800/50 to-blue-900/20 rounded-xl p-5 shadow-md backdrop-blur-sm border border-blue-500/20">

@@ -582,7 +582,12 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       },
     }
 
-    return screens[screen]
+    // Type assertion to ensure the screen exists
+    if (!(screen in screens)) {
+      console.error(`Screen "${screen}" not found, falling back to intro`)
+      return screens.intro
+    }
+    return screens[screen as keyof typeof screens]
   }
 
   // Get ending title based on type
@@ -785,16 +790,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     const drinkItems = gameState.inventory.filter(item => item.startsWith('drink_'))
     if (drinkItems.length === 0) return []
     
-    const displayNames = {
-      drink_prana: "Prana Spring Water",
-      drink_gaia: "Gaia Copper Refill", 
-      drink_yala: "YALA Kimbucha × Chaga",
-      drink_cryo: "Cryo Elixir",
-      drink_awaken: "Neural Awakening",
-      drink_glow: "Inner Glow"
-    }
-    
-    // For now just add all to cart, could be expanded to individual items
+    // For now just add all to cart, could be expanded to individual items with display names
+    // if we want to show individual items in the future
     const choices = [
       { text: "Add all drinks to cart", destination: "cart_drinks", collectItem: "cart_all_drinks" }
     ]
@@ -941,7 +938,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         {/* Choices or Continue */}
         <div className="flex flex-col space-y-2">
           {gameState.showChoices ? (
-            currentContent.choices.map((choice, index) => (
+            currentContent.choices.map((choice: {text: string, destination: string, collectItem?: string | string[]}, index: number) => (
               <button
                 key={index}
                 onClick={() => handleChoice(
