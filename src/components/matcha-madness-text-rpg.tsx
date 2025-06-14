@@ -1,12 +1,29 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
 import type { Character } from "@/lib/character-data"
+import FrequencyVisualizer from "./FrequencyVisualizer"
 
-// Mock sound manager since the actual file doesn't exist
+// Enhanced sound manager with frequency-specific sounds
 const soundManager = {
-  playSound: (sound: string) => console.log(`Would play sound: ${sound}`),
+  playSound: (sound: string) => {
+    console.log(`Would play sound: ${sound}`)
+    
+    // Play actual sound if we had the implementation
+    // Different sound effects for different types of events
+    switch(sound) {
+      case "frequencyCollected":
+        console.log("Playing harmonic chime for frequency collection")
+        break
+      case "frequencyBlocked":
+        console.log("Playing dissonant tone for blocked frequency")
+        break
+      case "frequencyComplete":
+        console.log("Playing harmonic progression for completed frequency set")
+        break
+    }
+  },
   stopAllSounds: () => console.log('Would stop all sounds'),
   setVolume: (volume: number) => console.log(`Would set volume to: ${volume}`),
   // Add missing methods to fix type errors
@@ -44,6 +61,8 @@ interface GameState {
   showChoices: boolean
   gameComplete: boolean
   endingType: "legendary" | "heroic" | "clutch" | "miracle" | "failure"
+  frequencyMessage?: string // Message to show for frequency collection guidance
+  showFrequencyMessage: boolean // Whether to show the frequency message
 }
 
 export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps) {
@@ -55,6 +74,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     showChoices: false,
     gameComplete: false,
     endingType: "failure",
+    frequencyMessage: undefined,
+    showFrequencyMessage: false
   })
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -102,6 +123,49 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     }
   }
 
+  // Check if frequencies are being collected in the correct order
+  const checkFrequencySequence = (frequency: string, inventory: string[]): { valid: boolean; message?: string } => {
+    // Define the correct collection order
+    const validSequences = {
+      // Center frequency can always be collected
+      freq_174: { valid: true },
+      
+      // 6-family frequencies must be collected after center frequency
+      freq_285: { 
+        valid: inventory.includes("freq_174"),
+        message: "The 174 Hz foundation frequency must be collected first. Seek out the Hydration Well."
+      },
+      freq_528: { 
+        valid: inventory.includes("freq_174"),
+        message: "The 174 Hz foundation frequency must be collected first. Seek out the Hydration Well."
+      },
+      freq_852: { 
+        valid: inventory.includes("freq_174"),
+        message: "The 174 Hz foundation frequency must be collected first. Seek out the Hydration Well."
+      },
+      
+      // 9-family frequencies require at least one 6-family frequency
+      freq_396: { 
+        valid: inventory.some(item => ["freq_285", "freq_528", "freq_852"].includes(item)),
+        message: "This higher consciousness frequency requires at least one regenerative frequency (285, 528, or 852 Hz)."
+      },
+      freq_639: { 
+        valid: inventory.some(item => ["freq_285", "freq_528", "freq_852"].includes(item)),
+        message: "This higher consciousness frequency requires at least one regenerative frequency (285, 528, or 852 Hz)."
+      },
+      freq_963: { 
+        valid: inventory.some(item => ["freq_285", "freq_528", "freq_852"].includes(item)),
+        message: "This higher consciousness frequency requires at least one regenerative frequency (285, 528, or 852 Hz)."
+      },
+    }
+    
+    if (frequency in validSequences) {
+      return validSequences[frequency as keyof typeof validSequences]
+    }
+    
+    return { valid: true }
+  }
+  
   // Handle choice selection
   const handleChoice = (destination: GameScreen, collectItem?: string | string[], returnToMap?: boolean) => {
     soundManager.playSound("areaTransition")
@@ -109,30 +173,91 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     // Add items to inventory if specified
     const newInventory = [...gameState.inventory]
     let itemsCollected = false
+    let frequencyMessage: string | undefined = undefined
     
     // Handle single item or multiple items
     if (collectItem) {
       if (typeof collectItem === 'string') {
         // Single item
         if (!newInventory.includes(collectItem)) {
-          newInventory.push(collectItem)
-          soundManager.playSound("questComplete")
-          itemsCollected = true
+          // Special handling for frequencies
+          if (collectItem.startsWith('freq_')) {
+            const sequenceCheck = checkFrequencySequence(collectItem, gameState.inventory)
+            
+            if (sequenceCheck.valid) {
+              newInventory.push(collectItem)
+              soundManager.playSound("frequencyCollected")
+              itemsCollected = true
+            } else {
+              // Invalid sequence, show message but don't add to inventory
+              frequencyMessage = sequenceCheck.message
+              soundManager.playSound("frequencyBlocked")
+            }
+          } else {
+            // Regular item collection
+            newInventory.push(collectItem)
+            soundManager.playSound("questComplete")
+            itemsCollected = true
+          }
         }
       } else {
         // Multiple items
         let addedItems = false
+        let hasFrequency = false
+        
         collectItem.forEach(item => {
           if (!newInventory.includes(item)) {
-            newInventory.push(item)
-            addedItems = true
+            // Special handling for frequencies
+            if (item.startsWith('freq_')) {
+              const sequenceCheck = checkFrequencySequence(item, newInventory)
+              
+              if (sequenceCheck.valid) {
+                newInventory.push(item)
+                addedItems = true
+                hasFrequency = true
+              } else {
+                // Store the last error message
+                frequencyMessage = sequenceCheck.message
+              }
+            } else {
+              // Regular item
+              newInventory.push(item)
+              addedItems = true
+            }
           }
         })
+        
         if (addedItems) {
-          soundManager.playSound("questComplete")
+          soundManager.playSound(hasFrequency ? "frequencyCollected" : "questComplete")
           itemsCollected = true
+        } else if (frequencyMessage) {
+          soundManager.playSound("frequencyBlocked")
         }
       }
+    }
+
+    // Check if all frequencies in a family are collected for special feedback
+    const checkFrequencyCompletions = (inventory: string[]) => {
+      const has6Family = ["freq_285", "freq_528", "freq_852"].every(f => inventory.includes(f))
+      const has9Family = ["freq_396", "freq_639", "freq_963"].every(f => inventory.includes(f))
+      
+      // Play special sound effects for completing frequency families
+      if (has6Family && !gameState.inventory.includes("freq_285") || 
+          !gameState.inventory.includes("freq_528") || 
+          !gameState.inventory.includes("freq_852")) {
+        // First time completing 6 family
+        soundManager.playSound("frequencyComplete")
+        return "The regenerative triangle is complete. Higher consciousness frequencies are now available."
+      } else if (has9Family && has6Family && 
+                (!gameState.inventory.includes("freq_396") || 
+                 !gameState.inventory.includes("freq_639") || 
+                 !gameState.inventory.includes("freq_963"))) {
+        // First time completing all frequencies
+        soundManager.playSound("frequencyComplete")
+        return "The Star of David frequency pattern is complete. You have unlocked the full potential."
+      }
+      
+      return undefined
     }
 
     // Determine if we should return to map after collecting items
@@ -143,6 +268,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       !destination.includes("cart") && !destination.includes("postgame");
       
     const actualDestination = shouldReturnToMap ? "map" : destination;
+    
+    // Check for special frequency completions
+    const completionMessage = itemsCollected ? checkFrequencyCompletions(newInventory) : undefined;
+    const messageToShow = frequencyMessage || completionMessage;
 
     // Check for game completion
     if (actualDestination === "ending") {
@@ -164,6 +293,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         showChoices: false,
         gameComplete: true,
         endingType,
+        showFrequencyMessage: false,
       }))
     } else {
       // Regular navigation
@@ -173,8 +303,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         textIndex: 0,
         showChoices: false,
         inventory: newInventory,
+        frequencyMessage: messageToShow,
+        showFrequencyMessage: Boolean(messageToShow)
       }))
-    }
+    }  
   }
 
   // Countdown timer - time moves toward midnight
@@ -677,6 +809,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       showChoices: false,
       gameComplete: false,
       endingType: "failure",
+      frequencyMessage: undefined,
+      showFrequencyMessage: false
     })
     soundManager.playBackgroundMusic()
   }
@@ -792,10 +926,29 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         </div>
       </div>
 
-      {/* Character Info */}
-      <div className="w-full max-w-3xl bg-black/40 backdrop-blur-md p-3 rounded-xl border border-blue-500/30 flex items-center">
-        <div className="mr-4 bg-gradient-to-r from-blue-500/30 to-indigo-500/30 p-2 rounded-full">
-          <span className="text-3xl">⚡</span>
+      {/* Frequency Message (shown when collecting out of order) */}
+      {gameState.showFrequencyMessage && gameState.frequencyMessage && (
+        <div className="w-full max-w-3xl mb-4">
+          <div className="bg-gradient-to-r from-purple-900/80 to-indigo-900/80 p-4 rounded-xl border border-purple-400/40 shadow-lg shadow-purple-500/20">
+            <div className="flex items-center">
+              <span className="text-3xl mr-3">🔮</span>
+              <p className="text-purple-100 font-light">{gameState.frequencyMessage}</p>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Character Info with Frequency Visualizer */}
+      <div className="w-full max-w-3xl bg-black/40 backdrop-blur-md p-3 rounded-xl border border-blue-500/30 flex items-center justify-between">
+        <div className="flex items-center">
+          <div className="mr-4 bg-gradient-to-r from-blue-500/30 to-indigo-500/30 p-2 rounded-full">
+            <span className="text-3xl">⚡</span>
+          </div>
+
+          {/* Frequencies section */}
+          <div className="flex items-center">
+            <FrequencyVisualizer collectedFrequencies={gameState.inventory} size="small" />
+          </div>
         </div>
         <div>
           <p className="text-blue-300 font-light">
