@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import type { Character } from "@/lib/character-data"
 import FrequencyVisualizer from "./FrequencyVisualizer"
