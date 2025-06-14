@@ -620,23 +620,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   // The game now focuses exclusively on frequency collection
   // Functions like formatCollectedDrinks, formatExperiencePrices, and countDrinkItems were removed
   
-  // Get frequency shard benefits for display
-  function getFrequencyBenefits(): string {
-    const freqItems = gameState.inventory.filter(item => item.startsWith('freq_'))
-    if (freqItems.length === 0) return "No frequencies collected."
-    
-    const benefits = {
-      freq_174: "✓ Foundation: Grounding and physical healing",
-      freq_285: "✓ Transformation: Cellular regeneration and renewal",
-      freq_396: "✓ Liberation: Release of fear and trauma patterns",
-      freq_528: "✓ Miracle: DNA repair and harmonic resonance", 
-      freq_639: "✓ Connection: Heart opening and relationship harmony",
-      freq_852: "✓ Awakening: Intuition enhancement and clarity",
-      freq_963: "✓ Divine: Connection to universal consciousness"
-    }
-    
-    return freqItems.map(item => benefits[item as keyof typeof benefits] || item).join('\n')
-  }
+  // Removed unused getFrequencyBenefits function
   
   // Get frequency choices for review screen
   function getFrequencyCartChoices(): { text: string, destination: string, collectItem?: string }[] {
