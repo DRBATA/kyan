@@ -32,13 +32,8 @@ type GameScreen =
   | "ice_caves"
   | "sacred_temple"
   | "deep_forest"
-  | "crystal_lake"
   | "console"
-  | "cart_frequencies"
-  | "cart_drinks"
-  | "checkout"
-  | "postgame_frequencies"
-  | "postgame_drinks"
+  | "frequencies"
   | "ending"
 
 interface GameState {
@@ -269,11 +264,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       /* --- FREQUENCY MAP - MAIN NAVIGATION HUB ------------------------------ */
       map: {
         title: "FREQUENCY MAP • NAVIGATION",
-        sprite: "🏔️",
+        sprite: "🌄",
         text: [
           `⏰ TIME REMAINING: ${Math.floor(gameState.currentTime / 60)}:${(gameState.currentTime % 60).toString().padStart(2, '0')}`,
           `✨ FREQUENCIES COLLECTED: ${countFrequencyShards()}/7`,
-          `🍹 FORMULAS SELECTED: ${countDrinkItems()}`,
           `Select a destination to continue your frequency rescue mission.`,
           `Each zone contains unique vibrational patterns that can be collected.`
         ],
@@ -441,15 +435,13 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `Johny Dar's hologram expands to fill the room with data visualizations of your collection.`,
           `"This is the quantum upload station for preserving frequencies beyond Y2K."`,
           `✨ FREQUENCY STATUS: ${countFrequencyShards()}/7 frequency shards collected`,
-          `🍹 FORMULA STATUS: ${countDrinkItems()} Water Bar formulas selected`,
-          `"Are you ready to finalize your collection and upload to our secure quantum server?"`,
-          `"Or would you like to continue exploring to find more frequencies and formulas?"`,
-          `"Remember, once Y2K strikes at midnight, only what you've uploaded will be preserved."`
+          `"Are you ready to finalize your frequency collection and upload to our secure quantum server?"`,
+          `"Or would you like to continue exploring to find more healing frequencies?"`,
+          `"Remember, once Y2K strikes at midnight, only the frequencies you've uploaded will be preserved."`
         ],
         choices: [
-          { text: "✅ Upload my collection now", destination: "ending", collectItem: "upload_complete" },
-          { text: "⚡ Review my frequencies", destination: "cart_frequencies" },
-          { text: "🥤 Review my formulas", destination: "cart_drinks" },
+          { text: "✅ Upload my frequencies now", destination: "ending", collectItem: "upload_complete" },
+          { text: "⚡ Review my frequencies", destination: "frequencies" },
           { text: "🗺 Return to Map", destination: "map", returnToMap: false },
         ],
         bgColor: "from-blue-900 via-indigo-700 to-indigo-500",
@@ -473,25 +465,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         ],
         bgColor: "from-indigo-900 via-blue-700 to-blue-400",
       },
-      cart_drinks: {
-        title: "WATER BAR FORMULAS",
-        sprite: "🍹",
-        text: [
-          `🌊 FORMULA STABILIZATION | Y2K COUNTDOWN: ${Math.floor(gameState.currentTime / 60)}:${(gameState.currentTime % 60).toString().padStart(2, '0')}`,
-          `Your selected Water Bar formulas glow with vibrational potency:`,
-          `${formatCollectedDrinks()}`,
-          `These specialized formulas are designed to integrate frequency healing into your daily wellness protocol.`,
-          `Each one harmonizes with specific frequencies to enhance their restorative power.`,
-          `🔍 ${countDrinkItems()} formulas selected`
-        ],
-        choices: [
-          ...(getDrinkCartChoices()),
-          { text: "✅ Complete frequency upload", destination: "ending", collectItem: "upload_complete" },
-          { text: "💻 Return to Master Console", destination: "console" },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
-        ],
-        bgColor: "from-purple-900 via-fuchsia-700 to-pink-400",
-      },
+      // Removed cart_drinks and cart_experiences screens as we're focusing solely on frequencies
       ending: {
         title: getEndingTitle(gameState.endingType),
         sprite: getEndingEmoji(gameState.endingType),
@@ -501,80 +475,31 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         ],
         choices: gameState.endingType === "failure" ? 
           [
-            { text: "View Collected Frequencies", destination: "postgame_frequencies" },
-            { text: "View Collected Drinks", destination: "postgame_drinks" },
-            { text: "💳 View Water Bar Receipt", destination: "postgame_checkout" },
+            { text: "View Collected Frequencies", destination: "frequencies" },
             { text: "Play Again", destination: "intro" }
           ] : 
           [
-            { text: "View Preserved Frequencies", destination: "postgame_frequencies" },
-            { text: "View Water Bar Formulas", destination: "postgame_drinks" },
-            { text: "💳 View Water Bar Receipt", destination: "postgame_checkout" },
+            { text: "View Preserved Frequencies", destination: "frequencies" },
             { text: "Play Again", destination: "intro" }
           ],
         bgColor: getEndingBackground(gameState.endingType),
       },
-      postgame_frequencies: {
+      frequencies: {
         title: "PRESERVED FREQUENCIES",
         sprite: "⚡",
         text: [
           `✨ DIGITAL TRANSITION COMPLETE | Y2K ARRIVED`,
           `These frequencies have been successfully preserved beyond Y2K:`,
           `${formatCollectedFrequencies()}`,
-          `Each frequency shard carries unique vibrational healing properties that can be added to your personal collection.`,
+          `Each frequency shard carries unique vibrational healing properties that have been saved for future generations.`,
           `🔍 ${countFrequencyShards()}/7 frequencies preserved`
         ],
         choices: [
           ...getFrequencyCartChoices(),
-          { text: "🍹 View Preserved Formulas", destination: "postgame_drinks" },
           { text: "🔙 Return to Results", destination: "ending" },
           { text: "🔄 Begin New Mission", destination: "intro" }
         ],
         bgColor: "from-indigo-900 via-blue-800 to-cyan-600",
-      },
-      postgame_drinks: {
-        title: "PRESERVED WATER BAR FORMULAS",
-        sprite: "🍹",
-        text: [
-          `🌊 FORMULA ARCHIVE ACCESSED | Y2K TRANSITION COMPLETE`,
-          `These Water Bar formulas have been preserved in your digital vault:`,
-          `${formatCollectedDrinks()}`,
-          `Each formula works synergistically with specific frequencies to enhance your personal wellness protocol.`,
-          `🔍 ${countDrinkItems()} formulas preserved`
-        ],
-        choices: [
-          ...getDrinkCartChoices(),
-          { text: "💳 View Water Bar Request", destination: "postgame_checkout" },
-          { text: "⚡ View Preserved Frequencies", destination: "postgame_frequencies" },
-          { text: "🔙 Return to Results", destination: "ending" },
-          { text: "🔄 Begin New Mission", destination: "intro" }
-        ],
-        bgColor: "from-violet-900 via-purple-800 to-fuchsia-600",
-      },
-      postgame_checkout: {
-        title: "WATER BAR REQUEST",
-        sprite: "💳",
-        text: [
-          `✨ DIGITAL TRANSITION COMPLETE | YOUR PRESERVED FORMULAS`,
-          ``,
-          `🗝️ WATER BAR REQUEST:`,
-          `${formatDrinkPrices()}`,
-          ``,
-          `💰 TOTAL: ${calculateTotalPrice()} AED`,
-          ``,
-          `✨ FREQUENCY BENEFITS INCLUDED:`,
-          `${getFrequencyBenefits()}`,
-          ``,
-          `Visit The Water Bar to experience these frequency-infused`,
-          `formulas and preserve your wellness beyond the digital realm.`
-        ],
-        choices: [
-          { text: "🍹 View Formula Details", destination: "postgame_drinks" },
-          { text: "⚡ View Frequency Benefits", destination: "postgame_frequencies" },
-          { text: "🔙 Return to Results", destination: "ending" },
-          { text: "🔄 Begin New Mission", destination: "intro" }
-        ],
-        bgColor: "from-emerald-700 via-teal-600 to-cyan-500",
       },
     }
 
@@ -630,7 +555,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       case "miracle":
         return `INCREDIBLE! With just one second remaining, Agent ${name} completed the frequency upload at exactly 11:59:59 PM!`
       case "failure":
-        return `Y2K has arrived! Agent ${name} managed to preserve ${countFrequencyShards()} of 7 frequency shards and ${countDrinkItems()} Water Bar formulas.`
+        return `Y2K has arrived! Agent ${name} managed to preserve ${countFrequencyShards()} of 7 frequency shards before time ran out.`
     }
   }
 
@@ -638,15 +563,15 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   function getEndingFlavor(type: GameState["endingType"]): string {
     switch (type) {
       case "legendary":
-        return "Your strategic frequency preservation mission is a complete success! As humanity awakens to a new millennium, your perfectly preserved frequency collection ensures the Water Bar's continued healing mission. The fusion of ancient healing vibrations with future technology creates a wellness protocol that thrives for decades, transforming humanity's relationship with hydration and consciousness. The Morning Party celebrates your legendary achievement!"
+        return "Your strategic frequency preservation mission is a complete success! As humanity awakens to a new millennium, your perfectly preserved frequency collection ensures the continuation of these healing vibrations. The fusion of ancient healing frequencies with future technology creates a wellness protocol that thrives for decades, transforming humanity's relationship with consciousness. The Morning Party celebrates your legendary achievement!"
       case "heroic":
-        return "Your comprehensive frequency preservation ensures the Water Bar's mission continues into the new millennium! The complete frequency-formula combinations you've saved become the foundation for a revolutionary approach to wellness that flourishes in the digital age. The Morning Party honors your heroic preservation of this ancient-future science!"
+        return "Your comprehensive frequency preservation ensures these sacred vibrations continue into the new millennium! The complete frequency collection you've saved becomes the foundation for a revolutionary approach to wellness that flourishes in the digital age. The Morning Party honors your heroic preservation of this ancient-future science!"
       case "clutch":
-        return "The quantum servers pulse with energy as your frequency upload completes with seconds to spare! Despite the close call, your preserved frequencies and formulas become the core of the Water Bar's evolving wellness protocol. The Morning Party celebrates your clutch performance that secured these healing vibrations for future generations!"
+        return "The quantum servers pulse with energy as your frequency upload completes with seconds to spare! Despite the close call, your preserved frequencies become the core of a new wellness paradigm. The Morning Party celebrates your clutch performance that secured these healing vibrations for future generations!"
       case "miracle":
         return "In the final second before Y2K, you complete the frequency upload in a burst of quantum energy! Against impossible odds, your preserved frequencies create ripples through the digital transition. The Morning Party is astounded by your miraculous save, which ensures these healing vibrations continue to transform lives in the new millennium!"
       case "failure":
-        return `The frequencies and formulas you've saved will continue to resonate! You preserved ${countFrequencyShards()} of 7 critical frequencies and ${countDrinkItems()} Water Bar formulas. Though incomplete, this collection remains invaluable to humanity's wellness future. You can add these items to your personal collection now, or return to rescue more frequencies before checkout!`
+        return `The frequencies you've managed to save will continue to resonate! You preserved ${countFrequencyShards()} of 7 critical frequencies. Though incomplete, this collection remains invaluable to humanity's wellness future. You can add these frequencies to your personal collection now, or return to rescue more frequencies!`
     }
   }
 
@@ -671,10 +596,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     return gameState.inventory.filter(item => item.startsWith('freq_')).length
   }
 
-  // Count collected drink items
-  function countDrinkItems(): number {
-    return gameState.inventory.filter(item => item.startsWith('drink_')).length
-  }
+  // This function has been removed as we're focusing only on frequencies
   
   // Format collected frequencies for display
   function formatCollectedFrequencies(): string {
@@ -693,104 +615,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     
     return freqItems.map(item => items[item as keyof typeof items] || item).join('\n')
   }
-  
-  // Format collected drinks for display
-  function formatCollectedDrinks(): string {
-    const drinkItems = gameState.inventory.filter(item => item.startsWith('drink_'))
-    if (drinkItems.length === 0) return "You haven't added any formulas to cart yet."
-    
-    const items = {
-      drink_prana: "💧 Prana Spring Water (Immunity & Balance)",
-      drink_gaia: "🌱 Gaia Copper Refill Bottle (Vitality)",
-      drink_yala: "🧪 YALA Kimbucha × Chaga (Adaptogenic)",
-      drink_cryo: "❄️ Cryo Elixir (Recovery & Cooling)", 
-      drink_glow: "✨ Inner Glow Formula (Radiance & Clarity)",
-      drink_awaken: "🧠 Neural Awakening (Consciousness Expansion)"
-    }
-    
-    return drinkItems.map(item => items[item as keyof typeof items] || item).join('\n')
-  }
-  
-  // Get pricing information for drinks
-  function getDrinkPrice(drinkItem: string): number {
-    const prices = {
-      drink_prana: 20, // AED
-      drink_gaia: 120, // AED
-      drink_yala: 45, // AED
-      drink_cryo: 30, // AED
-      drink_glow: 75, // AED
-      drink_awaken: 65, // AED
-    }
-    return prices[drinkItem as keyof typeof prices] || 0
-  }
-  
-  // Function to handle experience items
-  function getExperiencePrice(expItem: string): number {
-    // All experiences cost 350 AED
-    return 350
-  }
-  
-  // Calculate total price of drinks in cart
-  function calculateTotalPrice(): number {
-    const drinkItems = gameState.inventory.filter(item => item.startsWith('drink_'))
-    const expItems = gameState.inventory.filter(item => item.startsWith('exp_'))
-    
-    const drinksTotal = drinkItems.reduce((total, item) => total + getDrinkPrice(item), 0)
-    const expTotal = expItems.reduce((total, item) => total + getExperiencePrice(item), 0)
-    
-    // Apply 10% discount to experiences when booked in advance
-    const expDiscount = expItems.length > 0 ? expTotal * 0.1 : 0
-    
-    return drinksTotal + expTotal - expDiscount
-  }
-  
-  // Format drink prices for display in checkout
-  function formatDrinkPrices(): string {
-    const drinkItems = gameState.inventory.filter(item => item.startsWith('drink_'))
-    if (drinkItems.length === 0) return "No formulas selected."
-    
-    const drinkNames = {
-      drink_prana: "Prana Spring Water",
-      drink_gaia: "Copper Refill Bottle",
-      drink_yala: "YALA Kimbucha × Chaga",
-      drink_cryo: "Aqua Aura", 
-      drink_glow: "The Butterfly Effect",
-      drink_awaken: "The Gaia Experience",
-      drink_butterfly: "Butterfly Effect Elixir",
-      drink_aqua: "Aqua Aura Elixir",
-      drink_transcend: "Transcendence Elixir"
-    }
-    
-    return drinkItems.map(item => 
-      `${drinkNames[item as keyof typeof drinkNames] || item} - ${getDrinkPrice(item)} AED`
-    ).join('\n')
-  }
-  
-  // Format experience prices for display in checkout
-  function formatExperiencePrices(): string {
-    const expItems = gameState.inventory.filter(item => item.startsWith('exp_'))
-    if (expItems.length === 0) return "No experiences booked yet."
-    
-    const expNames = {
-      exp_air_dome: "AOI AIR Dome Experience",
-      exp_heat_sauna: "AOI HEAT Sauna Session",
-      exp_earth_bed: "AOI EARTH Solarium Rest",
-      exp_ice_plunge: "AOI ICE Cold Plunge",
-      exp_sound_bath: "Resonance Sound Bath Session"
-    }
-    
-    const basePrice = 350 // AED
-    const discount = 0.1 // 10% discount
-    const discountedPrice = basePrice * (1 - discount)
-    
-    const result = expItems.map(item => 
-      `${expNames[item as keyof typeof expNames] || item} - ${discountedPrice} AED (10% pre-booking discount applied)`
-    ).join('\n')
-    
-    // Add note about savings
-    const totalSavings = expItems.length * basePrice * discount
-    return result + `\n\n💰 Total savings: ${totalSavings} AED`
-  }
+
+  // All drink and experience related functions have been removed
+  // The game now focuses exclusively on frequency collection
+  // Functions like formatCollectedDrinks, formatExperiencePrices, and countDrinkItems were removed
   
   // Get frequency shard benefits for display
   function getFrequencyBenefits(): string {
@@ -810,32 +638,13 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     return freqItems.map(item => benefits[item as keyof typeof benefits] || item).join('\n')
   }
   
-  // Get cart choices for frequencies
+  // Get frequency choices for review screen
   function getFrequencyCartChoices(): { text: string, destination: string, collectItem?: string }[] {
     const freqItems = gameState.inventory.filter(item => item.startsWith('freq_'))
     if (freqItems.length === 0) return []
     
-    const choices = [
-      { text: "Add all frequencies to cart", destination: "cart_frequencies", collectItem: "cart_all_freq" }
-    ]
-    
-    // Add individual frequency choices if needed in the future
-    
-    return choices
-  }
-  
-  // Get cart choices for drinks
-  function getDrinkCartChoices(): { text: string, destination: string, collectItem?: string }[] {
-    const drinkItems = gameState.inventory.filter(item => item.startsWith('drink_'))
-    if (drinkItems.length === 0) return []
-    
-    // For now just add all to cart, could be expanded to individual items with display names
-    // if we want to show individual items in the future
-    const choices = [
-      { text: "Add all drinks to cart", destination: "cart_drinks", collectItem: "cart_all_drinks" }
-    ]
-    
-    return choices
+    // No longer need cart functionality as we're focusing solely on frequencies
+    return []
   }
 
   // Format inventory for display
