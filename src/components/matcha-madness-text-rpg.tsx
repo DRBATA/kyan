@@ -133,15 +133,15 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       // 6-family frequencies must be collected after center frequency
       freq_285: { 
         valid: inventory.includes("freq_174"),
-        message: "The 174 Hz foundation frequency must be collected first. Seek out the Hydration Well."
+        message: "The 174 Hz foundation frequency must be collected first. Hint: look for the frequency whose digits add up to 3 (1+7+4=12, 1+2=3). Seek out the Hydration Well."
       },
       freq_528: { 
         valid: inventory.includes("freq_174"),
-        message: "The 174 Hz foundation frequency must be collected first. Seek out the Hydration Well."
+        message: "The 174 Hz foundation frequency must be collected first. Hint: look for the frequency whose digits add up to 3 (1+7+4=12, 1+2=3). Seek out the Hydration Well."
       },
       freq_852: { 
         valid: inventory.includes("freq_174"),
-        message: "The 174 Hz foundation frequency must be collected first. Seek out the Hydration Well."
+        message: "The 174 Hz foundation frequency must be collected first. Hint: look for the frequency whose digits add up to 3 (1+7+4=12, 1+2=3). Seek out the Hydration Well."
       },
       
       // 9-family frequencies require at least one 6-family frequency
@@ -885,7 +885,9 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       <div className="w-full max-w-3xl bg-black/50 backdrop-blur-md border border-indigo-500/40 rounded-xl p-6 mb-4 min-h-[400px] flex flex-col shadow-lg shadow-blue-500/10">
         {/* Location Title */}
         <div className="bg-gradient-to-r from-indigo-900/70 to-blue-900/70 p-3 mb-5 text-center rounded-lg border-b border-blue-400/30">
-          <h2 className="text-xl font-light tracking-wider text-white">{currentContent.title}</h2>
+          <div className="bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-300 bg-clip-text text-transparent font-light tracking-wider text-xl">
+            {currentContent.title}
+          </div>
         </div>
 
         {/* Character Sprite */}

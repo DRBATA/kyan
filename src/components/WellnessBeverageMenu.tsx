@@ -73,7 +73,6 @@ const wellnessDrinks = [
     color: "#4CC9F0",
     textColor: "#0F172A",
     experience: "AOI ICE",
-    resonance: "174 Hz - Foundation",
     benefit: "Deeply rehydrates and restores cellular balance. Promotes grounding and stability.",
   },
   {
@@ -86,7 +85,6 @@ const wellnessDrinks = [
     color: "#DD8E6C",
     textColor: "#0F172A",
     experience: "AOI EARTH",
-    resonance: "285 Hz - Transformation",
     benefit: "Grounds and supports metabolic function. Enhances cellular regeneration and renewal.",
   },
   {
@@ -99,7 +97,6 @@ const wellnessDrinks = [
     color: "#BD93F9",
     textColor: "#0F172A",
     experience: "AOI AIR / Detox Trinity",
-    resonance: "528 Hz - Harmony",
     benefit: "Offers refined refreshment enhancing the elevating experience. Provides a celebratory finish.",
   },
   {
@@ -112,7 +109,6 @@ const wellnessDrinks = [
     color: "#8E6C44",
     textColor: "#FFFFFF",
     experience: "AOI AIR / AOI EARTH / Detox Trinity",
-    resonance: "Multiple Resonances",
     benefit: "Promotes cellular adaptation and supports mental calm. Stabilizes gut-brain balance for deeper relaxation.",
   },
   {
@@ -125,7 +121,6 @@ const wellnessDrinks = [
     color: "#FB923C",
     textColor: "#0F172A",
     experience: "AOI HEAT",
-    resonance: "396 Hz - Liberation",
     benefit: "Boosts metabolism and circulation. Supports release of blockages and fear patterns.",
   },
   {
@@ -138,7 +133,6 @@ const wellnessDrinks = [
     color: "#00B4D8",
     textColor: "#0F172A",
     experience: "AOI ICE",
-    resonance: "174 Hz - Foundation",
     benefit: "Replenishes electrolytes. Restores mood and encourages celebration post-cold exposure.",
   },
   {
@@ -151,7 +145,6 @@ const wellnessDrinks = [
     color: "#7B5E3E",
     textColor: "#FFFFFF",
     experience: "AOI HEAT",
-    resonance: "396 Hz - Liberation",
     benefit: "Provides magnesium for muscle relaxation and mood balance. Supports release of tension.",
   },
 ]
@@ -202,9 +195,6 @@ const WellnessBeverageMenu = () => {
               <div className="flex items-center">
                 <span className="mr-2 text-xs px-2 py-1 bg-slate-800 text-blue-300 rounded-md font-medium">
                   {drink.experience}
-                </span>
-                <span className="text-xs px-2 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-md font-medium ml-1">
-                  {drink.resonance}
                 </span>
               </div>
               <p className="text-xs text-slate-600 mt-2">{drink.benefit}</p>
