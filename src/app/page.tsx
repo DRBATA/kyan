@@ -155,7 +155,7 @@ export default function Home() {
               <h3 className="text-xl text-amber-400 font-medium">AOI TOUCH</h3>
               <div className="text-amber-300 text-lg">👐 The Meridian Massage</div>
               <div className="text-slate-300 mt-2">
-                A tailored massage and reflexology session that releases tension along your body's energy meridians, restoring flow, balance, and deep-rooted relaxation.
+                A tailored massage and reflexology session that releases tension along your body&apos;s energy meridians, restoring flow, balance, and deep-rooted relaxation.
               </div>
               <div className="mt-4 text-right text-amber-400 font-semibold">230 AED</div>
             </div>
@@ -171,7 +171,7 @@ export default function Home() {
                 </span>
               </p>
               <p className="text-center text-white/80 mt-4 italic">
-                "Experience the future of wellness through the power of frequency, light and sound."
+                &quot;Experience the future of wellness through the power of frequency, light and sound.&quot;
               </p>
               <div className="text-center mt-4">
                 <a href="#" className="inline-block px-6 py-2 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-medium rounded-full hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300">
