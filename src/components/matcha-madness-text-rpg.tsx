@@ -420,33 +420,36 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
 
       /* --- SHARD STATIONS (Immersive narrative dialogues) ----------------------------- */
       tea_gardens: {
-        title: "HYDRATION WELL — 174 Hz: THE FOUNDATION",
+        title: "THE HYDRATION WELL — 174 Hz",
         sprite: "💧",
         text: [
-          `Dr. Aqua dips her fingers into the glowing waters of the Hydration Well, ripples radiating softly.`,
-          `"This water holds the memory of Earth's purest vibrations—the 174 Hz frequency. It grounds and stabilizes every frequency you'll encounter."`,
-          `"Here, take this vial of Prana Spring Water. Drink it and feel instant clarity and calm. Your cells will thank you."`,
-          `${gameState.inventory.includes("drink_prana") ? "✅ You've secured your vial of Prana Spring Water, shimmering gently." : ""}`,
-          `${gameState.inventory.includes("freq_174") ? "✅ 174 Hz shard pulses warmly in your collection." : ""}`
+          `Dr. Aqua kneels by the luminous waters of the Hydration Well, her fingertips sending waves across its liquid light.`,
+          `"This isn't just water," she says. "It's encoded memory—Earth's original resonance. **174 Hz**: the stabilising frequency that grounds your field and prepares you to receive the higher codes."`,
+          `"Here, take this vial of *Prana Spring* infused with elemental intelligence. Drink, and feel your system recalibrate—calm, clear, rooted in essence."`,
+          `Your journey starts with water—because all vibration flows from stillness.`,
+          `${gameState.inventory.includes("drink_prana") ? "✅ The Prana Spring vial hums gently in your pack." : ""}`,
+          `${gameState.inventory.includes("freq_174")  ? "✅ 174 Hz shard pulses warmly in your collection."       : ""}`
         ],
         choices: [
-          { text: "Take the Prana Spring Water", destination: "tea_gardens", collectItem: "drink_prana" },
-          { text: "Absorb the 174 Hz frequency shard", destination: "tea_gardens", collectItem: "freq_174" },
-          { text: "✨ Secure both water and frequency shard", destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
-          { text: "🗺 Return to Frequency Map", destination: "map" },
+          { text: "Drink the Prana Spring",                       destination: "tea_gardens", collectItem: "drink_prana" },
+          { text: "Absorb the 174 Hz frequency shard",            destination: "tea_gardens", collectItem: "freq_174"    },
+          { text: "✨ Complete the ritual (water + frequency)",    destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
+          { text: "🗺 Return to Frequency Map",                    destination: "map" }
         ],
-        bgColor: "from-blue-700 via-blue-500 to-cyan-400",
+        bgColor: "from-blue-800 via-cyan-600 to-teal-400",
       },
       tropical_cove: {
         title: "LIGHT VAULT — 528 Hz: THE HARMONIZER",
         sprite: "✨",
         text: [
-          `Sol stands amidst vibrant prisms, beams of emerald and gold swirling gracefully around her.`,
-          `"528 Hz—it's known as the miracle tone, harmonizing the very structure of life itself."`,
-          `"I've prepared two elixirs infused with this transformative light: The Butterfly Effect calms your spirit, and Aqua Aura replenishes your strength. Choose wisely."`,
-          `${gameState.inventory.includes("drink_butterfly") ? "✅ Butterfly Effect radiates gently from your collection." : ""}`,
-          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura pulses energetically in your possession." : ""}`,
-          `${gameState.inventory.includes("freq_528") ? "✅ 528 Hz frequency shard hums reassuringly, safely stored." : ""}`
+          `Sol stands amidst vibrant prisms, beams of emerald and gold swirling around her. As you approach, the air itself seems to shimmer with possibility.`,
+          `"**528 Hz**—the miracle tone," she whispers, her voice blending with the crystalline harmonics filling the chamber. "It realigns the very structure of matter—brings coherence to chaos, healing to disruption."`,
+          `With elegant precision, she draws two luminous vessels from the light stream. One glows with soft amber pulses, the other with electric blue currents.`,
+          `"*The Butterfly Effect* to calm your nervous system into receptivity. *Aqua Aura* to energize your field for integration. Both infused with this restorative frequency. Which resonates with your current state?"`,
+          `You sense that the choice isn't about the drink—it's about which aspect of harmony you need to embody right now.`,
+          `${gameState.inventory.includes("drink_butterfly") ? "✅ Butterfly Effect radiates gentle waves of amber calm from your collection." : ""}`,
+          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura pulses with electric vitality in your possession." : ""}`,
+          `${gameState.inventory.includes("freq_528") ? "✅ 528 Hz crystal shard hums with the miracle tone, safely integrated into your field." : ""}`
         ],
         choices: [
           { text: "Choose Butterfly Effect", destination: "tropical_cove", collectItem: "drink_butterfly" },
@@ -462,19 +465,21 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "SOUND ALTAR — 396 Hz: THE UNBLOCKER",
         sprite: "🔊",
         text: [
-          `Echo gently strikes a copper singing bowl, sending vibrations that echo through your bones.`,
-          `"396 Hz liberates your soul from fear and emotional barriers. Copper magnifies this liberating force, aligning your energy effortlessly."`,
-          `"Take this Copper Refill Bottle—imbued with resonance, it supports vitality and clears pathways within."`,
-          `${gameState.inventory.includes("drink_copper") ? "✅ The Copper Bottle vibrates subtly, now yours." : ""}`,
-          `${gameState.inventory.includes("freq_396") ? "✅ The 396 Hz shard reverberates clearly in your collection." : ""}`
+          `Echo raises a hand and strikes the copper bowl. The tone shimmers—subtle yet undeniable—reverberating through your ribcage, your memories, your unseen layers.`,
+          `"**396 Hz** dissolves fear," Echo murmurs, eyes closed. "It releases guilt, shame, and ancestral echoes. It opens locked doors inside your body—without forcing."`,
+          `She offers you a *Copper Refill Bottle*, its form sleek and warm to the touch.`,
+          `"Copper channels frequency. This bottle carries the resonance—it amplifies the clearing and strengthens your field. Hydrate with it. Let the sound flow through you."`,
+          `Feel the resonance—your past doesn't define your frequency.`,
+          `${gameState.inventory.includes("drink_copper") ? "✅ Copper Refill Bottle resonates softly in your pack." : ""}`,
+          `${gameState.inventory.includes("freq_396")   ? "✅ 396 Hz shard vibrates with quiet power."              : ""}`
         ],
         choices: [
-          { text: "Claim Copper Refill Bottle", destination: "mountain_peak", collectItem: "drink_copper" },
-          { text: "Absorb 396 Hz frequency shard", destination: "mountain_peak", collectItem: "freq_396" },
-          { text: "✨ Collect both copper bottle & shard", destination: "mountain_peak", collectItem: ["freq_396","drink_copper"] },
-          { text: "🗺 Return to Frequency Map", destination: "map" },
+          { text: "Take the Copper Refill Bottle",                destination: "mountain_peak", collectItem: "drink_copper" },
+          { text: "Absorb the 396 Hz frequency shard",            destination: "mountain_peak", collectItem: "freq_396"     },
+          { text: "✨ Complete the ritual (sound + frequency)",    destination: "mountain_peak", collectItem: ["freq_396","drink_copper"] },
+          { text: "🗺 Return to Frequency Map",                    destination: "map" }
         ],
-        bgColor: "from-amber-700 via-amber-500 to-yellow-300",
+        bgColor: "from-rose-700 via-orange-600 to-amber-400",
       },
       ice_caves: {
         title: "RESONANCE CHAMBER — 963 Hz: THE PINNACLE",
