@@ -78,14 +78,12 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     showFrequencyMessage: false
   })
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMuted, setIsMuted] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
   const [textVisible] = useState(true)
   
   // Video states
   const [showVideo, setShowVideo] = useState(false)
-  const [videoEnded, setVideoEnded] = useState(false)
 
   // State for frequency visualizer modal
   const [showFrequencyModal, setShowFrequencyModal] = useState(false)
@@ -99,7 +97,6 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   
   // Handle video end
   const handleVideoEnd = () => {
-    setVideoEnded(true)
     setShowVideo(false)
     soundManager.playBackgroundMusic()
   }
