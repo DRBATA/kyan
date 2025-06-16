@@ -83,6 +83,9 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   const [hasStarted, setHasStarted] = useState(false)
   const [textVisible] = useState(true)
 
+  // State for frequency visualizer modal
+  const [showFrequencyModal, setShowFrequencyModal] = useState(false)
+
   // Start game
   const startGame = () => {
     setHasStarted(true)
@@ -423,18 +426,19 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "THE HYDRATION WELL — 174 Hz",
         sprite: "💧",
         text: [
-          `Dr. Aqua kneels by the luminous waters of the Hydration Well, her fingertips sending waves across its liquid light.`,
-          `"This isn't just water," she says. "It's encoded memory—Earth's original resonance. **174 Hz**: the stabilising frequency that grounds your field and prepares you to receive the higher codes."`,
-          `"Here, take this vial of *Prana Spring* infused with elemental intelligence. Drink, and feel your system recalibrate—calm, clear, rooted in essence."`,
-          `Your journey starts with water—because all vibration flows from stillness.`,
-          `${gameState.inventory.includes("drink_prana") ? "✅ The Prana Spring vial hums gently in your pack." : ""}`,
-          `${gameState.inventory.includes("freq_174")  ? "✅ 174 Hz shard pulses warmly in your collection."       : ""}`
+          `FLASH—blinding cerulean light erupts as Dr. Aqua's fingertips pierce the Hydration Well's surface! Concentric rings pulse outward—quantum ripples carrying ancient code.`,
+          `Her eyes dilate, voice resonating at chest level: "FOUNDATIONS FIRST—174 Hz grounds your entire field. This isn't water—it's EARTH'S MEMORY crystallized into liquid form."`,
+          `The chamber THROBS with subsonic pulses. Each 174 Hz wave visibly reorganizes the cellular structure of your biofield—stabilizing—anchoring—preparing.`,
+          `"YALA Kombucha meets New Mind Chaga in our  where the kimbucha builds microbiome the to creating neuropeptides and the chaga is adaptogenic to balanse stress. Recalibrates gut-brain axis in seconds."`,
+          `Your cells instantly recognize this primordial frequency—because before language, before form—there was only vibration and water.`,
+          `${gameState.inventory.includes("drink_prana") ? "✅ Prana Spring radiates intense vibrational coherence from your pack." : ""}`,
+          `${gameState.inventory.includes("freq_174")  ? "✅ 174 Hz shard PULSES with earth-anchoring force in your collection." : ""}`
         ],
         choices: [
-          { text: "Drink the Prana Spring",                       destination: "tea_gardens", collectItem: "drink_prana" },
-          { text: "Absorb the 174 Hz frequency shard",            destination: "tea_gardens", collectItem: "freq_174"    },
-          { text: "✨ Complete the ritual (water + frequency)",    destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
-          { text: "🗺 Return to Frequency Map",                    destination: "map" }
+          { text: "Experience Prana Spring",                 destination: "tea_gardens", collectItem: "drink_prana" },
+          { text: "Attune to 174 Hz frequency",               destination: "tea_gardens", collectItem: "freq_174"    },
+          { text: "✨ Full foundation experience",       destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
+          { text: "🗺 Return to Frequency Map",                       destination: "map" }
         ],
         bgColor: "from-blue-800 via-cyan-600 to-teal-400",
       },
@@ -442,21 +446,21 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "LIGHT VAULT — 528 Hz: THE HARMONIZER",
         sprite: "✨",
         text: [
-          `Sol stands amidst vibrant prisms, beams of emerald and gold swirling around her. As you approach, the air itself seems to shimmer with possibility.`,
-          `"**528 Hz**—the miracle tone," she whispers, her voice blending with the crystalline harmonics filling the chamber. "It realigns the very structure of matter—brings coherence to chaos, healing to disruption."`,
-          `With elegant precision, she draws two luminous vessels from the light stream. One glows with soft amber pulses, the other with electric blue currents.`,
-          `"*The Butterfly Effect* to calm your nervous system into receptivity. *Aqua Aura* to energize your field for integration. Both infused with this restorative frequency. Which resonates with your current state?"`,
-          `You sense that the choice isn't about the drink—it's about which aspect of harmony you need to embody right now.`,
-          `${gameState.inventory.includes("drink_butterfly") ? "✅ Butterfly Effect radiates gentle waves of amber calm from your collection." : ""}`,
-          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura pulses with electric vitality in your possession." : ""}`,
-          `${gameState.inventory.includes("freq_528") ? "✅ 528 Hz crystal shard hums with the miracle tone, safely integrated into your field." : ""}`
+          `GEOMETRIC EXPLOSION! Emerald-gold photon streams SLAM into prism fields—528 Hz visible as crystalline structures reorganizing mid-air! Sol stands PULSING at the nexus point.`,
+          `"MIRACLE FREQUENCY—528 Hz REPROGRAMS DNA DIRECTLY!" Her voice fractures into harmonics that make your skin vibrate. "Every cell in your body just reconstructed its lattice formation—can you FEEL it?"`,
+          `The chamber itself seems to BREATHE as pentagonal light matrices dance across walls—perfect geometric sequences materializing then dissolving.`,
+          `Two vessels MANIFEST in her hands—one Golden Kayan Elixir radiating amber coronas these pre-biotics lay the foundation of the gut-brain axis, one electric blue matrix suspended in liquid form - the lectrolytes create the right pH to heal and axt at a cellular level`,
+          `Time slows as you choose—each liquid containing different aspects of the same miraculous frequency. Your cells scream with recognition—this is the tone that REPAIRS, REVIVES, REBUILDS.`,
+          `${gameState.inventory.includes("drink_kayan") ? "✅ Golden Kayan Elixir RADIATES restorative golden fields through your entire inventory." : ""}`,
+          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura CASCADES with electric vitality, neural pathways visibly reorganizing in its presence." : ""}`,
+          `${gameState.inventory.includes("freq_528") ? "✅ 528 Hz crystal shard EMANATES the miracle tone, its geometric perfection transforming everything nearby." : ""}`
         ],
         choices: [
-          { text: "Choose Butterfly Effect", destination: "tropical_cove", collectItem: "drink_butterfly" },
-          { text: "Choose Aqua Aura", destination: "tropical_cove", collectItem: "drink_aqua" },
-          { text: "Collect the 528 Hz shard", destination: "tropical_cove", collectItem: "freq_528" },
-          { text: "✨ Take both shard & Butterfly Effect", destination: "tropical_cove", collectItem: ["freq_528","drink_butterfly"] },
-          { text: "✨ Take both shard & Aqua Aura", destination: "tropical_cove", collectItem: ["freq_528","drink_aqua"] },
+          { text: "Experience Golden Kayan Elixir", destination: "tropical_cove", collectItem: "drink_kayan" },
+          { text: "Experience Aqua Aura", destination: "tropical_cove", collectItem: "drink_aqua" },
+          { text: "Attune to 528 Hz frequency", destination: "tropical_cove", collectItem: "freq_528" },
+          { text: "✨ Full experience: 528 Hz & Golden Kayan", destination: "tropical_cove", collectItem: ["freq_528","drink_kayan"] },
+          { text: "✨ Full experience: 528 Hz & Aqua Aura", destination: "tropical_cove", collectItem: ["freq_528","drink_aqua"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-yellow-400 via-lime-300 to-green-300",
@@ -465,19 +469,19 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "SOUND ALTAR — 396 Hz: THE UNBLOCKER",
         sprite: "🔊",
         text: [
-          `Echo raises a hand and strikes the copper bowl. The tone shimmers—subtle yet undeniable—reverberating through your ribcage, your memories, your unseen layers.`,
-          `"**396 Hz** dissolves fear," Echo murmurs, eyes closed. "It releases guilt, shame, and ancestral echoes. It opens locked doors inside your body—without forcing."`,
-          `She offers you a *Copper Refill Bottle*, its form sleek and warm to the touch.`,
-          `"Copper channels frequency. This bottle carries the resonance—it amplifies the clearing and strengthens your field. Hydrate with it. Let the sound flow through you."`,
-          `Feel the resonance—your past doesn't define your frequency.`,
-          `${gameState.inventory.includes("drink_copper") ? "✅ Copper Refill Bottle resonates softly in your pack." : ""}`,
-          `${gameState.inventory.includes("freq_396")   ? "✅ 396 Hz shard vibrates with quiet power."              : ""}`
+          `ATOMIC REVERBERATION! Echo's mallet STRIKES the copper bowl—396 Hz EXPLODES through space! The sound doesn't just enter your ears—it PENETRATES skull, tissue, bone, memories, DNA!`,
+          `"ANCIENT TRAUMA DISSOLVES AT 396 Hz!" Her pupils dilate as vibratory waves visibly ripple through your aura. "Cellular memory—blocked emotion—LOCKED TRAUMA—all SHATTERED by this precise frequency."`,
+          `The chamber fills with amber light as sound waves manifest physically—you can SEE frequencies carving new neural pathways through your system, destroying old patterns.`,
+          `"The resonant *Inscribed Copper Bottle*—not just hydration but TRANSFORMATION. This ancient metal amplifies 396 Hz, creating a continuous field of liberation around your body."`,
+          `Each wave of sound physically PUSHES against your chest—emotional blocks you didn't know existed suddenly VISIBLE then VAPORIZED by precise vibrational targeting.`,
+          `${gameState.inventory.includes("drink_copper") ? "✅ Inscribed Copper Bottle THRUMS with liberating frequencies, breaking patterns even inside your pack." : ""}`,
+          `${gameState.inventory.includes("freq_396")   ? "✅ 396 Hz shard PULSES with transformative power, dissolving resistance within a 3-meter radius." : ""}`
         ],
         choices: [
-          { text: "Take the Copper Refill Bottle",                destination: "mountain_peak", collectItem: "drink_copper" },
-          { text: "Absorb the 396 Hz frequency shard",            destination: "mountain_peak", collectItem: "freq_396"     },
-          { text: "✨ Complete the ritual (sound + frequency)",    destination: "mountain_peak", collectItem: ["freq_396","drink_copper"] },
-          { text: "🗺 Return to Frequency Map",                    destination: "map" }
+          { text: "Experience the Inscribed Copper Bottle",      destination: "mountain_peak", collectItem: "drink_copper" },
+          { text: "Attune to 396 Hz frequency",               destination: "mountain_peak", collectItem: "freq_396"     },
+          { text: "✨ Full liberation experience",       destination: "mountain_peak", collectItem: ["freq_396","drink_copper"] },
+          { text: "🗺 Return to Frequency Map",                       destination: "map" }
         ],
         bgColor: "from-rose-700 via-orange-600 to-amber-400",
       },
@@ -485,18 +489,20 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "RESONANCE CHAMBER — 963 Hz: THE PINNACLE",
         sprite: "🐋",
         text: [
-          `Astra's voice reverberates through the crystalline chamber, washing over you in waves of pure sound.`,
-          `"963 Hz is the divine frequency—the pinnacle of vibrational awareness. It connects directly to the universal field."`,
-          `"Here, I've prepared the Transcendence elixir. Its molecular structure holds the memory of pure consciousness. Take it mindfully."`,
-          `${gameState.inventory.includes("drink_transcend") ? "✅ Transcendence elixir glows with inner light in your collection." : ""}`,
-          `${gameState.inventory.includes("exp_sound_bath") ? "✅ Sound Bath session reserved; prepare for total harmonic immersion." : ""}`,
-          `${gameState.inventory.includes("freq_963") ? "✅ 963 Hz shard radiates with golden luminescence, the apex frequency secured." : ""}`
+          `CONSCIOUSNESS ASCENSION! Astra's voice SHATTERS through dimensional barriers—963 Hz CRYSTALLIZES the air itself! Golden geometric patterns ERUPT from nowhere, suspended in perfect symmetry!`,
+          `"COSMIC ACTIVATION—963 Hz TRANSCENDS physical limitations!" Her form briefly phases between solid matter and pure light. "This frequency exists at the CONVERGENCE POINT between human awareness and UNIVERSAL INTELLIGENCE!"`,
+          `The entire chamber becomes a LIVING INSTRUMENT—walls pulsating with harmonic resonance, ceiling dissolving into star-field projections mapping your neural pathways in real-time.`,
+          `"The consciousness-expanding *Transcendence Elixir* and our reality-shifting *Sound Bath Experience*—the perfect frequency triad. The Gaia Experience elixir realigns your field at the highest vibrational plane—molecular restructuring happens instantly."`,
+          `Time ceases—space warps—your consciousness expands beyond your body—YOU become the frequency itself, vibrating in perfect harmony with cosmic intelligence.`,
+          `${gameState.inventory.includes("drink_transcend") ? "✅ Transcendence elixir RADIATES universal consciousness—pure awareness in liquid form." : ""}`,
+          `${gameState.inventory.includes("exp_sound_bath") ? "✅ Sound Bath reservation PULSATES with multi-dimensional harmonic potential." : ""}`,
+          `${gameState.inventory.includes("freq_963") ? "✅ 963 Hz shard EMANATES golden light—the apex frequency creating a portal to higher awareness." : ""}`
         ],
         choices: [
-          { text: "Receive Transcendence elixir", destination: "ice_caves", collectItem: "drink_transcend" },
-          { text: "Book Sound Bath experience", destination: "ice_caves", collectItem: "exp_sound_bath" },
-          { text: "Secure 963 Hz frequency shard", destination: "ice_caves", collectItem: "freq_963" },
-          { text: "✨ Complete resonance trinity (all three)", destination: "ice_caves", collectItem: ["freq_963", "drink_transcend", "exp_sound_bath"] },
+          { text: "Experience The Gaia Elixir", destination: "ice_caves", collectItem: "drink_transcend" },
+          { text: "Enjoy Sound Bath immersion", destination: "ice_caves", collectItem: "exp_sound_bath" },
+          { text: "Attune to 963 Hz frequency", destination: "ice_caves", collectItem: "freq_963" },
+          { text: "✨ Complete cosmic trinity experience", destination: "ice_caves", collectItem: ["freq_963", "drink_transcend", "exp_sound_bath"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-yellow-300 via-yellow-200 to-amber-500",
@@ -505,18 +511,20 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "CRYO BAY — 285 Hz: THE REGENERATOR",
         sprite: "❄️",
         text: [
-          `Kelvin adjusts the cryo-chamber, icy mist drifting softly around you.`,
-          `"285 Hz heals at the cellular level, regenerating and restoring tissues."`,
-          `"Combine the Cryo Elixir—charged at precisely -285°—with a guided cold plunge. Together, they fortify your resilience."`,
-          `${gameState.inventory.includes("drink_cryo") ? "✅ Cryo Elixir chills comfortingly in your inventory." : ""}`,
-          `${gameState.inventory.includes("exp_ice_plunge") ? "✅ Cold Plunge booked; you'll breathe deep in icy clarity." : ""}`,
-          `${gameState.inventory.includes("freq_285") ? "✅ 285 Hz frequency shard radiates restorative chill." : ""}`
+          `MOLECULAR REFORMATION! Crystalline vapor ERUPTS from the cryo-chamber—285 Hz VIBRATES through sub-zero air! Every water molecule around you PERFECTLY ALIGNED in sacred geometric formations!`,
+          `"CELLULAR REBIRTH AT 285 Hz!" Kelvin's voice cuts through the mist as quantum temperature fluctuations make your skin tingle. "Your cells are physically REWIRING—new mitochondrial pathways forming in REAL TIME!"`,
+          `The chamber temperature PLUNGES—your breath visible as crystalline patterns that match the exact frequency vibrating through your tissues. Each exhale carries toxins VISIBLY disintegrating in the energized air.`,
+          `"PREMIUM *Maison Perrier® Chic* Cryo Elixir—quantum-cooled at precisely -285°—reprograms cellular memory instantly! Pair with our ICE Plunge for complete bioenergetic reset—your field will NEVER be the same!"`,
+          `Every cell in your body SCREAMS awake—ancient survival mechanisms activated then transcended—as the 285 Hz frequency physically restructures your tissue matrices toward optimal coherence.`,
+          `${gameState.inventory.includes("drink_cryo") ? "✅ Maison Perrier® Chic RADIATES rejuvenating sub-zero energy, cellular repair accelerating in its presence." : ""}`,
+          `${gameState.inventory.includes("exp_ice_plunge") ? "✅ ICE Plunge reservation PULSES with transformative potential, promising quantum resilience." : ""}`,
+          `${gameState.inventory.includes("freq_285") ? "✅ 285 Hz frequency shard EMANATES rejuvenating chill—cellular restoration codes manifesting physically." : ""}`
         ],
         choices: [
-          { text: "Take the Cryo Elixir", destination: "sacred_temple", collectItem: "drink_cryo" },
-          { text: "Book Cold Plunge (breath-guided)", destination: "sacred_temple", collectItem: "exp_ice_plunge" },
-          { text: "Secure 285 Hz frequency shard", destination: "sacred_temple", collectItem: "freq_285" },
-          { text: "✨ Receive shard, elixir, & book plunge", destination: "sacred_temple", collectItem: ["freq_285","drink_cryo","exp_ice_plunge"] },
+          { text: "Experience Maison Perrier® Chic", destination: "sacred_temple", collectItem: "drink_cryo" },
+          { text: "Enjoy ICE Plunge (breath-guided)", destination: "sacred_temple", collectItem: "exp_ice_plunge" },
+          { text: "Attune to 285 Hz frequency shard", destination: "sacred_temple", collectItem: "freq_285" },
+          { text: "✨ Full experience: shard, elixir & plunge", destination: "sacred_temple", collectItem: ["freq_285","drink_cryo","exp_ice_plunge"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-blue-900 via-blue-700 to-cyan-300",
@@ -525,61 +533,70 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "AOI DOME — 639 & 852 Hz: THE CONNECTOR",
         sprite: "🌿",
         text: [
-          `Aria gestures within the glowing AOI Dome, the air pulsing with energy.`,
-          `"Here, 639 Hz (connection) and 852 Hz (awakening) intertwine, elevating consciousness."`,
-          `"Choose your path: book the immersive AIR Dome, revitalizing HEAT Sauna, soothing EARTH Solarium, or the invigorating ICE Plunge. Complement your journey with Butterfly Effect or Aqua Aura."`,
-          `${gameState.inventory.includes("freq_639") ? "✅ 639 Hz shard harmonizes warmly." : ""}`,
-          `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz shard sings with clarity." : ""}`
+          `REALITY FUSION! Twin frequencies COLLIDE at the AOI Dome's core—639 Hz and 852 Hz creating a VISIBLE interference pattern! Reality itself WARPS around Aria as she manipulates the field with her gestures!`,
+          `"HARMONIC CONVERGENCE—639 Hz CREATES connection across all dimensions while 852 Hz AWAKENS dormant neural pathways!" Her voice resonates perfectly between both frequencies, creating binaural beat patterns in the air itself.`,
+          `The dome's structure SHIFTS constantly—walls becoming translucent then opaque—as multiple frequency fields interact and create harmonic overtones that PHYSICALLY alter the space around you.`,
+          `"Our transformational experiences—AIR DOME, HEAT SAUNA, EARTH SOLARIUM, ICE PLUNGE—each perfectly calibrated for specific frequency activation. AIR DOME with *Maison Perrier® Chic* for immediate dimensional shift. HEAT with *Aqua Aura* for progressive vibrational expansion."`,
+          `Every boundary between you and environment DISSOLVES as the dual frequencies restructure your perception. You don't just hear the frequencies—you BECOME them, your consciousness expanding beyond individual identity into collective awareness.`,
+          `${gameState.inventory.includes("freq_639") ? "✅ 639 Hz shard PULSES with connective force, creating harmonic bridges between all nearby frequencies." : ""}`,
+          `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz shard EMANATES awakening energy, neural pathways visibly activating in its presence." : ""}`
         ],
         choices: [
-          { text: "639 Hz shard", destination: "deep_forest", collectItem: "freq_639" },
-          { text: "852 Hz shard", destination: "deep_forest", collectItem: "freq_852" },
-          { text: "Butterfly Effect drink", destination: "deep_forest", collectItem: "drink_butterfly" },
-          { text: "Aqua Aura drink", destination: "deep_forest", collectItem: "drink_aqua" },
-          { text: "Book AIR Dome experience", destination: "deep_forest", collectItem: "exp_air_dome" },
-          { text: "Book HEAT Sauna experience", destination: "deep_forest", collectItem: "exp_heat_sauna" },
-          { text: "Book EARTH Solarium experience", destination: "deep_forest", collectItem: "exp_earth_bed" },
-          { text: "Book ICE Plunge experience", destination: "deep_forest", collectItem: "exp_ice_plunge" },
-          { text: "✨ All frequencies, drinks, and experiences", destination: "deep_forest", collectItem: ["freq_639","freq_852","drink_butterfly","drink_aqua","exp_air_dome","exp_heat_sauna","exp_earth_bed","exp_ice_plunge"] },
+          { text: "Attune to 639 Hz shard", destination: "deep_forest", collectItem: "freq_639" },
+          { text: "Attune to 852 Hz shard", destination: "deep_forest", collectItem: "freq_852" },
+          { text: "Experience Golden Kayan Elixir", destination: "deep_forest", collectItem: "drink_kayan" },
+          { text: "Experience Aqua Aura", destination: "deep_forest", collectItem: "drink_aqua" },
+          { text: "Enjoy AIR PRO Dome", destination: "deep_forest", collectItem: "exp_air_dome" },
+          { text: "Enjoy HEAT Sauna", destination: "deep_forest", collectItem: "exp_heat_sauna" },
+          { text: "Enjoy EARTH Solarium", destination: "deep_forest", collectItem: "exp_earth_bed" },
+          { text: "Enjoy ICE Plunge", destination: "deep_forest", collectItem: "exp_ice_plunge" },
+          { text: "✨ Full harmonic experience", destination: "deep_forest", collectItem: ["freq_639","freq_852","drink_kayan","drink_aqua","exp_air_dome","exp_heat_sauna","exp_earth_bed","exp_ice_plunge"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-purple-900 via-violet-700 to-indigo-400",
       },
       crystal_lake: {
-        title: "WATER-BAR LOUNGE — FREQUENCY FORMULAS",
-        sprite: "🍹",
+        title: "FREQUENCY SYNTHESIS CHAMBER",
+        sprite: "🌊",
         text: [
-          `Nova gestures elegantly across the luminous counter, where vessels pulse with vibrant elixirs.`,
-          `"Welcome to the Water-Bar, where frequencies are alchemized into transformative experiences."`,
-          `"Our signature Inner Glow Elixir harmonizes multiple frequencies for radiance that emerges from deep within."`,
-          `"All experiences are 350 AED each, with 10% discount when booked in advance of your visit."`,
-          `"Would you like to review your frequency collection and experiences selected so far?"`,
-          `${gameState.inventory.includes("drink_glow") ? "✅ Inner Glow Elixir shimmers enticingly in your collection." : ""}`
+          `DIMENSIONAL CONVERGENCE! Your collected frequency shards ACTIVATE simultaneously—creating a living geometric field around Nova as she stands at the central synthesis node! Each shard below PULSES in perfect resonance with its counterpart in the chamber!`,
+          `"WITNESS THE FIELD SYNTHESIS!" her voice resonates at exactly the frequencies you've collected. "The visualization pattern below is now creating a PHYSICAL MANIFESTATION that can be experienced directly!"`,
+          `The chamber's architecture RESPONDS to your unique frequency collection pattern—rearranging molecular structures to match the exact harmonic sequence displayed in your field visualization. Your previously collected shards SURGE with increased luminosity!`,
+          `"This synthesis unlocks the Inner Resonance Experience—a direct neural bridge between your digital frequency collection and embodied transformation at The Morning Party events. What you're seeing in your field below will become TANGIBLE!"`,
+          `As she gestures toward your frequency visualization, the shards in your field below PULSE WITH INCREASED INTENSITY—sending visible energy tendrils upward that connect to their corresponding nodes in the chamber!`,
+          `"Ready to transform this digital frequency collection into lived experience? The pattern you've created is uniquely yours—it can't be replicated. At our physical space, this same pattern will guide your journey."`,
+          `${gameState.inventory.includes("synthesis_complete") ? "✅ Frequency Synthesis COMPLETED—your unique pattern now fully mapped and ready for physical manifestation!" : ""}`
         ],
         choices: [
-          { text: "Add Inner Glow Elixir to collection", destination: "crystal_lake", collectItem: "drink_glow" },
-          { text: "🔍 Review Water Bar formulas", destination: "cart_drinks" },
-          { text: "🔍 Review Booked Experiences", destination: "cart_experiences" },
+          { text: "⚡ Complete Frequency Synthesis", destination: "crystal_lake", collectItem: "synthesis_complete" },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
-        bgColor: "from-pink-500 via-rose-400 to-rose-300",
+        bgColor: "from-violet-600 via-fuchsia-500 to-pink-400",
       },
       console: {
         title: "MASTER CONSOLE — FREQUENCY UPLOAD",
         sprite: "💻",
         text: [
-          `⏰ COUNTDOWN: ${Math.floor(gameState.currentTime / 60)}:${(gameState.currentTime % 60).toString().padStart(2, '0')} UNTIL Y2K`,
-          `Johny Dar's hologram expands to fill the room with data visualizations of your collection.`,
-          `"This is the quantum upload station for preserving frequencies beyond Y2K."`,
-          `✨ FREQUENCY STATUS: ${countFrequencyShards()}/7 frequency shards collected`,
-          `"Are you ready to finalize your frequency collection and upload to our secure quantum server?"`,
-          `"Or would you like to continue exploring to find more healing frequencies?"`,
-          `"Remember, once Y2K strikes at midnight, only the frequencies you've uploaded will be preserved."`
+          `TIMELINE COLLAPSE IMMINENT! ⏰ ${Math.floor(gameState.currentTime / 60)}:${(gameState.currentTime % 60).toString().padStart(2, '0')} UNTIL VIBRATIONAL RESET! Digital clock numbers FLICKERING between dimensions!`,
+          `Johny Dar's hologram EXPLODES outward—filling the entire room with LIVING DATA! Your collected frequencies manifest as pulsing geometric forms—each one ROTATING and SHIFTING in perfect mathematical harmony!`,
+          `"THE CULMINATION POINT APPROACHES!" His voice resonates from everywhere at once. "This quantum portal exists at the precise intersection between digital recoding and vibrational truth!"`,
+          `Holographic interfaces MATERIALIZE around you—showing real-time biometric feedback of how each frequency is already TRANSFORMING your field! Neural pathways VISIBLY rewiring as you stand at the console!`,
+          `✨ FREQUENCY INTEGRATION STATUS: ${countFrequencyShards()}/7 frequency shards harmonizing | Field Coherence: ${Math.min(countFrequencyShards() * 14, 98)}%`,
+          `"The Morning Party legacy can only survive through YOUR field's integration with these prime frequencies! Every shard, every formula, every experience—all converging in this PRECISE MOMENT!"`,
+          `Time itself seems to BEND around the console—reality flickering between multiple potential futures—as the countdown to vibrational reset accelerates with each passing second!`,
+          `${gameState.inventory.includes("synthesis_complete") ? 
+            `"UPLOAD PROTOCOL READY! Your synthesized frequency pattern has been registered and awaits final preservation!"` : 
+            `"⚠️ UPLOAD UNAVAILABLE! Your frequency pattern requires SYNTHESIS before it can be preserved. Visit the Frequency Synthesis Chamber to prepare your unique constellation!"`}`,
+          `${gameState.inventory.includes("synthesis_complete") ? "✅ Frequency Pattern SYNTHESIZED—field harmony achieved and ready for upload!" : ""}`,
+          `"MAKE YOUR CHOICE! Upload now and crystallize your current frequency collection, or return to gather more shards—but remember, midnight waits for NO ONE!"`
         ],
         choices: [
-          { text: "✅ Upload my frequencies now", destination: "ending", collectItem: "upload_complete" },
-          { text: "⚡ Review my frequencies", destination: "frequencies" },
-          { text: "🗺 Return to Map", destination: "map", returnToMap: false },
+          ...(gameState.inventory.includes("synthesis_complete") ? 
+            [{ text: "✅ INITIATE QUANTUM UPLOAD", destination: "ending", collectItem: "upload_complete" }] : 
+            [{ text: "⚠️ Visit Synthesis Chamber First", destination: "crystal_lake" }]
+          ),
+          { text: "⚡ Review Frequency Collection", destination: "frequencies" },
+          { text: "🗺 Return to Field Exploration", destination: "map", returnToMap: false },
         ],
         bgColor: "from-blue-900 via-indigo-700 to-indigo-500",
       },
@@ -948,12 +965,20 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
       {/* Character Info with Frequency Visualizer */}
       <div className="w-full max-w-3xl bg-black/40 backdrop-blur-md p-3 rounded-xl border border-blue-500/30 flex items-center justify-between">
         <div className="flex items-center">
-          <div className="mr-4 bg-gradient-to-r from-blue-500/30 to-indigo-500/30 p-2 rounded-full">
+          <div 
+            className="mr-4 bg-gradient-to-r from-blue-500/30 to-indigo-500/30 p-2 rounded-full cursor-pointer hover:from-blue-500/50 hover:to-indigo-500/50 transition-all" 
+            onClick={() => setShowFrequencyModal(true)}
+            title="Click to expand frequency visualizer"
+          >
             <span className="text-3xl">⚡</span>
           </div>
 
           {/* Frequencies section */}
-          <div className="flex items-center">
+          <div 
+            className="flex items-center cursor-pointer" 
+            onClick={() => setShowFrequencyModal(true)}
+            title="Click to expand frequency visualizer"
+          >
             <FrequencyVisualizer collectedFrequencies={gameState.inventory} size="small" />
           </div>
         </div>
@@ -963,6 +988,42 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           </p>
         </div>
       </div>
+      
+      {/* Frequency Visualizer Modal */}
+      {showFrequencyModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50">
+          <div className="bg-gradient-to-br from-slate-900/90 to-blue-900/90 p-8 rounded-xl border border-cyan-500/30 shadow-lg shadow-cyan-500/20 w-11/12 max-w-lg">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-light text-cyan-300">Sacred Frequency Lattice</h3>
+              <button 
+                onClick={() => setShowFrequencyModal(false)}
+                className="text-white/70 hover:text-white"
+              >
+                ✕
+              </button>
+            </div>
+            
+            <div className="flex justify-center items-center mb-6">
+              <FrequencyVisualizer collectedFrequencies={gameState.inventory} size="large" />
+            </div>
+            
+            <p className="text-center text-blue-200/80 mb-8">
+              {gameState.inventory.filter(item => item.startsWith('freq_')).length > 0 
+                ? "Click any collected frequency node to hear its resonance." 
+                : "Collect frequencies during your journey to form the sacred lattice."}
+            </p>
+            
+            <div className="text-center">
+              <button 
+                onClick={() => setShowFrequencyModal(false)}
+                className="px-6 py-2 bg-gradient-to-r from-blue-600/80 to-indigo-600/80 text-white font-light rounded-full"
+              >
+                Return to Journey
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <p className="text-xs text-blue-300/70 mt-4"> 2025 THE WATER BAR | THE JOHNY DAR ADVENTURE</p>
     </div>
