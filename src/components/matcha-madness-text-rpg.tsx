@@ -431,11 +431,11 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `"174 Hz stabilizes your energetic baseline—it anchors you in the Now. Cold is clarity. Breath is entry."`,
           `“Before transformation, we must return to stillness. This is where the shift begins.”`,
           `“Drink this. Let it guide your system back to truth. The Hydration Well remembers who you are beneath the noise.”`,
-          `${gameState.inventory.includes("drink_prana") ? "Mandala-infused and source-sealed, Prana Spring brings glacial-tectonic clarity down to your very cells." : ""}`,
+          `${gameState.inventory.includes("drink_prana") ? "✅ Ginger Shot awakens immunity, metabolism, and natural energy. Bold and warming—ideal after cold immersion." : ""}`,
           `${gameState.inventory.includes("freq_174")  ? "174 Hz shard pulses with Arctic-deep resonance—anchoring your energy in crystalline stillness." : ""}`
         ],
         choices: [
-          { text: "Experience Prana Spring",                 destination: "tea_gardens", collectItem: "drink_prana" },
+          { text: "Experience Ginger Shot",                 destination: "tea_gardens", collectItem: "drink_prana" },
           { text: "Attune to 174 Hz frequency",               destination: "tea_gardens", collectItem: "freq_174"    },
           { text: "✨ Full foundation experience",       destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
           { text: "🗺 Return to Frequency Map",                       destination: "map" }
@@ -450,8 +450,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `“Inside the Light Vault, you’ll receive a full-spectrum recalibration. 528 Hz—the DNA harmonizer—will awaken the codes already within you.”`,
           `“This isn’t about becoming more. It’s about remembering all that you are.”`,
           `She offers two small vials: one golden, one teal, “Choose. One soothes. One energizes. Both respond to your current frequency.”.`,
-          `${gameState.inventory.includes("drink_kayan") ? "✅ Golden Kayan Elixir bathes your field in peach-gold coherence—prebiotic fibers awaken gut clarity and calm." : ""}`,
-          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura surges with electric hydration—Sodium and Potassium electorlytes spark cellular vitality." : ""}`,
+          `${gameState.inventory.includes("drink_kayan") ? "✅ Golden Kayan Elixir bathes your field in peach-gold coherence—prebiotic fibers awaken gut clarity and calm. Antioxidant-rich and clarifying—an ideal bridge between float and daily life." : ""}`,
+          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura, vibrant berry blend of electrolytes, citrus, and agave nectar, surges with electric hydration sparking cellular vitality - perfect to extend your glow." : ""}`,
           `${gameState.inventory.includes("freq_528") ? "✅ 528 Hz crystal shard EMANATES the miracle tone, its geometric perfection transforming everything nearby." : ""}`
         ],
         choices: [
@@ -468,16 +468,16 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "SOUND ALTAR — 396 Hz: THE UNBLOCKER",
         sprite: "🔊",
         text: [
-          `ATOMIC REVERBERATION! Echo's mallet STRIKES the copper bowl—396 Hz EXPLODES through space! The sound doesn't just enter your ears—it PENETRATES skull, tissue, bone, memories, DNA!`,
-          `"ANCIENT TRAUMA DISSOLVES AT 396 Hz!" Her pupils dilate as vibratory waves visibly ripple through your aura. "Cellular memory—blocked emotion—LOCKED TRAUMA—all SHATTERED by this precise frequency."`,
-          `The chamber fills with amber light as sound waves manifest physically—you can SEE frequencies carving new neural pathways through your system, destroying old patterns.`,
-          `"The resonant *Inscribed Copper Bottle*—not just hydration but TRANSFORMATION. This ancient metal amplifies 396 Hz, creating a continuous field of liberation around your body."`,
-          `Each wave of sound physically PUSHES against your chest—emotional blocks you didn't know existed suddenly VISIBLE then VAPORIZED by precise vibrational targeting.`,
-          `${gameState.inventory.includes("drink_copper") ? "✅ Inscribed Copper Bottle THRUMS with liberating frequencies, breaking patterns even inside your pack." : ""}`,
+          `Lie down in harmonic sound and light. This deep resonance clears emotional blocks and restores energetic flow.`,
+          `Echo stands beside a circular altar carved from earthstone, copper coils humming softly with resonance.`,
+          `"This is the Sound Altar—where emotion meets frequency and releases its grip."`,
+          `"396 Hz will begin the dissolution of fear. As you lie here, the light and tone will unbind what's buried."`,
+          `She places a copper disk over your chest. "This conductor amplifies the field and grounds the work. You're not just hearing sound. You're becoming it."`,
+          `${gameState.inventory.includes("drink_copper") ? "✅ The Gaia Experience, chaga crystals blended with coconut crema, cinnamon, and golden date syrup. Grounding and heart-opening, this earthy elixir anchors your resonance." : ""}`,
           `${gameState.inventory.includes("freq_396")   ? "✅ 396 Hz shard PULSES with transformative power, dissolving resistance within a 3-meter radius." : ""}`
         ],
         choices: [
-          { text: "Experience the Inscribed Copper Bottle",      destination: "mountain_peak", collectItem: "drink_copper" },
+          { text: "Experience The Gaia Experience",      destination: "mountain_peak", collectItem: "drink_copper" },
           { text: "Attune to 396 Hz frequency",               destination: "mountain_peak", collectItem: "freq_396"     },
           { text: "✨ Full liberation experience",       destination: "mountain_peak", collectItem: ["freq_396","drink_copper"] },
           { text: "🗺 Return to Frequency Map",                       destination: "map" }
@@ -488,17 +488,17 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "RESONANCE CHAMBER — 963 Hz: THE PINNACLE",
         sprite: "🐋",
         text: [
-          `CONSCIOUSNESS ASCENSION! Astra's voice SHATTERS through dimensional barriers—963 Hz CRYSTALLIZES the air itself! Golden geometric patterns ERUPT from nowhere, suspended in perfect symmetry!`,
-          `"COSMIC ACTIVATION—963 Hz TRANSCENDS physical limitations!" Her form briefly phases between solid matter and pure light. "This frequency exists at the CONVERGENCE POINT between human awareness and UNIVERSAL INTELLIGENCE!"`,
-          `The entire chamber becomes a LIVING INSTRUMENT—walls pulsating with harmonic resonance, ceiling dissolving into star-field projections mapping your neural pathways in real-time.`,
-          `"The consciousness-expanding *Transcendence Elixir* and our reality-shifting *Sound Bath Experience*—the perfect frequency triad. The Gaia Experience elixir realigns your field at the highest vibrational plane—molecular restructuring happens instantly."`,
-          `Time ceases—space warps—your consciousness expands beyond your body—YOU become the frequency itself, vibrating in perfect harmony with cosmic intelligence.`,
-          `${gameState.inventory.includes("drink_transcend") ? "✅ Transcendence elixir RADIATES universal consciousness—pure awareness in liquid form." : ""}`,
+          `Float weightlessly in silence and frequency. Deep theta states open the door to nervous system recovery and expanded awareness.`,
+          `Astra greets you at the threshold of a spherical pod, its inner walls pulsating with soft indigo light.`,
+          `"Welcome to the Resonance Chamber. Here, your body dissolves, and your system listens."`,
+          `"963 Hz vibrates at the level of divine intelligence. While you float, you will meet yourself beyond form."`,
+          `She places a drop of an iridescent elixir on your tongue. "This helps open the third gateway. Let go. You are safe in the silence."`,
+          `${gameState.inventory.includes("drink_transcend") ? "✅ Golden Kayan Elixir, a sparkling digestive blend of peach, pineapple, and calming botanicals. Antioxidant-rich and clarifying—an ideal bridge between float and daily life." : ""}`,
           `${gameState.inventory.includes("exp_sound_bath") ? "✅ Sound Bath reservation PULSATES with multi-dimensional harmonic potential." : ""}`,
           `${gameState.inventory.includes("freq_963") ? "✅ 963 Hz shard EMANATES golden light—the apex frequency creating a portal to higher awareness." : ""}`
         ],
         choices: [
-          { text: "Experience The Gaia Elixir", destination: "ice_caves", collectItem: "drink_transcend" },
+          { text: "Experience Golden Kayan Elixir", destination: "ice_caves", collectItem: "drink_transcend" },
           { text: "Enjoy Sound Bath immersion", destination: "ice_caves", collectItem: "exp_sound_bath" },
           { text: "Attune to 963 Hz frequency", destination: "ice_caves", collectItem: "freq_963" },
           { text: "✨ Complete cosmic trinity experience", destination: "ice_caves", collectItem: ["freq_963", "drink_transcend", "exp_sound_bath"] },
@@ -507,20 +507,22 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         bgColor: "from-yellow-300 via-yellow-200 to-amber-500",
       },
       sacred_temple: {
-        title: "CRYO BAY — 285 Hz: THE REGENERATOR",
-        sprite: "❄️",
+        title: "THE SWEAT CODE — 285 Hz: THE PURIFIER",
+        sprite: "🔥",
         text: [
-          `MOLECULAR REFORMATION! Crystalline vapor ERUPTS from the cryo-chamber—285 Hz VIBRATES through sub-zero air! Every water molecule around you PERFECTLY ALIGNED in sacred geometric formations!`,
-          `"CELLULAR REBIRTH AT 285 Hz!" Kelvin's voice cuts through the mist as quantum temperature fluctuations make your skin tingle. "Your cells are physically REWIRING—new mitochondrial pathways forming in REAL TIME!"`,
-          `The chamber temperature PLUNGES—your breath visible as crystalline patterns that match the exact frequency vibrating through your tissues. Each exhale carries toxins VISIBLY disintegrating in the energized air.`,
-          `"PREMIUM *Maison Perrier® Chic* Cryo Elixir—quantum-cooled at precisely -285°—reprograms cellular memory instantly! Pair with our ICE Plunge for complete bioenergetic reset—your field will NEVER be the same!"`,
-          `Every cell in your body SCREAMS awake—ancient survival mechanisms activated then transcended—as the 285 Hz frequency physically restructures your tissue matrices toward optimal coherence.`,
-          `${gameState.inventory.includes("drink_cryo") ? "✅ Maison Perrier® Chic RADIATES rejuvenating sub-zero energy, cellular repair accelerating in its presence." : ""}`,
+          `A dry sauna experience to release toxins and tension. Allow the heat to purify your body and prepare your field for integration.`,
+          `Kelvin tends to the glowing coils at the center of a dry cedar sanctuary, aromatic with ancient resins.`,
+          `"The Sweat Code is more than heat—it's purification through frequency. 285 Hz promotes cellular regeneration."`,
+          `"As the body releases, the field clears. This is physical preparation for multidimensional work."`,
+          `He hands you a towel infused with juniper and citrus. "Wrap yourself in this frequency imprint. You're shedding more than sweat—you're shedding what's no longer aligned."`,
+          `${gameState.inventory.includes("drink_cryo") ? "✅ Inscribed Copper Bottle contains pure, filtered water. Naturally antimicrobial and recharged every 2–4 hours for optimal hydration after heat purification." : ""}`,
+          `${gameState.inventory.includes("drink_perrier") ? "✅ Maison Perrier® Chic radiates rejuvenating sub-zero energy with crisp minerality and cellular hydration properties. Ideal for post-sauna temperature regulation." : ""}`,
           `${gameState.inventory.includes("exp_ice_plunge") ? "✅ ICE Plunge reservation PULSES with transformative potential, promising quantum resilience." : ""}`,
           `${gameState.inventory.includes("freq_285") ? "✅ 285 Hz frequency shard EMANATES rejuvenating chill—cellular restoration codes manifesting physically." : ""}`
         ],
         choices: [
-          { text: "Experience Maison Perrier® Chic", destination: "sacred_temple", collectItem: "drink_cryo" },
+          { text: "Experience Inscribed Copper Bottle", destination: "sacred_temple", collectItem: "drink_cryo" },
+          { text: "Experience Maison Perrier® Chic", destination: "sacred_temple", collectItem: "drink_perrier" },
           { text: "Enjoy ICE Plunge (breath-guided)", destination: "sacred_temple", collectItem: "exp_ice_plunge" },
           { text: "Attune to 285 Hz frequency shard", destination: "sacred_temple", collectItem: "freq_285" },
           { text: "✨ Full experience: shard, elixir & plunge", destination: "sacred_temple", collectItem: ["freq_285","drink_cryo","exp_ice_plunge"] },
@@ -538,13 +540,17 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `She hands you a small crystal sphere, vibrating faintly in your palm. "Carry this through the stream. It will mirror your current frequency and record the recalibration. Keep it with you. It becomes your anchor in moments of dissonance."`,
           `As you move deeper into the Gateway, every photon of light carries information—rewiring neural pathways, dissolving blockages, awakening dormant abilities that have always existed within your cellular memory.`,
           `${gameState.inventory.includes("freq_417") ? "✅ 417 Hz crystal sphere vibrates with transformative potential—mirroring your personal frequency and amplifying your resonance field." : ""}`,
-          `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz intuition catalyst shimmers with prismatic light—neural pathways activating in response to its presence." : ""}`
+          `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz intuition catalyst shimmers with prismatic light—neural pathways activating in response to its presence." : ""}`,
+          `${gameState.inventory.includes("drink_kayan") ? "✅ Golden Kayan Elixir, a sparkling digestive blend of peach, pineapple, and calming botanicals. Antioxidant-rich and clarifying—an ideal companion to frequency work." : ""}`,
+          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura, a vibrant berry blend of electrolytes, citrus, and agave nectar. Cell-hydrating and energetically aligned with the Gateway frequencies." : ""}`,
+          `${gameState.inventory.includes("drink_coffee") ? "✅ AOI Coffee, beans infused with sound patterns at 417 & 852 Hz frequencies, creating an awakened state of clarity. Rich notes of dark chocolate and blackberry enhance intuitive reception." : ""}`
         ],
         choices: [
           { text: "Attune to 417 Hz crystal sphere", destination: "deep_forest", collectItem: "freq_417" },
           { text: "Attune to 852 Hz intuition catalyst", destination: "deep_forest", collectItem: "freq_852" },
-          { text: "Experience Maison Perrier® Chic", destination: "deep_forest", collectItem: "drink_kayan" },
+          { text: "Experience Golden Kayan Elixir", destination: "deep_forest", collectItem: "drink_kayan" },
           { text: "Experience Aqua Aura", destination: "deep_forest", collectItem: "drink_aqua" },
+          { text: "Experience AOI Coffee", destination: "deep_forest", collectItem: "drink_coffee" },
           { text: "Enter Light Stream", destination: "deep_forest", collectItem: "exp_air_dome" },
           { text: "Enjoy Thermal Recalibration", destination: "deep_forest", collectItem: "exp_heat_sauna" },
           { text: "Explore Harmonic Field", destination: "deep_forest", collectItem: "exp_earth_bed" },
