@@ -82,6 +82,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   const [isMuted, setIsMuted] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
   const [textVisible] = useState(true)
+  
+  // Video states
+  const [showVideo, setShowVideo] = useState(false)
+  const [videoEnded, setVideoEnded] = useState(false)
 
   // State for frequency visualizer modal
   const [showFrequencyModal, setShowFrequencyModal] = useState(false)
@@ -89,6 +93,14 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   // Start game
   const startGame = () => {
     setHasStarted(true)
+    setShowVideo(true)
+    // Background music will start after video completes
+  }
+  
+  // Handle video end
+  const handleVideoEnd = () => {
+    setVideoEnded(true)
+    setShowVideo(false)
     soundManager.playBackgroundMusic()
   }
 
@@ -897,6 +909,26 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     <div
       className={`flex flex-col items-center justify-center min-h-screen bg-gradient-to-b ${currentContent.bgColor} p-4`}
     >
+      {/* Intro Video Overlay */}
+      {showVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+          <video 
+            src="/videos/INTROVID.mp4" 
+            className="w-full h-full object-cover" 
+            autoPlay 
+            muted={isMuted}
+            controls={false}
+            onEnded={handleVideoEnd}
+          />
+          <button 
+            onClick={() => handleVideoEnd()} 
+            className="absolute bottom-8 right-8 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-md backdrop-blur-sm"
+          >
+            Skip Intro
+          </button>
+        </div>
+      )}
+      
       {/* Header */}
       <div className="flex items-center justify-between w-full max-w-3xl mb-3">
         <h1 className="text-3xl font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">FREQUENCY RESCUE</h1>
