@@ -385,10 +385,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         text: [
           `Johny Dar's hologram flickers on-screen:`,
           `"Welcome, Frequency Hero. Our mission is critical."`,
-          `"Each frequency shard represents a unique healing vibration."`,
-          `"Collect these shards and pair them with the right Water Bar elixir or AOI experience."`,
-          `"Remember: frequency without embodiment is just noise."`,
-          `"Which frequency zone calls to you first?"`
+          `"Each frequency shard represents a unique healing vibration which you can see in the visualizer a the bottom of your time travel console - double click on it to open and hear the frequencies"`,
+          `"Collect these shards in the frequency zones, as you collect them the visualizer will update, but they need to be built from the core up"`,
+          `"Remember: 3, 6 and 9 are the foundations of the universe"`,
+          `You seem to intuivitley know that adding the digits of each frequency will yield a foundation and you know some how you need 3 first`
         ],
         choices: [
           { text: "Open Navigation Map", destination: "map" }
@@ -426,13 +426,13 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "THE HYDRATION WELL — 174 Hz",
         sprite: "💧",
         text: [
-          `FLASH—blinding cerulean light erupts as Dr. Aqua's fingertips pierce the Hydration Well's surface! Concentric rings pulse outward—quantum ripples carrying ancient code.`,
-          `Her eyes dilate, voice resonating at chest level: "FOUNDATIONS FIRST—174 Hz grounds your entire field. This isn't water—it's EARTH'S MEMORY crystallized into liquid form."`,
-          `The chamber THROBS with subsonic pulses. Each 174 Hz wave visibly reorganizes the cellular structure of your biofield—stabilizing—anchoring—preparing.`,
-          `"YALA Kombucha meets New Mind Chaga in our  where the kimbucha builds microbiome the to creating neuropeptides and the chaga is adaptogenic to balanse stress. Recalibrates gut-brain axis in seconds."`,
-          `Your cells instantly recognize this primordial frequency—because before language, before form—there was only vibration and water.`,
-          `${gameState.inventory.includes("drink_prana") ? "✅ Prana Spring radiates intense vibrational coherence from your pack." : ""}`,
-          `${gameState.inventory.includes("freq_174")  ? "✅ 174 Hz shard PULSES with earth-anchoring force in your collection." : ""}`
+          `Cold immersion to stabilize your field and reset your frequency baseline. Begin your journey with clarity and grounding.`,
+          `Dr. Aqua dips her fingers into the iridescent waters of the Hydration Well, sending concentric ripples across the surface.`,
+          `"174 Hz stabilizes your energetic baseline—it anchors you in the Now. Cold is clarity. Breath is entry."`,
+          `“Before transformation, we must return to stillness. This is where the shift begins.”`,
+          `“Drink this. Let it guide your system back to truth. The Hydration Well remembers who you are beneath the noise.”`,
+          `${gameState.inventory.includes("drink_prana") ? "Mandala-infused and source-sealed, Prana Spring brings glacial-tectonic clarity down to your very cells." : ""}`,
+          `${gameState.inventory.includes("freq_174")  ? "174 Hz shard pulses with Arctic-deep resonance—anchoring your energy in crystalline stillness." : ""}`
         ],
         choices: [
           { text: "Experience Prana Spring",                 destination: "tea_gardens", collectItem: "drink_prana" },
@@ -446,13 +446,12 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "LIGHT VAULT — 528 Hz: THE HARMONIZER",
         sprite: "✨",
         text: [
-          `GEOMETRIC EXPLOSION! Emerald-gold photon streams SLAM into prism fields—528 Hz visible as crystalline structures reorganizing mid-air! Sol stands PULSING at the nexus point.`,
-          `"MIRACLE FREQUENCY—528 Hz REPROGRAMS DNA DIRECTLY!" Her voice fractures into harmonics that make your skin vibrate. "Every cell in your body just reconstructed its lattice formation—can you FEEL it?"`,
-          `The chamber itself seems to BREATHE as pentagonal light matrices dance across walls—perfect geometric sequences materializing then dissolving.`,
-          `Two vessels MANIFEST in her hands—one Golden Kayan Elixir radiating amber coronas these pre-biotics lay the foundation of the gut-brain axis, one electric blue matrix suspended in liquid form - the lectrolytes create the right pH to heal and axt at a cellular level`,
-          `Time slows as you choose—each liquid containing different aspects of the same miraculous frequency. Your cells scream with recognition—this is the tone that REPAIRS, REVIVES, REBUILDS.`,
-          `${gameState.inventory.includes("drink_kayan") ? "✅ Golden Kayan Elixir RADIATES restorative golden fields through your entire inventory." : ""}`,
-          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura CASCADES with electric vitality, neural pathways visibly reorganizing in its presence." : ""}`,
+          `Sol stands before a vault made of fractal light—vines of pure color flowing from floor to ceiling.`,
+          `“Inside the Light Vault, you’ll receive a full-spectrum recalibration. 528 Hz—the DNA harmonizer—will awaken the codes already within you.”`,
+          `“This isn’t about becoming more. It’s about remembering all that you are.”`,
+          `She offers two small vials: one golden, one teal, “Choose. One soothes. One energizes. Both respond to your current frequency.”.`,
+          `${gameState.inventory.includes("drink_kayan") ? "✅ Golden Kayan Elixir bathes your field in peach-gold coherence—prebiotic fibers awaken gut clarity and calm." : ""}`,
+          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura surges with electric hydration—Sodium and Potassium electorlytes spark cellular vitality." : ""}`,
           `${gameState.inventory.includes("freq_528") ? "✅ 528 Hz crystal shard EMANATES the miracle tone, its geometric perfection transforming everything nearby." : ""}`
         ],
         choices: [
@@ -530,27 +529,27 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         bgColor: "from-blue-900 via-blue-700 to-cyan-300",
       },
       deep_forest: {
-        title: "AOI DOME — 639 & 852 Hz: THE CONNECTOR",
+        title: "FREQUENCY GATEWAY — 417 & 852 Hz: THE TRANSFORMER",
         sprite: "🌿",
         text: [
-          `REALITY FUSION! Twin frequencies COLLIDE at the AOI Dome's core—639 Hz and 852 Hz creating a VISIBLE interference pattern! Reality itself WARPS around Aria as she manipulates the field with her gestures!`,
-          `"HARMONIC CONVERGENCE—639 Hz CREATES connection across all dimensions while 852 Hz AWAKENS dormant neural pathways!" Her voice resonates perfectly between both frequencies, creating binaural beat patterns in the air itself.`,
-          `The dome's structure SHIFTS constantly—walls becoming translucent then opaque—as multiple frequency fields interact and create harmonic overtones that PHYSICALLY alter the space around you.`,
-          `"Our transformational experiences—AIR DOME, HEAT SAUNA, EARTH SOLARIUM, ICE PLUNGE—each perfectly calibrated for specific frequency activation. AIR DOME with *Maison Perrier® Chic* for immediate dimensional shift. HEAT with *Aqua Aura* for progressive vibrational expansion."`,
-          `Every boundary between you and environment DISSOLVES as the dual frequencies restructure your perception. You don't just hear the frequencies—you BECOME them, your consciousness expanding beyond individual identity into collective awareness.`,
-          `${gameState.inventory.includes("freq_639") ? "✅ 639 Hz shard PULSES with connective force, creating harmonic bridges between all nearby frequencies." : ""}`,
-          `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz shard EMANATES awakening energy, neural pathways visibly activating in its presence." : ""}`
+          `You step into a vertical prism chamber—walls alive with shifting spectrums of electric blue, violet, and ultraviolet light. Pulses of sound spiral upward like invisible ladders. The energy here is undeniable. A tall figure, cloaked in mirrored textiles, steps forward—Noor, Guardian of the Gateway.`,
+          `Noor speaks, her voice resonating from every direction: "Welcome to the Frequency Gateway, where the codes of coherence are activated in minutes. You'll be standing between 417 Hz and 852 Hz—frequencies of transformation and intuition."`,
+          `"This is not passive light. It speaks. It realigns. It remembers." The chamber's crystalline walls pulse in perfect sync with your heartbeat, creating architectural rhythms that seem to breathe with conscious intelligence.`,
+          `She hands you a small crystal sphere, vibrating faintly in your palm. "Carry this through the stream. It will mirror your current frequency and record the recalibration. Keep it with you. It becomes your anchor in moments of dissonance."`,
+          `As you move deeper into the Gateway, every photon of light carries information—rewiring neural pathways, dissolving blockages, awakening dormant abilities that have always existed within your cellular memory.`,
+          `${gameState.inventory.includes("freq_417") ? "✅ 417 Hz crystal sphere vibrates with transformative potential—mirroring your personal frequency and amplifying your resonance field." : ""}`,
+          `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz intuition catalyst shimmers with prismatic light—neural pathways activating in response to its presence." : ""}`
         ],
         choices: [
-          { text: "Attune to 639 Hz shard", destination: "deep_forest", collectItem: "freq_639" },
-          { text: "Attune to 852 Hz shard", destination: "deep_forest", collectItem: "freq_852" },
-          { text: "Experience Golden Kayan Elixir", destination: "deep_forest", collectItem: "drink_kayan" },
+          { text: "Attune to 417 Hz crystal sphere", destination: "deep_forest", collectItem: "freq_417" },
+          { text: "Attune to 852 Hz intuition catalyst", destination: "deep_forest", collectItem: "freq_852" },
+          { text: "Experience Maison Perrier® Chic", destination: "deep_forest", collectItem: "drink_kayan" },
           { text: "Experience Aqua Aura", destination: "deep_forest", collectItem: "drink_aqua" },
-          { text: "Enjoy AIR PRO Dome", destination: "deep_forest", collectItem: "exp_air_dome" },
-          { text: "Enjoy HEAT Sauna", destination: "deep_forest", collectItem: "exp_heat_sauna" },
-          { text: "Enjoy EARTH Solarium", destination: "deep_forest", collectItem: "exp_earth_bed" },
-          { text: "Enjoy ICE Plunge", destination: "deep_forest", collectItem: "exp_ice_plunge" },
-          { text: "✨ Full harmonic experience", destination: "deep_forest", collectItem: ["freq_639","freq_852","drink_kayan","drink_aqua","exp_air_dome","exp_heat_sauna","exp_earth_bed","exp_ice_plunge"] },
+          { text: "Enter Light Stream", destination: "deep_forest", collectItem: "exp_air_dome" },
+          { text: "Enjoy Thermal Recalibration", destination: "deep_forest", collectItem: "exp_heat_sauna" },
+          { text: "Explore Harmonic Field", destination: "deep_forest", collectItem: "exp_earth_bed" },
+          { text: "Experience Neural Reset", destination: "deep_forest", collectItem: "exp_ice_plunge" },
+          { text: "✨ Complete Gateway transformation", destination: "deep_forest", collectItem: ["freq_417","freq_852","drink_kayan","drink_aqua","exp_air_dome","exp_heat_sauna","exp_earth_bed","exp_ice_plunge"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-purple-900 via-violet-700 to-indigo-400",
