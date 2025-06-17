@@ -88,9 +88,11 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   const [hasStarted, setHasStarted] = useState(false)
   const [textVisible] = useState(true)
   
-  // Video states
+  // Video state
   const [currentVideo, setCurrentVideo] = useState<string | null>(null)
-  const [playedVideos, setPlayedVideos] = useState<string[]>([])
+  // Videos now play every time a screen is visited, so we don't track played videos
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const [playedVideos, setPlayedVideos] = useState<string[]>([])
 
   // State for frequency visualizer modal
   const [showFrequencyModal, setShowFrequencyModal] = useState(false)
@@ -107,10 +109,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     const videoJustPlayed = currentVideo
     setCurrentVideo(null)
     
-    // Mark this video as played
-    if (videoJustPlayed) {
-      setPlayedVideos(prev => [...prev, videoJustPlayed])
-    }
+    // Videos now play every time a screen is visited
+    // No need to track played videos
     
     // Only start background music after intro video
     if (videoJustPlayed === 'intro') {
