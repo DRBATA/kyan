@@ -61,8 +61,13 @@ interface GameState {
   showChoices: boolean
   gameComplete: boolean
   endingType: "legendary" | "heroic" | "clutch" | "miracle" | "failure"
-  frequencyMessage?: string // Message to show for frequency collection guidance
-  showFrequencyMessage: boolean // Whether to show the frequency message
+  frequencyMessage?: string
+  showFrequencyMessage: boolean
+  pendingNavigation?: {
+    destination: GameScreen
+    inventory: string[]
+    message?: string
+  }
 }
 
 export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps) {
@@ -75,7 +80,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     gameComplete: false,
     endingType: "failure",
     frequencyMessage: undefined,
-    showFrequencyMessage: false
+    showFrequencyMessage: false,
+    pendingNavigation: undefined
   })
 
   const [isMuted, setIsMuted] = useState(false)
@@ -83,7 +89,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   const [textVisible] = useState(true)
   
   // Video states
-  const [showVideo, setShowVideo] = useState(false)
+  const [currentVideo, setCurrentVideo] = useState<string | null>(null)
+  const [playedVideos, setPlayedVideos] = useState<string[]>([])
 
   // State for frequency visualizer modal
   const [showFrequencyModal, setShowFrequencyModal] = useState(false)
@@ -91,14 +98,116 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   // Start game
   const startGame = () => {
     setHasStarted(true)
-    setShowVideo(true)
+    setCurrentVideo('intro')
     // Background music will start after video completes
   }
   
   // Handle video end
   const handleVideoEnd = () => {
-    setShowVideo(false)
-    soundManager.playBackgroundMusic()
+    const videoJustPlayed = currentVideo
+    setCurrentVideo(null)
+    
+    // Mark this video as played
+    if (videoJustPlayed) {
+      setPlayedVideos(prev => [...prev, videoJustPlayed])
+    }
+    
+    // Only start background music after intro video
+    if (videoJustPlayed === 'intro') {
+      soundManager.playBackgroundMusic()
+    }
+    
+    // Complete pending navigation if any
+    if (gameState.pendingNavigation) {
+      const { destination, inventory, message } = gameState.pendingNavigation
+      setGameState(prev => ({
+        ...prev,
+        currentScreen: destination,
+        inventory: inventory,
+        textIndex: 0,
+        showChoices: false,
+        frequencyMessage: message,
+        showFrequencyMessage: !!message,
+        pendingNavigation: undefined
+      }))
+    }
+  }
+  
+  // Handle navigation with video integration
+  const handleNavigation = (destination: GameScreen, newInventory = [...gameState.inventory], messageToShow?: string) => {
+    // Check if we should play a video for this destination
+    if (destination === 'map') {
+      // Play map video then navigate
+      setCurrentVideo('map')
+      // Store navigation info to complete after video
+      setGameState(prev => ({
+        ...prev,
+        pendingNavigation: {
+          destination,
+          inventory: newInventory,
+          message: messageToShow
+        }
+      }))
+    } else if (destination === 'tea_gardens') {
+      // Play hydration video then navigate
+      setCurrentVideo('hydration')
+      // Store navigation info to complete after video
+      setGameState(prev => ({
+        ...prev,
+        pendingNavigation: {
+          destination,
+          inventory: newInventory,
+          message: messageToShow
+        }
+      }))
+    } else if (destination === 'tropical_cove') {
+      // Play light vault video then navigate
+      setCurrentVideo('lightvault')
+      // Store navigation info to complete after video
+      setGameState(prev => ({
+        ...prev,
+        pendingNavigation: {
+          destination,
+          inventory: newInventory,
+          message: messageToShow
+        }
+      }))
+    } else if (destination === 'mountain_peak') {
+      // Play sound altar video then navigate
+      setCurrentVideo('soundaltar')
+      // Store navigation info to complete after video
+      setGameState(prev => ({
+        ...prev,
+        pendingNavigation: {
+          destination,
+          inventory: newInventory,
+          message: messageToShow
+        }
+      }))
+    } else if (destination === 'deep_forest') {
+      // Play frequency gateway video then navigate
+      setCurrentVideo('gateway')
+      // Store navigation info to complete after video
+      setGameState(prev => ({
+        ...prev,
+        pendingNavigation: {
+          destination,
+          inventory: newInventory,
+          message: messageToShow
+        }
+      }))
+    } else {
+      // No video to play, navigate immediately
+      setGameState(prev => ({
+        ...prev,
+        currentScreen: destination,
+        textIndex: 0,
+        showChoices: false,
+        inventory: newInventory,
+        frequencyMessage: messageToShow,
+        showFrequencyMessage: !!messageToShow
+      }))
+    }
   }
 
   // Toggle mute - preserved for future implementation
@@ -308,16 +417,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         showFrequencyMessage: false,
       }))
     } else {
-      // Regular navigation
-      setGameState((prev) => ({
-        ...prev,
-        currentScreen: actualDestination,
-        textIndex: 0,
-        showChoices: false,
-        inventory: newInventory,
-        frequencyMessage: messageToShow,
-        showFrequencyMessage: Boolean(messageToShow)
-      }))
+      // Navigate to destination with potential video transition
+      handleNavigation(actualDestination, newInventory, messageToShow)
     }  
   }
 
@@ -412,8 +513,10 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         text: [
           `⏰ TIME REMAINING: ${Math.floor(gameState.currentTime / 60)}:${(gameState.currentTime % 60).toString().padStart(2, '0')}`,
           `✨ FREQUENCIES COLLECTED: ${countFrequencyShards()}/7`,
-          `Select a destination to continue your frequency rescue mission.`,
-          `Each zone contains unique vibrational patterns that can be collected.`
+          `⚡️ Access the Frequency Visualizer by clicking the lightning bolt icon at the bottom of your screen.`,
+          `💫 HINT: 3, 6, and 9 are the keys to universal harmony. Add the digits of each frequency (e.g., 1+7+4=12→1+2=3) to reveal their foundation number.`,
+          `🔑 Build your frequency collection in order: start with 3 (foundation), then 6 (harmony), and finally 9 (completion).`,
+          `Select a destination to continue your frequency rescue mission.`
         ],
         choices: [
           { text: `💧 Hydration Well (174 Hz)${gameState.inventory.includes('freq_174') ? ' ✅' : ''}`, destination: "tea_gardens" },
@@ -441,12 +544,12 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `“Before transformation, we must return to stillness. This is where the shift begins.”`,
           `“Drink this. Let it guide your system back to truth. The Hydration Well remembers who you are beneath the noise.”`,
           `${gameState.inventory.includes("drink_prana") ? "✅ Ginger Shot awakens immunity, metabolism, and natural energy. Bold and warming—ideal after cold immersion." : ""}`,
-          `${gameState.inventory.includes("freq_174")  ? "174 Hz shard pulses with Arctic-deep resonance—anchoring your energy in crystalline stillness." : ""}`
+          `${gameState.inventory.includes("freq_174")  ? "✅ 174 Hz shard pulses with Arctic-deep resonance—anchoring your energy in crystalline stillness. The pattern 1+7+4=12, then 1+2=3 establishes your foundation. 🔼 Next: collect frequencies that add to 6 to create upward-pointing triangles in your visualizer." : ""}`
         ],
         choices: [
           { text: "Experience Ginger Shot",                 destination: "tea_gardens", collectItem: "drink_prana" },
-          { text: "Attune to 174 Hz frequency",               destination: "tea_gardens", collectItem: "freq_174"    },
-          { text: "✨ Full foundation experience",       destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
+          { text: "Collect 174 Hz frequency",               destination: "tea_gardens", collectItem: "freq_174"    },
+          { text: "✨ Full foundation experience (collect frequency shard and enjoy a Ginger Shot after an ice bath",       destination: "tea_gardens", collectItem: ["freq_174","drink_prana"] },
           { text: "🗺 Return to Frequency Map",                       destination: "map" }
         ],
         bgColor: "from-blue-800 via-cyan-600 to-teal-400",
@@ -466,9 +569,9 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         choices: [
           { text: "Experience Golden Kayan Elixir", destination: "tropical_cove", collectItem: "drink_kayan" },
           { text: "Experience Aqua Aura", destination: "tropical_cove", collectItem: "drink_aqua" },
-          { text: "Attune to 528 Hz frequency", destination: "tropical_cove", collectItem: "freq_528" },
-          { text: "✨ Full experience: 528 Hz & Golden Kayan", destination: "tropical_cove", collectItem: ["freq_528","drink_kayan"] },
-          { text: "✨ Full experience: 528 Hz & Aqua Aura", destination: "tropical_cove", collectItem: ["freq_528","drink_aqua"] },
+          { text: "Collect 528 Hz frequency", destination: "tropical_cove", collectItem: "freq_528" },
+          { text: "✨ Full experience: 528 Hz & Golden Kayan (collect harmony frequency & enjoy calming elixir)", destination: "tropical_cove", collectItem: ["freq_528","drink_kayan"] },
+          { text: "✨ Full experience: 528 Hz & Aqua Aura (collect harmony frequency & enjoy energizing elixir)", destination: "tropical_cove", collectItem: ["freq_528","drink_aqua"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-yellow-400 via-lime-300 to-green-300",
@@ -487,8 +590,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         ],
         choices: [
           { text: "Experience The Gaia Experience",      destination: "mountain_peak", collectItem: "drink_copper" },
-          { text: "Attune to 396 Hz frequency",               destination: "mountain_peak", collectItem: "freq_396"     },
-          { text: "✨ Full liberation experience",       destination: "mountain_peak", collectItem: ["freq_396","drink_copper"] },
+          { text: "Collect 396 Hz frequency",               destination: "mountain_peak", collectItem: "freq_396"     },
+          { text: "✨ Full liberation experience (collect unblocker frequency & enjoy grounding elixir)",       destination: "mountain_peak", collectItem: ["freq_396","drink_copper"] },
           { text: "🗺 Return to Frequency Map",                       destination: "map" }
         ],
         bgColor: "from-rose-700 via-orange-600 to-amber-400",
@@ -509,8 +612,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         choices: [
           { text: "Experience Golden Kayan Elixir", destination: "ice_caves", collectItem: "drink_transcend" },
           { text: "Enjoy Sound Bath immersion", destination: "ice_caves", collectItem: "exp_sound_bath" },
-          { text: "Attune to 963 Hz frequency", destination: "ice_caves", collectItem: "freq_963" },
-          { text: "✨ Complete cosmic trinity experience", destination: "ice_caves", collectItem: ["freq_963", "drink_transcend", "exp_sound_bath"] },
+          { text: "Collect 963 Hz frequency", destination: "ice_caves", collectItem: "freq_963" },
+          { text: "✨ Complete cosmic trinity experience (collect pinnacle frequency, enjoy elixir & sound bath)", destination: "ice_caves", collectItem: ["freq_963", "drink_transcend", "exp_sound_bath"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-yellow-300 via-yellow-200 to-amber-500",
@@ -519,11 +622,11 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         title: "THE SWEAT CODE — 285 Hz: THE PURIFIER",
         sprite: "🔥",
         text: [
-          `A dry sauna experience to release toxins and tension. Allow the heat to purify your body and prepare your field for integration.`,
-          `Kelvin tends to the glowing coils at the center of a dry cedar sanctuary, aromatic with ancient resins.`,
-          `"The Sweat Code is more than heat—it's purification through frequency. 285 Hz promotes cellular regeneration."`,
-          `"As the body releases, the field clears. This is physical preparation for multidimensional work."`,
-          `He hands you a towel infused with juniper and citrus. "Wrap yourself in this frequency imprint. You're shedding more than sweat—you're shedding what's no longer aligned."`,
+          `A precision-engineered contrast therapy experience—starting with cedar-infused heat, followed by crystalline meltwater immersion. This scientifically-validated sequence creates a powerful vascular pump effect throughout your body.`,
+          `Kelvin adjusts the 80°C cedar sanctuary, where heat-shock proteins are visibly activating across bio-monitoring displays.`,
+          `"The Sweat Code follows nature's wisdom: heat opens, cold seals. Fifteen minutes here floods your tissues with nutrient-rich blood while triggering cellular repair mechanisms. Then sixty seconds of cold immersion locks everything in—creating a circulation flush twice as effective as either stimulus alone."`,
+          `"As the heat softens tissues and increases blood flow by up to 70%, we bathe your nervous system in a precise 285 Hz harmonic. This frequency synchronizes thalamocortical rhythms while the cold plunge afterward triggers a 3-fold norepinephrine surge—recalibrating your entire field in minutes rather than months."`,
+          `He presents a precisely-timed protocol on a crystalline display. "Always finish with cold—it tightens the vascular system, stabilizes the nervous system, and activates brown adipose tissue for enhanced metabolic function. The contrast between extremes is where transformation becomes measurable."`,
           `${gameState.inventory.includes("drink_cryo") ? "✅ Inscribed Copper Bottle contains pure, filtered water. Naturally antimicrobial and recharged every 2–4 hours for optimal hydration after heat purification." : ""}`,
           `${gameState.inventory.includes("drink_perrier") ? "✅ Maison Perrier® Chic radiates rejuvenating sub-zero energy with crisp minerality and cellular hydration properties. Ideal for post-sauna temperature regulation." : ""}`,
           `${gameState.inventory.includes("exp_ice_plunge") ? "✅ ICE Plunge reservation PULSES with transformative potential, promising quantum resilience." : ""}`,
@@ -533,8 +636,8 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           { text: "Experience Inscribed Copper Bottle", destination: "sacred_temple", collectItem: "drink_cryo" },
           { text: "Experience Maison Perrier® Chic", destination: "sacred_temple", collectItem: "drink_perrier" },
           { text: "Enjoy ICE Plunge (breath-guided)", destination: "sacred_temple", collectItem: "exp_ice_plunge" },
-          { text: "Attune to 285 Hz frequency shard", destination: "sacred_temple", collectItem: "freq_285" },
-          { text: "✨ Full experience: shard, elixir & plunge", destination: "sacred_temple", collectItem: ["freq_285","drink_cryo","exp_ice_plunge"] },
+          { text: "Collect 285 Hz frequency shard", destination: "sacred_temple", collectItem: "freq_285" },
+          { text: "✨ Full purification protocol (collect 285 Hz frequency, experience fire-ice contrast therapy)", destination: "sacred_temple", collectItem: ["freq_285","drink_cryo","exp_ice_plunge"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-blue-900 via-blue-700 to-cyan-300",
@@ -550,21 +653,19 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           `As you move deeper into the Gateway, every photon of light carries information—rewiring neural pathways, dissolving blockages, awakening dormant abilities that have always existed within your cellular memory.`,
           `${gameState.inventory.includes("freq_417") ? "✅ 417 Hz crystal sphere vibrates with transformative potential—mirroring your personal frequency and amplifying your resonance field." : ""}`,
           `${gameState.inventory.includes("freq_852") ? "✅ 852 Hz intuition catalyst shimmers with prismatic light—neural pathways activating in response to its presence." : ""}`,
-          `${gameState.inventory.includes("drink_kayan") ? "✅ Golden Kayan Elixir, a sparkling digestive blend of peach, pineapple, and calming botanicals. Antioxidant-rich and clarifying—an ideal companion to frequency work." : ""}`,
-          `${gameState.inventory.includes("drink_aqua") ? "✅ Aqua Aura, a vibrant berry blend of electrolytes, citrus, and agave nectar. Cell-hydrating and energetically aligned with the Gateway frequencies." : ""}`,
+          `${gameState.inventory.includes("drink_kombucha") ? "✅ Psychobiotic Kombucha: Live cultures of Lactobacillus and Bifidobacterium strains fermented in a base of polyphenol-rich tea. Your gut-brain axis activates as these microbes produce serotonin, GABA, and dopamine precursors, supporting joy and focus while damping HPA stress responses." : ""}`,
           `${gameState.inventory.includes("drink_coffee") ? "✅ AOI Coffee, beans infused with sound patterns at 417 & 852 Hz frequencies, creating an awakened state of clarity. Rich notes of dark chocolate and blackberry enhance intuitive reception." : ""}`
         ],
         choices: [
-          { text: "Attune to 417 Hz crystal sphere", destination: "deep_forest", collectItem: "freq_417" },
-          { text: "Attune to 852 Hz intuition catalyst", destination: "deep_forest", collectItem: "freq_852" },
-          { text: "Experience Golden Kayan Elixir", destination: "deep_forest", collectItem: "drink_kayan" },
-          { text: "Experience Aqua Aura", destination: "deep_forest", collectItem: "drink_aqua" },
+          { text: "Collect 417 Hz crystal sphere", destination: "deep_forest", collectItem: "freq_417" },
+          { text: "Collect 852 Hz intuition catalyst", destination: "deep_forest", collectItem: "freq_852" },
+          { text: "Experience Psychobiotic Kombucha", destination: "deep_forest", collectItem: "drink_kombucha" },
           { text: "Experience AOI Coffee", destination: "deep_forest", collectItem: "drink_coffee" },
           { text: "Enter Light Stream", destination: "deep_forest", collectItem: "exp_air_dome" },
           { text: "Enjoy Thermal Recalibration", destination: "deep_forest", collectItem: "exp_heat_sauna" },
           { text: "Explore Harmonic Field", destination: "deep_forest", collectItem: "exp_earth_bed" },
           { text: "Experience Neural Reset", destination: "deep_forest", collectItem: "exp_ice_plunge" },
-          { text: "✨ Complete Gateway transformation", destination: "deep_forest", collectItem: ["freq_417","freq_852","drink_kayan","drink_aqua","exp_air_dome","exp_heat_sauna","exp_earth_bed","exp_ice_plunge"] },
+          { text: "✨ Complete Gateway transformation (collect both transformer frequencies & experience the full journey)", destination: "deep_forest", collectItem: ["freq_417","freq_852","drink_kombucha","drink_coffee","exp_air_dome","exp_heat_sauna","exp_earth_bed","exp_ice_plunge"] },
           { text: "🗺 Return to Frequency Map", destination: "map" },
         ],
         bgColor: "from-purple-900 via-violet-700 to-indigo-400",
@@ -906,22 +1007,29 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
     <div
       className={`flex flex-col items-center justify-center min-h-screen bg-gradient-to-b ${currentContent.bgColor} p-4`}
     >
-      {/* Intro Video Overlay */}
-      {showVideo && (
+      {/* Video Overlay */}
+      {currentVideo && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-          <video 
-            src="/videos/INTROVID.mp4" 
-            className="w-full h-full object-cover" 
-            autoPlay 
-            muted={isMuted}
-            controls={false}
-            onEnded={handleVideoEnd}
-          />
+          <div className="relative w-full h-full max-w-screen-lg max-h-[90vh] flex items-center justify-center">
+            <video 
+              src={`/videos/${currentVideo === 'intro' ? 'INTROVID' : 
+                    currentVideo === 'map' ? 'MAPVID' : 
+                    currentVideo === 'hydration' ? 'HYDRATIONVID' :
+                    currentVideo === 'lightvault' ? 'LIGHTVAULTVID' :
+                    currentVideo === 'soundaltar' ? 'SOUNDALTARVID' :
+                    currentVideo === 'gateway' ? 'GATEWAYVID' : 'INTROVID'}.mp4`} 
+              className="max-w-full max-h-full object-contain" 
+              autoPlay 
+              muted={isMuted}
+              controls={false}
+              onEnded={handleVideoEnd}
+            />
+          </div>
           <button 
             onClick={() => handleVideoEnd()} 
             className="absolute bottom-8 right-8 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-md backdrop-blur-sm"
           >
-            Skip Intro
+            {currentVideo === 'intro' ? 'Skip Intro' : 'Skip Video'}
           </button>
         </div>
       )}
