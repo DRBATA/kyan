@@ -1138,9 +1138,9 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           </p>
           
           {/* Custom Content Render (for screens like ending) */}
-          {gameState.showChoices && currentContent.renderCustomContent && (
+          {gameState.showChoices && (currentContent as ScreenContent).renderCustomContent && (
             <div className="mt-6">
-              {currentContent.renderCustomContent()}
+              {(currentContent as ScreenContent).renderCustomContent!()}
             </div>
           )}
         </div>
