@@ -167,7 +167,6 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   // Video state
   const [currentVideo, setCurrentVideo] = useState<string | null>(null)
   // Videos now play every time a screen is visited, so we don't track played videos
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const [playedVideos, setPlayedVideos] = useState<string[]>([])
 
   // State for frequency visualizer modal
@@ -1009,6 +1008,7 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   }
 
   // Restart game function preserved for future implementation
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const restartGame = () => {
     setGameState({
       currentScreen: "intro",
