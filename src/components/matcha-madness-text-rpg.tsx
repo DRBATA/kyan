@@ -78,7 +78,7 @@ type GameScreen =
   | "ending"
 
 // Define the screen content structure
-interface ScreenContent {
+export interface ScreenContent {
   title: string
   sprite: string
   text: string[]
@@ -1009,7 +1009,6 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
   }
 
   // Restart game function preserved for future implementation
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const restartGame = () => {
     setGameState({
       currentScreen: "intro",
