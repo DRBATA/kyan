@@ -87,9 +87,9 @@ export default function Home() {
           </div>
           
           <div className="text-center my-6">
-            <button className="bg-gradient-to-r from-pink-500 to-violet-500 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-violet-600 transition-all duration-300">
+            <a href="https://www.thewater.bar" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-pink-500 to-violet-500 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-violet-600 transition-all duration-300 inline-block">
               BOOK YOUR FREQUENCY SESSION NOW
-            </button>
+            </a>
           </div>
           
           <div className="text-center italic text-slate-300 bg-slate-800/50 p-4 rounded-lg">
@@ -174,8 +174,8 @@ export default function Home() {
                 &quot;Experience the future of wellness through the power of frequency, light and sound.&quot;
               </p>
               <div className="text-center mt-4">
-                <a href="#" className="inline-block px-6 py-2 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-medium rounded-full hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300">
-                  BOOK YOUR EXPERIENCE
+                <a href="https://www.thewater.bar" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-medium rounded-full hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300">
+                  BOOK YOUR FREQUENCY EXPERIENCE
                 </a>
               </div>
             </div>

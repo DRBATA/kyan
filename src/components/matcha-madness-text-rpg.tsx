@@ -5,6 +5,30 @@ import Image from "next/image"
 import type { Character } from "@/lib/character-data"
 import FrequencyVisualizer from "./FrequencyVisualizer"
 
+// Helper function to determine discount code based on frequency count
+function getDiscountCode(freqCount: number): { code: string; percentage: number } {
+  if (freqCount >= 7) {
+    return { code: "ARCHIVE30", percentage: 30 };
+  } else if (freqCount >= 4) {
+    return { code: "RESTORE20", percentage: 20 };
+  } else if (freqCount >= 1) {
+    return { code: "RESONATE10", percentage: 10 };
+  }
+  return { code: "", percentage: 0 };
+}
+
+// Helper function to get the appropriate discount message based on frequency count
+function getDiscountMessage(freqCount: number): string {
+  if (freqCount >= 7) {
+    return "You've restored the Archive in full! Unlock your ultimate ritual experience.";
+  } else if (freqCount >= 4) {
+    return "You've realigned the Archive's lower frequencies. Your enhanced ritual discount awaits.";
+  } else if (freqCount >= 1) {
+    return "You've recovered the first tone. Your ritual discount is ready.";
+  }
+  return "No frequencies collected. Continue your journey to unlock special offers.";
+}
+
 // Enhanced sound manager with frequency-specific sounds
 const soundManager = {
   playSound: (sound: string) => {
@@ -53,6 +77,16 @@ type GameScreen =
   | "frequencies"
   | "ending"
 
+// Define the screen content structure
+interface ScreenContent {
+  title: string
+  sprite: string
+  text: string[]
+  choices: { text: string; destination: GameScreen; collectItem?: string | string[]; returnToMap?: boolean }[]
+  bgColor: string
+  renderCustomContent?: () => React.ReactNode
+}
+
 interface GameState {
   currentScreen: GameScreen
   inventory: string[]
@@ -68,6 +102,48 @@ interface GameState {
     inventory: string[]
     message?: string
   }
+}
+
+// Component for displaying discount code with copy and website buttons
+function DiscountCodeDisplay({ frequencyCount }: { frequencyCount: number }) {
+  const [isCopied, setIsCopied] = useState(false);
+  const { code, percentage } = getDiscountCode(frequencyCount);
+  const message = getDiscountMessage(frequencyCount);
+  
+  const copyCode = () => {
+    if (code) {
+      navigator.clipboard.writeText(code);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    }
+  };
+  
+  if (!code) return null;
+  
+  return (
+    <div className="my-4 p-4 rounded-lg bg-gradient-to-r from-indigo-900/60 to-purple-900/60 border border-indigo-400/30 text-center">
+      <p className="text-violet-100 font-light mb-2">{message}</p>
+      <div className="font-medium mb-2">Your discount code:</div>
+      <div className="text-2xl font-bold text-yellow-300 mb-3">{code}</div>
+      <p className="text-sm text-violet-200 mb-4">Enter this code at checkout to claim your {percentage}% ritual discount.</p>
+      <div className="flex justify-center gap-4">
+        <button 
+          onClick={copyCode}
+          className={`px-4 py-2 rounded ${isCopied ? 'bg-green-600' : 'bg-indigo-600'} text-white font-medium transition-all hover:bg-indigo-700`}
+        >
+          {isCopied ? '✓ Copied!' : 'Copy Code'}
+        </button>
+        <a 
+          href="https://www.thewater.bar" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="px-4 py-2 rounded bg-purple-600 text-white font-medium transition-all hover:bg-purple-700"
+        >
+          Build your Ritual
+        </a>
+      </div>
+    </div>
+  );
 }
 
 export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps) {
@@ -741,17 +817,14 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
         text: [
           getEndingDescription(gameState.endingType, selectedCharacter.name),
           getEndingFlavor(gameState.endingType),
+          `You've collected ${countFrequencyShards()} out of 7 healing frequencies.`,
         ],
-        choices: gameState.endingType === "failure" ? 
-          [
-            { text: "View Collected Frequencies", destination: "frequencies" },
-            { text: "Play Again", destination: "intro" }
-          ] : 
-          [
-            { text: "View Preserved Frequencies", destination: "frequencies" },
-            { text: "Play Again", destination: "intro" }
-          ],
+        choices: [
+          { text: "View Preserved Frequencies", destination: "frequencies" },
+          { text: "Play Again", destination: "intro" }
+        ],
         bgColor: getEndingBackground(gameState.endingType),
+        renderCustomContent: () => <DiscountCodeDisplay frequencyCount={countFrequencyShards()} />
       },
       frequencies: {
         title: "PRESERVED FREQUENCIES",
@@ -1064,6 +1137,13 @@ export default function MatchaMadnessTextRPG({ selectedCharacter }: TextRPGProps
           <p className="text-blue-100 font-light text-lg leading-relaxed">
             {textVisible && currentContent.text[gameState.textIndex]}
           </p>
+          
+          {/* Custom Content Render (for screens like ending) */}
+          {gameState.showChoices && currentContent.renderCustomContent && (
+            <div className="mt-6">
+              {currentContent.renderCustomContent()}
+            </div>
+          )}
         </div>
 
         {/* Choices or Continue */}

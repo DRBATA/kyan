@@ -59,6 +59,16 @@ const CacaoIcon = () => (
   </svg>
 )
 
+const CoffeeIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 9H18V16C18 18.2091 16.2091 20 14 20H10C7.79086 20 6 18.2091 6 16V9Z" fill="#5D4037" fillOpacity="0.8"/>
+    <path d="M18 9H20C21.1046 9 22 9.89543 22 11V13C22 14.1046 21.1046 15 20 15H18V9Z" fill="#5D4037" fillOpacity="0.6"/>
+    <path d="M11 3V5M14 3V5M8 3V5" stroke="#5D4037" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M9 13C10 14 14 14 15 13" stroke="#7B5E3E" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M8 9V15M16 9V15" stroke="#7B5E3E" strokeOpacity="0.4" strokeWidth="0.5" strokeLinecap="round"/>
+  </svg>
+)
+
 /* ------------------------------------------------------------------
    WELLNESS BEVERAGE MENU DATA
 -------------------------------------------------------------------*/
@@ -98,6 +108,18 @@ const wellnessDrinks = [
     textColor: "#0F172A",
     experience: "AOI AIR / Detox Trinity",
     benefit: "Offers refined refreshment enhancing the elevating experience. Provides a celebratory finish.",
+  },
+  {
+    id: "aoi-coffee",
+    icon: <CoffeeIcon />,
+    headline: "AOI Coffee",
+    summary: "Beans infused with 417 & 852 Hz frequencies for enhanced clarity and intuition.",
+    notes: "Rich notes of dark chocolate and blackberry enhance intuitive reception. Creates an awakened state of clarity and supports frequency work.",
+    price: 45,
+    color: "#5D4037",
+    textColor: "#FFFFFF",
+    experience: "AOI AIR PRO / FREQUENCY GATEWAY",
+    benefit: "Enhances mental clarity and intuitive reception. Supports the transformative journey through 417 & 852 Hz frequencies.",
   },
   {
     id: "kimbucha-chaga",
