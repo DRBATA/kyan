@@ -93,7 +93,7 @@ export default function Home() {
           </div>
           
           <div className="text-center italic text-slate-300 bg-slate-800/50 p-4 rounded-lg">
-            &quot;Wake up, hydrate, transform – your wellness journey begins @ 11:00 AM.&quot;
+            &quot;Wake up, hydrate, transform – your wellness journey begins @ 10:00 AM.&quot;
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">

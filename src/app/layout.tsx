@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "🎉 The Morning Party",
-  description: "Join us for The Morning Party - a 25-year matcha celebration tradition",
+  title: "🎉 The Morning Party 1999 x Johny Dar Adventure against Y2K bug ",
+  description: "Race against time to save healing frequencies and unlock discounts on your luxury blended wellness experiences",
 };
 
 export default function RootLayout({
